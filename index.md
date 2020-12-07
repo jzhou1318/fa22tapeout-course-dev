@@ -18,10 +18,10 @@
 
 ## Big Table
 
-| Date        | Agenda         |
-| ----------- | -------------- |
-| 1/1/21      | Intro          |
-| 1/2/21      | Tape-Out Done! |
+| Date        | Agenda         |               |
+| ----------- | -------------- |-------------- |
+| 1/1/21      | Intro          | Example PDF attachment: [demo.pdf](assets/demo.pdf) |
+| 1/2/21      | Tape-Out Done! |               |
 
  			
 ## Resources

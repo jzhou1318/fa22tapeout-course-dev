@@ -9,12 +9,13 @@ Most content is written in [Markdown](https://guides.github.com/features/masteri
 and compiled into HTML on GitHub's servers. Examples of most common elements are included 
 in the existing home page, as well as the help-excerpt below. 
 
-The course home page is (index.md)[index.md]. Thus far essentially all content is in the home-page, 
+The course home page is [index.md](index.md). 
+Thus far essentially all content is in the home-page, 
 save for attached files such as PDFs and images. 
 
 ## Attachments, Files & Assets 
 
-The GitHub-stack seems to prefer any such files be kept in the (assets/)[./assets] directory. 
+The GitHub-stack seems to prefer any such files be kept in the [assets/](./assets) directory. 
 Example PDF attachment: [demo.pdf](assets/demo.pdf). 
 
 ## Styling 
