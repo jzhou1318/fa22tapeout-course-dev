@@ -20,7 +20,7 @@
 
 | Date        | Agenda         |               |
 | ----------- | -------------- |-------------- |
-| 1/1/21      | Intro          | Example PDF attachment: [demo.pdf](assets/demo.pdf) |
+| 1/1/21      | Intro          | Example PDF attachment: [example.pdf](assets/demo.pdf) |
 | 1/2/21      | Tape-Out Done! |               |
 
  			
