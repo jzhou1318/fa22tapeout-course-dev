@@ -34,6 +34,12 @@ GitHub provides [a terrific guide](https://docs.github.com/en/free-pro-team@late
 on how to run local preview-versions of our site before publishing them. 
 This will generally require installing some Ruby packages, and if necessary Ruby itself. 
 
+---
+
+## Planning & To-Dos 
+
+* [ ] Invite Kris, Ali to this group 
+* [ ] BWRC Accounts for all students 
 
 ---
 
