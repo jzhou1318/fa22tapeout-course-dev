@@ -2,9 +2,9 @@
 
 |               |                                                                | 
 |---------------|----------------------------------------------------------------| 
-| Lectures      | Tues, Thurs	9:30 am - 11:00 am	293 Cory	Borivoje Nikolic |
-| Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                 |
-|               | Mon	1:00 pm - 2:00 pm	504 Cory	Dan Fritchman            | 
+| Lectures      | Tues, Thurs	3:30 - 5 pm	521 Cory                               |
+| Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                     |
+|               | Mon	1:00 pm - 2:00 pm	Dan Fritchman                            | 
 
 ## Homework
 
@@ -18,11 +18,13 @@
 
 ## Big Table
 
+* 16 instructional weeks total 
+
 | Date        | Agenda         |               |
 | ----------- | -------------- |-------------- |
 | 1/1/21      | Intro          | Example PDF attachment: [example.pdf](assets/demo.pdf) |
 | 1/2/21      | Tape-Out Done! |               |
-
+| 1/3/21      | Chip Tested and Works! |               |
  			
 ## Resources
 
