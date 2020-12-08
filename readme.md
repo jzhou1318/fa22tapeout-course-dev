@@ -1,5 +1,8 @@
 # EE290C Spring 2021 Course Site 
 
+* Published at https://ucberkeley-ee290c.github.io/sp21/
+* Also re-directed from https://inst.eecs.berkeley.edu/~ee290c/sp21/
+
 ## Editing 
 
 Editing the course site is performed through git. 
