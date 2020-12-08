@@ -16,15 +16,19 @@
 * There will be four quizzes during the semester.
 * Final exam will be held during the last week of the course.
 
-## Big Table
+## Schedule 
 
-* 16 instructional weeks total 
+* Week 1: Team Formation, ChipYard Lab 
+* Week 2: Analog Design, Layout, and BAG
+* Week 3: RF Baseband 
+* Weeks 4-14: Make the Chip 
 
 | Date        | Agenda         |               |
 | ----------- | -------------- |-------------- |
 | 1/1/21      | Intro          | Example PDF attachment: [example.pdf](assets/demo.pdf) |
 | 1/2/21      | Tape-Out Done! |               |
 | 1/3/21      | Chip Tested and Works! |               |
+
  			
 ## Resources
 
