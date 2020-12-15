@@ -25,7 +25,7 @@ Example PDF attachment: [demo.pdf](assets/demo.pdf).
 ## Styling 
 
 Our general intent is to perform as little custom style-izing as we can. 
-The site template is courtesty the [Pages Cayman theme](https://github.com/pages-themes/cayman). 
+The site template is courtesy the [Pages Cayman theme](https://github.com/pages-themes/cayman). 
 A few tweaks are applied, particularly to drop a few tropical colors 
 and replace them with some more Berkeley-ish ones. 
 

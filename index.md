@@ -1,3 +1,45 @@
+# Advanced Topics in Circuit Design 
+## 28nm SoC for IoT 
+## Topics 
+
+* Our SoC for IoT
+    * State-of-the art micro-robotics, RISC-V, low-power RF 
+* Digital Front-End Design 
+    * Verilog, Chisel
+* Digital Back-End 
+    * Logic Synthesis, Place-and-Route Layout, HAMMER, Clock & Power Networks 
+* Analog Design Practice
+    * Cadence, ADE, OCEAN, SKILL, Layout, Extraction
+* Analog Generators 
+    * BAG Framework, Python
+* Chip & Tape-Out Practice
+    * ESD, IOs, Package & PCB Design 
+* RF, Wireless, Signal Processing 
+
+## Schedule 
+
+| Week(s)     | Dates       | Agenda                                    |               |
+| ----------- | ----------- | ----------------------------------------- |-------------- |
+| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation | Example PDF attachment: [example.pdf](assets/demo.pdf) |
+| 2-3         | 1/26-2/4    | Digital Front-End <br/> ChipYard Lab      |               |
+| 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
+| 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
+| 7-8         | 3/9-3/18    | Analog Generators <br/> BAG Lab           |               |
+| 9           | 3/23-3/25   | *Spring Break*                            |               |
+| 10-14       | 3/30-4/30   | Team Updates                              |               |
+| 15          | 5/4-5/6     | Reading Week <br/> TBD                    |               |
+| 16          | 5/11-5/13   | Exam Week <br/> TBD                       |               |
+
+## Staff
+
+* Faculty 
+    * Borivoje Nikolic bora@berkeley.edu
+    * Kris Pister ksjp@berkeley.edu
+    * Ali Niknejad niknejad@berkeley.edu
+* GSIs
+    * Dan Fritchman dan_fritchman@berkeley.edu
+    * Aviral Pandey aviral0607@berkeley.edu
+
 ## Lectures and Office Hours
 
 |               |                                                                | 
@@ -6,30 +48,6 @@
 | Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                     |
 |               | Mon	1:00 pm - 2:00 pm	Dan Fritchman                            | 
 
-## Homework
-
-* Ask questions on our Piazza forum.
-* Homeworks will be posted as links in the outline below.
-
-## Exams
-
-* There will be four quizzes during the semester.
-* Final exam will be held during the last week of the course.
-
-## Schedule 
-
-* Week 1: Team Formation, ChipYard Lab 
-* Week 2: Analog Design, Layout, and BAG
-* Week 3: RF Baseband 
-* Weeks 4-14: Make the Chip 
-
-| Date        | Agenda         |               |
-| ----------- | -------------- |-------------- |
-| 1/1/21      | Intro          | Example PDF attachment: [example.pdf](assets/demo.pdf) |
-| 1/2/21      | Tape-Out Done! |               |
-| 1/3/21      | Chip Tested and Works! |               |
-
- 			
 ## Resources
 
 ### Textbooks
@@ -39,19 +57,9 @@
 * Useful CMOS VLSI Design, Neil Weste, David Harris
 * Useful Design of High-Performance Microprocessor Circuits, A. Chandrakasan, W. Bowhill, F. Fox, IEEE Press, 2001.
 
-## Staff
-
-* Borivoje Nikolic	bora at berkeley dot edu
-* Kris Pister
-* Ali Niknejad
-* Dan Fritchman dan_fritchman at berekley dot edu
-
 ## Grading
 
-* Assignments	20%
-* Design Project	40%
-* Quizzes	10%
-* Final Exam	30%
+* Coming Soon! 
 
 ## Cheating Policy
 
@@ -61,4 +69,10 @@ We have software that compares your submitted work to others.
 However, it is okay to discuss with others lab exercises and the project (obviously, okay to work with project partner). Okay to discuss homework with others. But everyone must turn in their own work.
 Do not post your work on public repositories like github (private o.k.)
 If we catch you cheating, you will get negative points on the assignment: It is better to not do the work than to cheat!  If it is a midterm exam, final exam, or final project, you get an F in the class.  All cases of cheating reported to the office of student conduct. 
+
+## Links 
+
+* [Course Archives](https://inst.eecs.berkeley.edu/~ee290c/archives.html)
+* ChipYard [repository](https://github.com/ucb-bar/chipyard) and [documentation](https://chipyard.readthedocs.io/en/latest/)
+* Chisel [Bootcamp](https://github.com/freechipsproject/chisel-bootcamp)
 
