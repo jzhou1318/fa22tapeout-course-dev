@@ -3,6 +3,7 @@
 * Published at https://ucberkeley-ee290c.github.io/sp21/
 * Also re-directed from https://inst.eecs.berkeley.edu/~ee290c/sp21/
 
+---
 ## Editing 
 
 Editing the course site is performed through git. 
@@ -37,12 +38,13 @@ GitHub provides [a terrific guide](https://docs.github.com/en/free-pro-team@late
 on how to run local preview-versions of our site before publishing them. 
 This will generally require installing some Ruby packages, and if necessary Ruby itself. 
 
----
+## Non-Published Content
 
-## Planning & To-Dos 
+Drafts, planning documents, and any other material not intended for site-publication are generally placed in the [_private](_private) directory. Anything in files and directories beginning with `_`, `.`, or [a few other special characters](https://jekyllrb.com/docs/structure/) will be left out of the published site. 
 
-* [ ] Invite Kris, Ali to this group 
-* [ ] BWRC Accounts for all students 
+*Note: [this README file](https://ucberkeley-ee290c.github.io/sp21/readme.md) is among the published content!* 
+(Although it's not rendered and styled as HTML.)
+
 
 ---
 
