@@ -72,7 +72,8 @@ If we catch you cheating, you will get negative points on the assignment: It is 
 
 ## Links 
 
-* [Course Archives](https://inst.eecs.berkeley.edu/~ee290c/archives.html)
-* ChipYard [repository](https://github.com/ucb-bar/chipyard) and [documentation](https://chipyard.readthedocs.io/en/latest/)
+* [*Tapeout class: Taking students from schematic to silicon in one semester*](https://ieeexplore-ieee-org.libproxy.berkeley.edu/stamp/stamp.jsp?tp=&arnumber=8351506) David C. Burnett; Brian Kilberg; Rachel Zoll;Osama Khan; Kristofer S. J. Pister, 2018 IEEE International Symposium on Circuits and Systems (ISCAS)
+* ChipYard [Repository](https://github.com/ucb-bar/chipyard) and [Documentation](https://chipyard.readthedocs.io/en/latest/)
 * Chisel [Bootcamp](https://github.com/freechipsproject/chisel-bootcamp)
+* [Course Archives](https://inst.eecs.berkeley.edu/~ee290c/archives.html)
 
