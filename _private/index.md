@@ -63,3 +63,11 @@ Action Items:
 * [ ] @bora setting up Piazza, will use for initial student backgrounds/ interests poll 
 * [ ] @dan will write up said poll
 
+### Tues Dec 22, 2020
+
+Agenda:
+
+* Digital flow dry runs
+* Blue Cheetah/ BAG Tutorial
+* Tech/ access status 
+
