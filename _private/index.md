@@ -13,7 +13,6 @@ will keep it from being published as part of the site.
 
 * Wrote initial, very rough, early part of schedule 
 * [x] Invite Kris, Ali to this group 
-* [ ] BWRC Accounts for all students 
 
 ### Tues Dec 15, 2020
 
@@ -57,18 +56,46 @@ Agenda:
 
 Action Items:
 
-* [ ] @bora working with BWRC staff on student NDAs/ access for TSMC28. ETA this week. 
-* [ ] @bora providing links to ADC & DAC generators he wants to use 
+* [x] @bora working with BWRC staff on student NDAs/ access for TSMC28. ETA this week. 
+* [x] @bora providing links to ADC & DAC generators he wants to use 
 * [ ] @ali join https://github.com/ucberkeley-ee290c 
-* [ ] @bora setting up Piazza, will use for initial student backgrounds/ interests poll 
+* [x] @bora setting up Piazza, will use for initial student backgrounds/ interests poll 
 * [ ] @dan will write up said poll
 
 ### Tues Dec 22, 2020
 
 Agenda:
 
+* TSMC28 Access
+  * BWRC admins OK'ed student access 
+  * MuseSemi OKed die area 
+  * Need to define pad frame, area
+  * Prior projects ~1x1 mm
+  * Will be voluntary for students to sign TSMC28 NDA, needed near beginning of course 
+  * Preference for HPM tech flavor
+* SkyWater 130 SRAM
+  * NDA-version PDK does have some (maybe one) SRAM 
+  * Bora believes there's a compiler; haven't found it 
+  * Arch recommendation: crank down SRAMs/ caches, likely to few kB, build from flops 
 * Digital flow dry runs
-* Blue Cheetah/ BAG Tutorial
-* Tech/ access status 
-* SkyWater SRAM
+  * ASAP-based runs going through with some help (Daniel G) 
+  * Iterating on chip content, moving over to 28
+  * No tape-outs in Hammer + TSMC28, yet 
+* Blue Cheetah/ BAG3 Tutorial
+  * BCA agreed to publish recent BAG3.1 tutorial by late Jan 
+  * Unfortunately it's against an even-newer version of BAG than is public 
+* BAG Methodology
+  * Likely combination: BAG on bottom (base layers, matching placement, etc.), Virtuoso on top 
+* Course Outline 
+  * Needs git intro, BWRC compute early in course 
+  * Digital FE - Verilog vs SV vs Chisel 
+  * Analog - layout, matching
+  * RF - Bora on baseband, Ali on everything else 
+
+Action Items: 
+
+* [ ] @dan - BWRC Accounts for all students 
+* [ ] @dan - Set up compute tutorials, preferably lecture #2, Brian R/ Abe G are pros 
+* [ ] @bora - Students need TSMC28 NDA (very) early, before class starts, email them  
+* [ ] @bora - Need to set early deadline for students to add this course, per NDA reqs. Typical deadline after first 3 weeks. 
 
