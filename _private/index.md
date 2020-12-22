@@ -70,4 +70,5 @@ Agenda:
 * Digital flow dry runs
 * Blue Cheetah/ BAG Tutorial
 * Tech/ access status 
+* SkyWater SRAM
 
