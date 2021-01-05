@@ -9,7 +9,8 @@
 * Digital Back-End 
     * Logic Synthesis, Place-and-Route Layout, HAMMER, Clock & Power Networks 
 * Analog Design Practice
-    * Cadence, ADE, OCEAN, SKILL, Layout, Extraction
+    * Design for layout, matching, performance 
+    * Cadence, ADE, OCEAN, SKILL, Extraction
 * Analog Generators 
     * BAG Framework, Python
 * Chip & Tape-Out Practice
@@ -24,11 +25,12 @@
 | 2-3         | 1/26-2/4    | Digital Front-End <br/> ChipYard Lab      |               |
 | 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
 | 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
-| 7-8         | 3/9-3/18    | Analog Generators <br/> BAG Lab           |               |
-| 9           | 3/23-3/25   | *Spring Break*                            |               |
-| 10-14       | 3/30-4/30   | Team Updates                              |               |
-| 15          | 5/4-5/6     | Reading Week <br/> TBD                    |               |
-| 16          | 5/11-5/13   | Exam Week <br/> TBD                       |               |
+| 8           | 3/9-3/11    | Analog Generators <br/> BAG Lab           |               |
+| 9           | 3/16-3/18   | RF Design Practice                        |               |
+| 10          | 3/23-3/25   | *Spring Break*                            |               |
+| 11-15       | 3/30-4/30   | Team Updates                              |               |
+| 16          | 5/4-5/6     | Reading Week <br/> *TBD*                  |               |
+| 17          | 5/11-5/13   | Exam Week <br/> *TBD*                     |               |
 
 ## Staff
 
@@ -45,8 +47,8 @@
 |               |                                                                | 
 |---------------|----------------------------------------------------------------| 
 | Lectures      | Tues, Thurs	3:30 - 5 pm	521 Cory                               |
-| Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                     |
-|               | Mon	1:00 pm - 2:00 pm	Dan Fritchman                            | 
+| Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                 |
+|               | Mon	1:00 pm - 2:00 pm	Dan Fritchman                          | 
 
 ## Resources
 
