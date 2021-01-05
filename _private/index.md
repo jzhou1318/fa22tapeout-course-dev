@@ -1,5 +1,5 @@
 
-# Non-Published Stuff Here! 
+# EE290C Spring 2021 <br/> Private Content 
 
 Keeping this in the `_private` directory (or any directory beginning with `_`, `.`, and 
 [a few other special characters](https://jekyllrb.com/docs/structure/)) 
@@ -60,7 +60,7 @@ Action Items:
 * [x] @bora providing links to ADC & DAC generators he wants to use 
 * [ ] @ali join https://github.com/ucberkeley-ee290c 
 * [x] @bora setting up Piazza, will use for initial student backgrounds/ interests poll 
-* [ ] @dan will write up said poll
+* [x] @dan will write up said poll
 
 ### Tues Dec 22, 2020
 
@@ -94,8 +94,34 @@ Agenda:
 
 Action Items: 
 
-* [ ] @dan - BWRC Accounts for all students 
-* [ ] @dan - Set up compute tutorials, preferably lecture #2, Brian R/ Abe G are pros 
 * [ ] @bora - Students need TSMC28 NDA (very) early, before class starts, email them  
 * [ ] @bora - Need to set early deadline for students to add this course, per NDA reqs. Typical deadline after first 3 weeks. 
+
+### Tues Jan 5, 2021
+
+Agenda:
+
+* TSMC28 Access
+  * BWRC Admins feedback - not OKed, still "just getting started" 
+  * Received NDA from MuseSemi for TSMC28 HPC (high-perf compact), not HPM (high-perf mobile) 
+  * Sending to students next week 
+* Digital Flow Trials 
+  * Slowly compiling matrix of tech (TSMC28/ Sky130/ ASAP), minimal configs 
+  * Move these to `bora` queue, needs Unix group access 
+  * Students will have separate queue and compute resource(s)
+  * Jerry helping provide config stream-linings. Generally want something like SparkFun's RedBoard 
+  * Nothing in chip-finishing, pad-ring, etc integrated with HAMMER/28 thus far 
+* BAG(3) Status 
+  * Basic layout generation works - inverter, delay line, etc. Few DRC rules to be cleaned up. 
+  * Generated schematics don't work, maybe can work with twiddling Cadence CDF params 
+  * ADC - Zhaokai shared https://bwrcrepo.eecs.berkeley.edu/zhaokai_liu/bag_vco_adc, which appears empty. Ping'ing him. 
+* Reviewed Draft [Student Background/ Interests Poll](./poll.md)
+* Initial Lecture/ Course Meeting Plans 
+  * Bora doing first lecture - Intro, (hopefully) Rocket chip config 
+* BWRC Admins (Brian R) agreed to do infrastructure & security training 
+
+Action Items: 
+
+* [ ] Lots of stuff setting up accounts
+* [ ] @bora - set up dedicated compute machine/pool for students 
 
