@@ -8,7 +8,7 @@ This means not everyone will be doing the same work.
 (In fact, if we're doing it right, everyone should be doing *different* work from everyone else.) 
 
 Designing a chip requires a bunch of diverse design-activities, requiring different backgrounds and tools. 
-One material example will be between the digital and analog/RF parts of the chip. 
+One material example will be the divide between the digital and analog/RF parts of our chip. 
 
 This initial survey is our starting-point for divying up that work. 
 It'll focus on your interests and goals for taking the course. 
