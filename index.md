@@ -1,5 +1,21 @@
 # Advanced Topics in Circuit Design 
 ## 28nm SoC for IoT 
+
+In this class, we will design and send out for fabrication a
+system-on-a-chip (SoC) intended for internet-of-things applications
+(IoT).  The chip will contain a RISC-V microprocessor, a radio
+transceiver, and a baseband signal processor, and will be designed in
+a 28nm CMOS process (And we really mean it!)
+
+The course will be hands-on, covering many of the aspects of practical
+integrated circuit design, using state-of-the art tools in a modern
+technology. The students should expect to start practical design
+through guided laboratory exercises from the very beginning, and all
+students interested in this exciting opportunity will need to sign up
+by the end of the first week of classes.
+
+--- 
+
 ## Topics 
 
 * Our SoC for IoT
