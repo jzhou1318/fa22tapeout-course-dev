@@ -17,7 +17,9 @@
     * ESD, IOs, Package & PCB Design 
 * RF, Wireless, Signal Processing 
 
-## Schedule 
+<!-- 
+
+## Lecture Schedule 
 
 | Week(s)     | Dates       | Agenda                                    |               |
 | ----------- | ----------- | ----------------------------------------- |-------------- |
@@ -31,6 +33,28 @@
 | 11-15       | 3/30-4/30   | Team Updates                              |               |
 | 16          | 5/4-5/6     | Reading Week <br/> *TBD*                  |               |
 | 17          | 5/11-5/13   | Exam Week <br/> *TBD*                     |               |
+
+
+--> 
+
+## Design Schedule 
+
+| Week(s)     | Dates       | Agenda                                    |               |
+| ----------- | ----------- | ----------------------------------------- |-------------- |
+| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation |               |
+| 2-3         | 1/26-2/4    |                                           |               |
+| 4-5         | 2/9-2/18    |                                           |               |
+| 6-7         | 2/23-3/4    |                                           |               |
+| 8           | 3/11        | Analog Interface Lock (Abstract Layout, Timing, Behavior)           |               |
+| 9           | 3/16-3/18   |                                           |               |
+| 10          | 3/23-3/25   | *Spring Break*                            |               |
+| 11          | 4/1         | Mock Tape-Out                             |               |
+| 12          | 4/8         |                                           |               |
+| 13          | 4/15        | RTL Freeze                                |               |
+| 14          | 4/21        | Final Sub-Block Layout                    |               |
+| 15          | 4/28        | Trial (Really Final) Layout               |               |
+| 16          | 5/5         | Final Layout to Foundry                   |               |
+
 
 ## Staff
 
