@@ -125,3 +125,44 @@ Action Items:
 * [ ] Lots of stuff setting up accounts
 * [ ] @bora - set up dedicated compute machine/pool for students 
 
+### Tues Jan 12, 2021
+
+Agenda:
+
+* Student Communications Status 
+  * Interests poll up on Piazza, one response so far 
+  * Kris added all students to Piazza
+  * No dept solicitation email (yet) 
+  * Currently 22 students between 290C/194 
+* TSMC28 Access Status 
+  * MuseSemi can offer TSMC28 HPC variant 
+  * BWRC Admin says we dont have HPC content
+  * Need to send NDA via email for students to (voluntarily) agree to (or not)
+  * @bora drafted one of these emails, waiting for (some?) confirmation to send 
+  * Plan for MuseSemi 1x1
+    * Prior versions 1.1x1.1 total, ~0.9x0.9 circuit, rest pads 
+* Meeting on ChipYard-based lab sharing last Friday
+  * Covered us, dig-course, arch-course, HW-ML-course
+  * We are largely paired with the digital course in (if we have labs) doing: 
+    * Run Chisel -> Verilog in ChipYard 
+    * Push Verilog through PnR via HAMMER 
+  * ChipYard Lab - https://www.overleaf.com/project/5ff89d07f3c28f15fffb5ecb
+  * @avi plans to construct analog/layout lab
+* Digital Flow Trials 
+  * TSMC28 HAMMER trials now including inline-generated SRAMs 
+  * Group w/ Jan Rabaey also editing HAMMER plug-in 
+  * Arya R-P rolling in HAMMER plug-in updates 
+  * HAMMER plug-in: https://bwrcrepo.eecs.berkeley.edu/tstech28/hammer-tstech28-plugin
+* BWRC Admin Training in Lecture #2, Thurs 1/21
+
+Action Items: 
+
+* [ ] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
+* [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 
+* [ ] @bora - TSMC NDA email 
+* [ ] @dan will share editing of CY labs
+* [ ] @avi - design of initial layout lab 
+
+
+
+
