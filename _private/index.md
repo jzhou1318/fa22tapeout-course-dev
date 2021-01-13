@@ -164,7 +164,7 @@ Action Items:
 * [ ] @bora - set up dedicated compute machine/pool for students 
 
 
-### Tues Jan 12, 2021
+### Tues Jan 12, 2021 (Doubleheader) 
 
 Agenda:
 
@@ -183,6 +183,8 @@ Agenda:
   * Prospective timeline 
 * Reading 
   * Kundert top-down paper, primarily for analog - https://designers-guide.org/design/tdd-principles.pdf
+
+Action Items: 
 
 * [x] @dan adding poll on whether students have EECS, BWRC accounts
 
