@@ -55,21 +55,24 @@ by the end of the first week of classes.
 
 ## Design Schedule 
 
-| Week(s)     | Dates       | Agenda                                    |               |
-| ----------- | ----------- | ----------------------------------------- |-------------- |
-| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation |               |
-| 2-3         | 1/26-2/4    |                                           |               |
-| 4-5         | 2/9-2/18    |                                           |               |
-| 6-7         | 2/23-3/4    |                                           |               |
-| 8           | 3/11        | Analog Interface Lock (Abstract Layout, Timing, Behavior)           |               |
-| 9           | 3/16-3/18   |                                           |               |
-| 10          | 3/23-3/25   | *Spring Break*                            |               |
-| 11          | 4/1         | Mock Tape-Out                             |               |
-| 12          | 4/8         |                                           |               |
-| 13          | 4/15        | RTL Freeze                                |               |
-| 14          | 4/21        | Final Sub-Block Layout                    |               |
-| 15          | 4/28        | Trial (Really Final) Layout               |               |
-| 16          | 5/5         | Final Layout to Foundry                   |               |
+| Week(s)     | Date(s)     | Agenda                                    |                |
+| ----------- | ----------- | ----------------------------------------- | -------------- |
+| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation |                |
+| 2           | 1/28        |                                           |                |
+| 3           | 2/4         |                                           |                |
+| 4           | 2/11        |                                           |                |
+| 5           | 2/18        |                                           |                |
+| 6           | 2/25        |                                           |                |
+| 7           | 3/4         | Analog Interface Lock                     |                |
+| 8           | 3/11        |                                           |                |
+| 9           | 3/18        | Mock Tape-Out                             |                |
+| 10          | 3/23-3/25   | *Spring Break*                            |                |
+| 11          | 4/1         |                                           |                |
+| 12          | 4/8         | RTL Freeze                                |                |
+| 13          | 4/15        |                                           |                |
+| 14          | 4/21        | Final Sub-Block Layout                    |                |
+| 15          | 4/28        | Trial (Really Final) Layout               |                |
+| 16          | 5/5         | Final Layout to Foundry                   |                |
 
 
 ## Staff
