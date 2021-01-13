@@ -182,9 +182,9 @@ Agenda:
   * Tools of each section, what we plan to use
   * Prospective timeline 
 * Reading 
-  * Send ref to Kundert top-down paper, primarily for analog 
+  * Kundert top-down paper, primarily for analog - https://designers-guide.org/design/tdd-principles.pdf
 
-* [ ] @dan adding poll on whether students have EECS, BWRC accounts
+* [x] @dan adding poll on whether students have EECS, BWRC accounts
 
 
 
