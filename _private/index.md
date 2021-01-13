@@ -123,7 +123,6 @@ Agenda:
 Action Items: 
 
 * [ ] Lots of stuff setting up accounts
-* [ ] @bora - set up dedicated compute machine/pool for students 
 
 ### Tues Jan 12, 2021
 
@@ -157,11 +156,38 @@ Agenda:
 
 Action Items: 
 
-* [ ] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
+* [x] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
 * [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 
 * [ ] @bora - TSMC NDA email 
 * [ ] @dan will share editing of CY labs
 * [ ] @avi - design of initial layout lab 
+* [ ] @bora - set up dedicated compute machine/pool for students 
+
+
+### Tues Jan 12, 2021
+
+Agenda:
+
+* Dept solicitation email went out 
+* TSMC28 update - got new NDA, no EAR requirement. Should be distributable soon. 
+  * We need to get the 28 HPC content - pending NDA signature, hopefully download tomorrow morning 
+* RF Baseband
+  * Have past RTL, old version of Chisel 
+  * Student Ryan Lund dusting it off, likely ~ 7wk or more 
+  * Was hooked up to ARM, different CPU interface 
+  * Could alternately feed ADC data direct to CPU 
+* Lecture 1 plan - chip & course overview, Bora planning to lecture 
+  * Chip design & tape-out process
+  * Content of our chip
+  * Tools of each section, what we plan to use
+  * Prospective timeline 
+* Reading 
+  * Send ref to Kundert top-down paper, primarily for analog 
+
+* [ ] @dan adding poll on whether students have EECS, BWRC accounts
+
+
+
 
 
 
