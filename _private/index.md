@@ -196,6 +196,7 @@ Agenda:
 * First Lecture Today 
   * Slides in https://drive.google.com/drive/folders/1unDbLAbhtphpWxSWN-cnuJ1SP-AEI48F?usp=sharing_eip&ts=600545df
   * @dan added several this morning 
+  * @bora posting Zoom link for lecture 
 * Student Background/ Interests Compilation 
   * At https://docs.google.com/spreadsheets/d/1hplb9Z_7FnNUo0PhU-6-kT6RhHMyovPSAs2sZPMetd8/edit?usp=sharing
   * As of yesterday 1/18:
@@ -204,16 +205,47 @@ Agenda:
     * About half those have no analog background whatsoever
     * RF looks especially thin 
 * Prospective Chip Block Diagrams
+  * Figures at https://drive.google.com/file/d/1A-jCj9OLzbHNaBEwbqSbI-o4KXXHci5P/view?usp=sharing
+  * Discussed - pull out peripheral RF (matching, combining, PLL, etc), add accelerators for ML/ crypto 
+
 * Infrastructure Setup
   * Poll on BWRC accounts - 4 students have accounts, remaining 18  don't
   * Students were emailed, asked to send in BWRC app to Candy. As of last night she had received 9. 
+  * No group/batch enrollment, remaining students will need to submit form
+  * @bora announcing students who haven't requested by Friday will be dropped  
+  * @dan adding email announcement to Piazza
+  * @brianr presenting on Thursday, BWRC security & practices 
+  * Git practices also to be covered Thursday, @dan / @avi will sort this out 
 * Tech Access Status 
-  * TSMC NDA email coming (when?)
-  * (What's everybody do until they get tech access?) 
-* Thursday Brian/BWRC Lecture Status
+  * TSMC NDA email to students coming today
+  * TSMC28 HPC files not on-hand 
+  * @brianr OK granting access to HPM in interim 
+  * General agreement with BWRC, Muse, TSMC in place 
+
+* Upcoming Lecture Plans/Schedule 
+  * @bora on ChipYard Thurs 
+  * Plan to have short lecture + student presentations after week 2-3 
+  * Simone Gambini guest lecture on BTLE 
+* Grad vs U-Grad Course Diff 
+  * Prefer to have codified difference in expectations 
+  * Announce leadership expectations
+  * Potential venues: tougher blocks, block leadership, specs & docs, write-up
+  * @bora planning to write up specs/docs responsibility 
+* Related Course Co-Projects
+  * @bora offering to 241 students
+  * @ali planning to make similar offer to ana/RF students 
+
+Didn't Get To:
+
+* Office Hours?
+* What's everybody do until they get tech access? 
 
 Action Items:
 
-* [ ] 
+* [ ] @bora distributing lecture Zoom link
+* [ ] @bora distributing NDAs today 
+* [ ] @dan adding Piazza post on account setup 
+* [ ] @dan / @avi sorting out Thurs git presentation 
+
 
 
