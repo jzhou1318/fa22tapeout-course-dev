@@ -157,9 +157,9 @@ Agenda:
 Action Items: 
 
 * [x] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
-* [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 
+* [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 ("drop dead date")
 * [ ] @bora - TSMC NDA email 
-* [ ] @dan will share editing of CY labs
+* [x] @dan will share editing of CY labs
 * [ ] @avi - design of initial layout lab 
 * [ ] @bora - set up dedicated compute machine/pool for students 
 
@@ -189,8 +189,31 @@ Action Items:
 * [x] @dan adding poll on whether students have EECS, BWRC accounts
 
 
+### Tues Jan 19, 2021 
 
+Agenda:
 
+* First Lecture Today 
+  * Slides in https://drive.google.com/drive/folders/1unDbLAbhtphpWxSWN-cnuJ1SP-AEI48F?usp=sharing_eip&ts=600545df
+  * @dan added several this morning 
+* Student Background/ Interests Compilation 
+  * At https://docs.google.com/spreadsheets/d/1hplb9Z_7FnNUo0PhU-6-kT6RhHMyovPSAs2sZPMetd8/edit?usp=sharing
+  * As of yesterday 1/18:
+    * 12/22 students responded
+    * About 2/3 respondees interests are digital 
+    * About half those have no analog background whatsoever
+    * RF looks especially thin 
+* Prospective Chip Block Diagrams
+* Infrastructure Setup
+  * Poll on BWRC accounts - 4 students have accounts, remaining 18  don't
+  * Students were emailed, asked to send in BWRC app to Candy. As of last night she had received 9. 
+* Tech Access Status 
+  * TSMC NDA email coming (when?)
+  * (What's everybody do until they get tech access?) 
+* Thursday Brian/BWRC Lecture Status
 
+Action Items:
+
+* [ ] 
 
 
