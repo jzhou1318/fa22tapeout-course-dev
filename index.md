@@ -39,7 +39,7 @@ by the end of the first week of classes.
 | Week(s)     | Date(s)     | Agenda                                      |                |
 | ----------- | ----------- | ------------------------------------------- | -------------- |
 | 1           | 1/19        | Intro, Our Chip                             |                |
-|             | 1/21        | Infrastructure Week! <br/> BWRC Orientation |                |
+|             | 1/21        | BWRC Orientation                            |                |
 
 <!-- 
 
