@@ -33,13 +33,17 @@ by the end of the first week of classes.
     * ESD, IOs, Package & PCB Design 
 * RF, Wireless, Signal Processing 
 
-<!-- 
 
 ## Lecture Schedule 
 
-| Week(s)     | Dates       | Agenda                                    |               |
-| ----------- | ----------- | ----------------------------------------- |-------------- |
-| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation |               |
+| Week(s)     | Date(s)     | Agenda                                      |                |
+| ----------- | ----------- | ------------------------------------------- | -------------- |
+| 1           | 1/19        | Intro, Our Chip                             |                |
+|             | 1/21        | Infrastructure Week! <br/> BWRC Orientation |                |
+
+<!-- 
+
+| 1           | 1/19        | Intro <br/> Our Chip <br/> Team Formation |               |
 | 2-3         | 1/26-2/4    | Digital Front-End <br/> ChipYard Lab      |               |
 | 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
 | 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
@@ -89,9 +93,12 @@ by the end of the first week of classes.
 
 |               |                                                                | 
 |---------------|----------------------------------------------------------------| 
-| Lectures      | Tues, Thurs	3:30 - 5 pm	521 Cory                             |
-| Office Hours  | Tues	11:00 am - 12:00 pm		Borivoje Nikolic                 |
-|               | Mon	1:00 pm - 2:00 pm	Dan Fritchman                        | 
+| Lectures      | Tues, Thurs	3:30 - 5 pm	                                     |
+| Office Hours  | Thurs	11:00 am - 12:00 pm	    Dan Fritchman                    | 
+|               | TBA                   		Avi Pandey                       |
+|               | TBA                   		Borivoje Nikolic                 |
+|               | TBA                   		Ali Niknejad                     |
+|               | TBA                   		Kris Pister                      |
 
 ## Links 
 
