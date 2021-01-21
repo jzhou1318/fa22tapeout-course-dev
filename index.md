@@ -38,8 +38,8 @@ by the end of the first week of classes.
 
 | Week(s)     | Date(s)     | Agenda                                      |                |
 | ----------- | ----------- | ------------------------------------------- | -------------- |
-| 1           | 1/19        | Intro, Our Chip                             |                |
-|             | 1/21        | BWRC Orientation                            |                |
+| 1           | 1/19        | Intro, Our Chip                             | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing)               |
+|             | 1/21        | BWRC Orientation                            | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
 
 <!-- 
 
@@ -53,7 +53,6 @@ by the end of the first week of classes.
 | 11-15       | 3/30-4/30   | Team Updates                              |               |
 | 16          | 5/4-5/6     | Reading Week <br/> *TBD*                  |               |
 | 17          | 5/11-5/13   | Exam Week <br/> *TBD*                     |               |
-
 
 --> 
 
