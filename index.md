@@ -91,14 +91,16 @@ by the end of the first week of classes.
 
 ## Lectures and Office Hours
 
-|               |                                                                | 
-|---------------|----------------------------------------------------------------| 
-| Lectures      | Tues, Thurs	3:30 - 5 pm	                                     |
-| Office Hours  | Thurs	11:00 am - 12:00 pm	    Dan Fritchman                    | 
-|               | TBA                   		Avi Pandey                       |
-|               | TBA                   		Borivoje Nikolic                 |
-|               | TBA                   		Ali Niknejad                     |
-|               | TBA                   		Kris Pister                      |
+|               |                                                                |               |
+| ------------- | -------------------------------------------------------------- |               |
+| Lectures      | Tues, Thurs	3:30 - 5 pm	                                     |               |
+| Office Hours  | Thurs	11:00 am - 12:00 pm	    Dan Fritchman                    | [Zoom](https://berkeley.zoom.us/j/5647050451) |
+|               | TBA                   		Avi Pandey                       |               |
+|               | TBA                   		Borivoje Nikolic                 |               |
+|               | TBA                   		Ali Niknejad                     |               |
+|               | TBA                   		Kris Pister                      |               |
+
+ 
 
 ## Links 
 
