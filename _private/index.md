@@ -94,8 +94,8 @@ Agenda:
 
 Action Items: 
 
-* [ ] @bora - Students need TSMC28 NDA (very) early, before class starts, email them  
-* [ ] @bora - Need to set early deadline for students to add this course, per NDA reqs. Typical deadline after first 3 weeks. 
+* [x] @bora - Students need TSMC28 NDA (very) early, before class starts, email them  
+* [x] @bora - Need to set early deadline for students to add this course, per NDA reqs. Typical deadline after first 3 weeks. 
 
 ### Tues Jan 5, 2021
 
@@ -122,7 +122,7 @@ Agenda:
 
 Action Items: 
 
-* [ ] Lots of stuff setting up accounts
+* [x] Lots of stuff setting up accounts
 
 ### Tues Jan 12, 2021
 
@@ -158,9 +158,9 @@ Action Items:
 
 * [x] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
 * [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 ("drop dead date")
-* [ ] @bora - TSMC NDA email 
+* [x] @bora - TSMC NDA email 
 * [x] @dan will share editing of CY labs
-* [ ] @avi - design of initial layout lab 
+* [x] @avi - design of initial layout lab 
 * [ ] @bora - set up dedicated compute machine/pool for students 
 
 
@@ -242,10 +242,28 @@ Didn't Get To:
 
 Action Items:
 
-* [ ] @bora distributing lecture Zoom link
-* [ ] @bora distributing NDAs today 
-* [ ] @dan adding Piazza post on account setup 
-* [ ] @dan / @avi sorting out Thurs git presentation 
+* [x] @bora distributing lecture Zoom link
+* [x] @bora distributing NDAs today 
+* [x] @dan adding Piazza post on account setup 
+* [x] @dan / @avi sorting out Thurs git presentation 
 
+
+### Tues Jan 26, 2021
+
+Agenda:
+
+* Tues lecture - @bora on ChipYard, @dan / @avi on block diagram & assignments 
+* Thurs lecture - discussed RF overview, no slides but hand-drawn 
+  * @kris on RF system overview - 50min
+  * Initial student presentations Thurs - 5min each, 25min total
+* Next Tues - @dan on hierarchical big-chip design flow 
+* TSMC/ NDAs in progress, hopefully next few days 
+
+Action Items: 
+
+* [ ] @bora today's slides
+* [ ] @dan, @avi block assignment section of today's lecture
+* [ ] @kris Thurs lecture/ talk (50min)
+* [ ] @dan next Tues lecture/ talk
 
 
