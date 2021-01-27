@@ -36,14 +36,14 @@ by the end of the first week of classes.
 
 ## Lecture Schedule 
 
-| Week(s)     | Date(s)     | Agenda                                      |                |
-| ----------- | ----------- | ------------------------------------------- | -------------- |
-| 1           | 1/19        | Intro, Our Chip                             | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing)               |
-|             | 1/21        | BWRC Orientation                            | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
+| Week(s) | Date(s)     | Agenda                                      |                |
+| ------- | ----------- | ------------------------------------------- | -------------- |
+| 1       | 1/19        | Course Intro, Our Chip | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) |
+|         | 1/21        | BWRC Orientation | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
+| 2       | 1/26        | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
 
 <!-- 
 
-| 1           | 1/19        | Intro <br/> Our Chip <br/> Team Formation |               |
 | 2-3         | 1/26-2/4    | Digital Front-End <br/> ChipYard Lab      |               |
 | 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
 | 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
@@ -60,8 +60,8 @@ by the end of the first week of classes.
 
 | Week(s)     | Date(s)     | Agenda                                    |                |
 | ----------- | ----------- | ----------------------------------------- | -------------- |
-| 1           | 1/19-1/21   | Intro <br/> Our Chip <br/> Team Formation |                |
-| 2           | 1/28        |                                           |                |
+| 1           | 1/19-1/21   | Intro To Our Chip                         |                |
+| 2           | 1/28        | Sub-Team Initial Presentations            |                |
 | 3           | 2/4         |                                           |                |
 | 4           | 2/11        |                                           |                |
 | 5           | 2/18        |                                           |                |
@@ -99,7 +99,6 @@ by the end of the first week of classes.
 |               | TBA                   		Ali Niknejad                     |               |
 |               | TBA                   		Kris Pister                      |               |
 
- 
 
 ## Links 
 
