@@ -261,9 +261,22 @@ Agenda:
 
 Action Items: 
 
-* [ ] @bora today's slides
-* [ ] @dan, @avi block assignment section of today's lecture
+* [x] @bora today's slides
+* [x] @dan, @avi block assignment section of today's lecture
 * [ ] @kris Thurs lecture/ talk (50min)
 * [ ] @dan next Tues lecture/ talk
+
+
+
+### Fri Jan 29, 2021
+
+Agenda:
+
+* NDA status, TSMC28 HPM vs HPC setups
+* Follow-up on block diagram, student decisions
+* Next week lecture plans
+* Recommending student presentations Thurs, either one group or all 
+
+
 
 
