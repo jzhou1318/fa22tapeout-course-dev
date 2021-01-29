@@ -34,13 +34,17 @@ We will simulate a Rocket Chip-based design at the RTL level, and then synthesiz
 
 It should be clear by now this isn't going like most other courses. Most don't require signing non-disclosure agreements, or setting up a long string of IT infrastructure. Such is chip-design life. Running the TSMC28 ChipYard lab will require access to a handful of BWRC research resources, including:
 
-* The BWRC-Repo GitLab instance at [https://bwrcrepo.eecs.berkeley.edu](https://bwrcrepo.eecs.berkeley.edu)
-* The course group at [https://bwrcrepo.eecs.berkeley.edu/EE290C_EE194_tstech28](https://bwrcrepo.eecs.berkeley.edu/EE290C_EE194_tstech28)
-* The TSMC28 technology group at [https://bwrcrepo.eecs.berkeley.edu/tstech28](https://bwrcrepo.eecs.berkeley.edu/tstech28)
 * Command-line access to the BWRC Linux servers
 * Membership in the BWRC Linux `tstech28` group
+* The BWRC-Repo GitLab instance at [https://bwrcrepo.eecs.berkeley.edu](https://bwrcrepo.eecs.berkeley.edu)
+* The course group in said GitLab instance, at [https://bwrcrepo.eecs.berkeley.edu/EE290C_EE194_tstech28](https://bwrcrepo.eecs.berkeley.edu/EE290C_EE194_tstech28)
+* The corresponding TSMC28 technology group at [https://bwrcrepo.eecs.berkeley.edu/tstech28](https://bwrcrepo.eecs.berkeley.edu/tstech28)
 
-If you don't have access to any of these, this isn't gonna work. As of this lab's writing most student setup is in progress; if yours doesn't work yet, take a minute to bug your peers about whether theirs does, and perhaps bug your instructors or admins for good measure. 
+If you don't have access to any of these, this isn't going to work yet. As of this lab's writing most student setup is in progress; if yours doesn't work yet, take a minute to bug your peers about whether theirs does, and perhaps bug your instructors or admins for good measure. 
+
+This lab also presume much of its GitLab interaction will occur via SSH. 
+While setting up git to use HTTPS instead is possible by editing several lab materials, 
+we recommend instead setting up [SSH keys](https://bwrcrepo.eecs.berkeley.edu/profile/keys) on the BWRC-Repo GitLab.
 
 ## Getting Started
 
