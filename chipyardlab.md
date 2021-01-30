@@ -42,9 +42,7 @@ It should be clear by now this isn't going like most other courses. Most don't r
 
 If you don't have access to any of these, this isn't going to work yet. As of this lab's writing most student setup is in progress; if yours doesn't work yet, take a minute to bug your peers about whether theirs does, and perhaps bug your instructors or admins for good measure. 
 
-This lab also presume much of its GitLab interaction will occur via SSH. 
-While setting up git to use HTTPS instead is possible by editing several lab materials, 
-we recommend instead setting up [SSH keys](https://bwrcrepo.eecs.berkeley.edu/profile/keys) on the BWRC-Repo GitLab.
+This lab also presumes much of its GitLab interaction will occur via SSH. While setting up git to use HTTPS instead is possible by editing several lab materials, we recommend instead setting up [SSH keys](https://bwrcrepo.eecs.berkeley.edu/profile/keys) on the BWRC-Repo GitLab instance. 
 
 ## Getting Started
 
