@@ -263,9 +263,6 @@ Action Items:
 
 * [x] @bora today's slides
 * [x] @dan, @avi block assignment section of today's lecture
-* [ ] @kris Thurs lecture/ talk (50min)
-* [ ] @dan next Tues lecture/ talk
-
 
 
 ### Fri Jan 29, 2021
@@ -273,10 +270,20 @@ Action Items:
 Agenda:
 
 * NDA status, TSMC28 HPM vs HPC setups
-* Follow-up on block diagram, student decisions
-* Next week lecture plans
-* Recommending student presentations Thurs, either one group or all 
+  * HPC PDK downloaded, @brian working through unpacking, "first pass" complete 
+  * Looks like students (all?) are in `tstech28` group, enabling HPM-based labs
+* Follow-up on block diagram, student decisions 
+  * Generally like the plan, continue to provide input and detail 
+* Next week lecture plans 
+  * Tues @kris on RF systems 
+  * Thurs @dan on top-down/ industrial-grade flow stuff 
+  * Thurs have half the groups - compute & accelerators - present 15min each 
 
+Action Items: 
 
+* [ ] @bora choose a reading on layout 
+* [ ] @avi digging up past CORDIC lab 
+* [ ] @kris Tues lecture/ talk (50min) 
+* [ ] @dan next Thurs lecture/ talk 
 
 
