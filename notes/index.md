@@ -159,7 +159,7 @@ Many of you will have seen static-timing analysis as a part of past digital circ
 
 *Partovi, Clocked Storage Elements*
 
-These Liberty models are often referred to as "libs" or "dot-libs", and generally have the file-suffix `.lib`. That name often invokes plenty of confusion, since it's just as likely to sound like a "library", either in the binary-program sense or in the collection-of-circuits-and-related-stuff sense we often use in IC design. 
+Module-level static-timing models are commonly stored in the Liberty format. They are often referred to as "libs" or "dot-libs", and generally have the file-suffix `.lib`. That name often invokes plenty of confusion, since it's just as likely to sound like a "library", either in the binary-program sense or in the collection-of-circuits-and-related-stuff sense we often use in IC design. 
 
 Like LEF, Liberty is a text-based format. It has a handful of scoped definition features, such as its own concept of a "library". For our discussion of hierarchical design and analysis, we're really most interested in its `module`-analogous concept, which Liberty calls `cell`. A Liberty `cell` conceptually consists of:
 
