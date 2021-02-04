@@ -153,7 +153,11 @@ END LIBRARY
 
 ### Abstract Timing and Its Typical Format, Liberty
 
-Note the role of the process, temperature, and voltage conditions. SPICE-verified circuits can generally both (a) sweep the entire outer product of these conditions, and (b) expect their circuit peroformance to (usually) be relatively smooth functions of those conditions. Hierarchical timing descriptions, in contrast, generally enumerate each of a set of "PVTs", or conditions at which their cell libraries are characterized in simulation. 
+Many of you will have seen static-timing analysis as a part of past digital circuits courses. In short, 
+
+![image-20210204152637620](../assets/timing-path.png)
+
+*Partovi, Clocked Storage Elements*
 
 These Liberty models are often referred to as "libs" or "dot-libs", and generally have the file-suffix `.lib`. That name often invokes plenty of confusion, since it's just as likely to sound like a "library", either in the binary-program sense or in the collection-of-circuits-and-related-stuff sense we often use in IC design. 
 
@@ -286,6 +290,10 @@ cell (AND2) {
 ```
 
 So this gets complicated fast. But nowhere near as fast as eschewing the hierarchical representations and attempting to close timing on billions of paths at once. 
+
+Note the role of the process, temperature, and voltage conditions. SPICE-verified circuits can generally both (a) sweep the entire outer product of these conditions, and (b) expect their circuit peroformance to (usually) be relatively smooth functions of those conditions. Hierarchical timing descriptions, in contrast, generally enumerate each of a set of "PVTs", or conditions at which their cell libraries are characterized in simulation. 
+
+
 
 ---
 
