@@ -153,7 +153,7 @@ END LIBRARY
 
 ### Abstract Timing and Its Typical Format, Liberty
 
-Many of you will have seen static-timing analysis as a part of past digital circuits courses. In short, 
+Many of you will have seen static-timing analysis as a part of past digital circuits courses. It serves as a highly efficient means of verifying the physical-design of synchronous digital circuits, and is tightly integrated in a typical digital compilation pipeline. 
 
 ![image-20210204152637620](../assets/timing-path.png)
 
