@@ -287,3 +287,35 @@ Action Items:
 * [ ] @dan next Thurs lecture/ talk 
 
 
+### Fri Feb 5, 2021
+
+Agenda: 
+
+* Follow-up on student presentations/ progress
+  * Proposal - 64kB iMem, 64kB dMem, no layered hierarchy 
+  * Proposal - no RTOS, bare-metal POR 
+  * @kris believes RTOS should only need 5-10kB, if we even want one 
+  * @bora looking at 64b Zephyr, fits in 32kB, checking whether fits smaller 
+  * @dan will send them the SiFive datasheet, maybe a few smaller ones 
+  * @ali will write up proposed RF transceiver specs
+* Labs
+  * 8 students submitted ChipYard (posted due Thurs)
+  * 4 submitted analog (due tonight)
+* 28HPC Status  
+  * PnR stuck on QRC tech file
+  * SRAM compiler should have been added today 
+  
+Didn't Get To: 
+
+* Next week's lecture schedule 
+* Follow-up past AIs
+* Revisit design schedule 
+
+Action Items: 
+
+* [ ] @dan sending datasheets 
+* [ ] @ali sending proposed RF specs 
+
+
+
+
