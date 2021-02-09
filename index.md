@@ -40,11 +40,11 @@ by the end of the first week of classes.
 | ------- | ----------- | ------------------------------------------- | -------------- |
 | 1       | 1/19        | Course Intro, Our Chip | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) |
 |         | 1/21        | BWRC Orientation | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
-| 2       | 1/26        | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
+| 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
+| 3       | 2/2         | RF Systems Overview                         |               |
+| 3-4     | 2/4-2/9     | Team Updates <br/> Hierarchical Design Flow | [Notes](./notes) |
 
 <!-- 
-
-| 2-3         | 1/26-2/4    | Digital Front-End <br/> ChipYard Lab      |               |
 | 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
 | 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
 | 8           | 3/9-3/11    | Analog Generators <br/> BAG Lab           |               |
@@ -53,7 +53,6 @@ by the end of the first week of classes.
 | 11-15       | 3/30-4/30   | Team Updates                              |               |
 | 16          | 5/4-5/6     | Reading Week <br/> *TBD*                  |               |
 | 17          | 5/11-5/13   | Exam Week <br/> *TBD*                     |               |
-
 --> 
 
 ## Design Schedule 
@@ -61,7 +60,7 @@ by the end of the first week of classes.
 | Week(s)     | Date(s)     | Agenda                                    |                |
 | ----------- | ----------- | ----------------------------------------- | -------------- |
 | 1           | 1/19-1/21   | Intro To Our Chip                         |                |
-| 2           | 1/28        | Sub-Team Initial Presentations            |                |
+| 2           | 1/28        | Initial Presentations                     |                |
 | 3           | 2/4         |                                           |                |
 | 4           | 2/11        |                                           |                |
 | 5           | 2/18        |                                           |                |
