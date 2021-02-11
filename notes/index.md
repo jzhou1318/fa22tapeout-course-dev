@@ -9,19 +9,7 @@ We've seen big SoCs that include billions of transistors and thousands of human 
 
 *Coding is a human endeavor. Forget that and all is lost.*
 
-That idea is just as effective should we replace *coding* with *designing* or *building*. We've got a big thing we want to make, far bigger than any one of us could hope to build on our own in an amount of time we'd care to build it. How do we divy up this task, both in people and in time? What technical infrastructure can we (or our predecessors) put forth to help in this task? 
-
-<!--
-To flesh out:
-
-* Big system hierarchical division 
-* People aligning with that hierarchy 
-* Dependency graph between hierarchy 
-* Time-sequence of what gets designed when
-* Abstract reprs 
-* Different representation domains 
-* Hierarchical analysis 
--->
+That idea is just as effective should we replace *coding* with *designing* or *building*. We've got a big thing we want to make, far bigger than any one of us could hope to build on our own in an amount of time we'd care to build it. How do we divy up this task, both in people and in time? What technical infrastructure can we (or our predecessors) put forth to help in this task?  
 
 
 Effective divisions of this labor for complicated systems have generally arranged its sub-systems into a tree-like hierarchy. Parallelizing work on higher (closer to the root) layers of the tree generally requires they include some form of *abstract description* of lower layers. These design-abstracts include the necessary information for integrating and using a sub-system, without necessarily including all of its implementation details. These abstracts are also commonly divided among different *domains* or *disciplines*. Some of the important chip-design disciplines include:
@@ -59,95 +47,21 @@ These spec-tables are probably how analog-brains most-commonly think of these ab
 
 While those metrics combine with more difficulty than a linear sum, their combinations are at least analytically tractable. Many other such combinations are not, and require dedicated programs or simulation models to measure. 
 
-In our IC designs, most systems fall in one of two categories. Either:
+Many of our systems will not have this analytical-tractable-combination property. It's seemingly impossible, or at least highly impractical, to estimate their performance from such a table of sub-system metrics. Our CPU's execution-time when running a benchmark suite will fall into this category. For such systems we'll typically rely on simulation models instead. 
 
-* The sub-system metrics are practically measurable, and the full-system metrics must be inferred from them, either analytically or with special-purpose models. The RF receive chain above and most other complex analog circuits fall in this category. Or, 
-* The full-system metrics are practically measurable, but the sub-systems lack either (a) well-defined metrics of their own, or (b)  practical analytical relationships to the full-system metrics. Our CPU's execution-time when running a benchmark suite will fall into this category. In this case our analysis is not hierarchical, but occurs at "integration only" levels. 
-
-With infinite capacity for computation at infinite speed, it'd be natural to perform every measurement of interest at the integration-level, and measure the performance of our system as it will appear in the lab. If we want to know whether the RF transceiver meets the BTLE spec, why not run a simulation of the full chain against the BTLE test spec? The answer is of course that in reality we lack that infinite compute capacity. We'll derive these system-metrics from a combination of sub-system measurements, spreadsheet-math, and simplified models instead. 
-
-Notably, these sub-system parametrics generally do not feed into our chip-compilation pipeline. The remaining disciplines we'll cover, in contrast, are tightly integrated and required for it to run. 
-
-
-
-### Behavioral Models 
-
-Verifying our digital systems will generally require some form of whole-system integrated simulation, often requiring interaction with an analog sub-system. In the context, the parametric spec-table ceases to really describe the analog circuits very well; we need a better indication of what they *do*, or in other words, how they *behave*. For example, here's a very-analog circuit that appears over-and-over in modern SoCs: [Banba's sub-1V band-gap reference](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.825.9557&rep=rep1&type=pdf).
-
-![image-20210208113359635](../assets/banba.png)
-
-*Banba, A CMOS Bandgap Reference Circuit with Sub-1-V Operation*
-
-We can imagine a larger parametric table of spec-data accompanies each of these circuits: its power-supply rejection, start-up time, power consumption, and the like. But what level of detail would an SoC-level simulation need of this circuit? Would we care, or want to spend the time reacting to these subtleties of its performance? 
-
-The version pictured above from Banba's original journal article includes a power-on-reset input and no enable input. We can instead imagine a version with an input signal (`enable`) that tells it when to turn on and off, an output reference voltage, and no other IO. And we can imagine a simple integration-targeted behavioral model that captures this, and nothing more:
-
-```verilog
-module bandgap (
-  input en,
-  output vref,
-);
-  assign vref = en;
-endmodule
-```
-
-Note this simplest model eschews most of the circuit's design details, but retains one in full: its IO interface. These pin-compatible models are crucial to use in digital simulations, which generally fail if pin-incompatible modules are included. 
-
-The behavior captured by these models need only be as detailed as the larger system needs of them. If an indication of whether a module is enabled or disabled suffices, use it. Add detail only where it helps. The amplifiers in our RF transceiver will have a long list of performance criteria regarding their noise, linearity, power, offset, and all sorts of analog-isms that will require time-consuming simulations to evaluate. Instead in integration sims, something as detailed as an "and-gate" model will often suffice: 
-
-```verilog
-module opamp (
-  input inp,
-  input inn,
-  input bias,
-  input en,
-  output out,
-);
-  assign out = en & bias & inp & !inn;
-endmodule
-```
-
-Note in both the `bandgap` and `opamp` cases, ports which hold analog values in our ultimate implementation are dumbed-down to simple logic values. These simplifications require careful choice of module boundaries and interfaces. Feedback loops which traverse multiple modules, and especially multiple simulation-domains, require the most simulated-attention. As a general point of advice: avoid them. 
-
-Now, how can we tell whether these simple models accurately capture the behavior of the taped-out implementations? In general, this is hard, and our industry doesn't have a foolproof (much less easy) answer for it. For digital and structural circuits, *formal verification* tools aid in such comparisons (in addition to those against even more-abstract models). For analog and custom circuits (e.g. your standard cell library) these equivalences are more commonly established through (a) targeted simulation, and (b) human review. Reducing the scope of the circuits behaviorally-modeled is therefore invaluable in making these simulations and reviews more efficient and tractable. 
-
-There are of course many steps in-between these maximally-basic "and-gate" models, and fully featured ones which capture detailed performance metrics. A few relevant tools, in increasing order of simulation complexity, include:
-
-* Real-number modeling in SystemVerilog
-* Real-valued wire-types in SystemVerilog
-* Analog and mixed-signal description languages such as Verilog-A and Verilog-AMS
-* Mixed-mode simulation, including a combination of discrete-event Verilog and transistor-level SPICE
-
-The latter half of this list increases in sim-time very quickly. It's worth a moment to consider just how different these can be, by thinking about what each simulation model is actually doing. Verilog simulation operates on a discrete-event paradigm. Signals are piecewise-constant in time. A set of execution tasks, such as those annotated by `always` and `initial` delimiters, runs in response to their changes. The typical Verilog simulator is then essentially a weird C compiler, paired with a small (and also weird) run-time to tell these functions when to run. 
-
-The SPICE runtime is a whole different ballgame. SPICE's model of computation is essentially solving the combined system of (a) Kirchoff's current and voltage laws, and (b) the very-elaborate modern device-model equations. This system is both non-linear and time-varying, requiring a combination of iterative (i.e. "guess and check") tactics and numerical integration. Modern device models, such as the [BSIM4](http://bsim.berkeley.edu/models/bsim4/) devices used in our project, will include multi-thousand-line evaluation procedures, per transistor, per time-step, per guess. So it's a lot of math. 
-
-In summary:
-
-| Language         | How Simulations Work                                         |
-| ---------------- | ------------------------------------------------------------ |
-| (System) Verilog | * More or less a C compiler<br />* Discrete-event runtime tells which "functions" when to run |
-| SPICE            | * Lots of non-linear matrix math<br />* Bazillion-line transistor models |
-| Verilog-A        | * Same non-linear matrix-math<br />* Your code replaces those transistor models |
-| Verilog-AMS      | Just a merge of Verilog and Verilog-A, with some glue in between |
-
-It's difficult to find super-rigorous apples-to-apples comparisons between the computational complexity of these simulation paradigms. One such study, appraising models of the same phase-locked loop, found over an *eight order of magnitude* such difference: 
-
-![Simulation performance of PLL models](../assets/hdl-designhouse-simulation-performance-of-pll-modeling-fig5-12132016.png)
-
-*[Igor Ikodinovic, Modeling for Analog and Mixed-Signal Verification](https://www.chipestimate.com/Modeling-for-Analog-and-Mixed-Signal-Verification/HDL-Design-House/Technical-Article/2016/12/13)*
-
-For a sense of scale: were the Verilog simulation at right to take one second, this would imply the SPICE-level simulation would take over *three years*. It's hard to say how well this maps onto the author's own experience, since in practice, the three-year simulations just don't get started in the first place. (And for clarity: there are certainly PLL SPICE simulations that take far less time, although still a long time.) 
-
-The take-away should nonetheless be: there are orders-of-magnitude differences in how costly these different simulation-paradigms can be. Our chip will be sufficiently complicated that the slower ones will take far longer than the time we have to design it. Our only realistic alternative is to create these more-abstract models. 
+Notably for now: these analytical sub-system parametric-models generally do not feed into our chip-compilation pipeline. The remaining disciplines we'll cover, in contrast, are tightly integrated and required for it to run. 
 
 
 
 ### Abstract Layout and Its Typical Format, the LEF
 
-An abstract layout has exactly the layout-content which a parent layout needs to know of it, and no more. This generally includes things like: 
+The first such discipline we'll review is physical layout. As in most disciplines, enabling integration of layout does not require its internal details, but only its exterior interface. These *abstract layouts* serve as physical-integration contracts, so that layers above and below them can proceed in parallel. On IC datasheets detailed internal layout is rarely (read: never) provided, as a simplified drawing of the IC outline suffices in its place:
 
-* The cell's dimensions, shape, and outline 
+![image-20210211114713822](../assets/package.png)
+
+On-chip, abstract layout generally includes things like: 
+
+* A cell's dimensions, shape, and outline 
 * Its pins, their locations, metal layers, and sizes
 * Some indication of where parent layouts may route through the internal volume of the block, versus where they may not
 
@@ -226,7 +140,7 @@ END ExampleDCO
 END LIBRARY
 ```
 
-
+A complete layout of the same circuit, in contrast, would include all of its internal detail: where diffusions and gates cross to form transistors, how internal signals are routed, and the like. 
 
 
 
@@ -403,6 +317,83 @@ And they will have a typical file-extension of: nothing. Such is our field; comp
 
 
 
+
+
+### Behavioral Models 
+
+Verifying our digital systems will generally require some form of whole-system integrated simulation, often requiring interaction with an analog sub-system. In the context, the parametric spec-table ceases to really describe the analog circuits very well; we need a better indication of what they *do*, or in other words, how they *behave*. For example, here's a very-analog circuit that appears over-and-over in modern SoCs: [Banba's sub-1V band-gap reference](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.825.9557&rep=rep1&type=pdf).
+
+![image-20210208113359635](../assets/banba.png)
+
+*Banba, A CMOS Bandgap Reference Circuit with Sub-1-V Operation*
+
+We can imagine a larger parametric table of spec-data accompanies each of these circuits: its power-supply rejection, start-up time, power consumption, and the like. But what level of detail would an SoC-level simulation need of this circuit? Would we care, or want to spend the time reacting to these subtleties of its performance? 
+
+The version pictured above from Banba's original journal article includes a power-on-reset input and no enable input. We can instead imagine a version with an input signal (`enable`) that tells it when to turn on and off, an output reference voltage, and no other IO. And we can imagine a simple integration-targeted behavioral model that captures this, and nothing more:
+
+```verilog
+module bandgap (
+  input en,
+  output vref,
+);
+  assign vref = en;
+endmodule
+```
+
+Note this simplest model eschews most of the circuit's design details, but retains one in full: its IO interface. These pin-compatible models are crucial to use in digital simulations, which generally fail if pin-incompatible modules are included. 
+
+The behavior captured by these models need only be as detailed as the larger system needs of them. If an indication of whether a module is enabled or disabled suffices, use it. Add detail only where it helps. The amplifiers in our RF transceiver will have a long list of performance criteria regarding their noise, linearity, power, offset, and all sorts of analog-isms that will require time-consuming simulations to evaluate. Instead in integration sims, something as detailed as an "and-gate" model will often suffice: 
+
+```verilog
+module opamp (
+  input inp,
+  input inn,
+  input bias,
+  input en,
+  output out,
+);
+  assign out = en & bias & inp & !inn;
+endmodule
+```
+
+Note in both the `bandgap` and `opamp` cases, ports which hold analog values in our ultimate implementation are dumbed-down to simple logic values. These simplifications require careful choice of module boundaries and interfaces. Feedback loops which traverse multiple modules, and especially multiple simulation-domains, require the most simulated-attention. As a general point of advice: avoid them. 
+
+Now, how can we tell whether these simple models accurately capture the behavior of the taped-out implementations? In general, this is hard, and our industry doesn't have a foolproof (much less easy) answer for it. For digital and structural circuits, *formal verification* tools aid in such comparisons (in addition to those against even more-abstract models). For analog and custom circuits (e.g. your standard cell library) these equivalences are more commonly established through (a) targeted simulation, and (b) human review. Reducing the scope of the circuits behaviorally-modeled is therefore invaluable in making these simulations and reviews more efficient and tractable. 
+
+There are of course many steps in-between these maximally-basic "and-gate" models, and fully featured ones which capture detailed performance metrics. A few relevant tools, in increasing order of simulation complexity, include:
+
+* Real-number modeling in SystemVerilog
+* Real-valued wire-types in SystemVerilog
+* Analog and mixed-signal description languages such as Verilog-A and Verilog-AMS
+* Mixed-mode simulation, including a combination of discrete-event Verilog and transistor-level SPICE
+
+The latter half of this list increases in sim-time very quickly. It's worth a moment to consider just how different these can be, by thinking about what each simulation model is actually doing. Verilog simulation operates on a discrete-event paradigm. Signals are piecewise-constant in time. A set of execution tasks, such as those annotated by `always` and `initial` delimiters, runs in response to their changes. The typical Verilog simulator is then essentially a weird C compiler, paired with a small (and also weird) run-time to tell these functions when to run. 
+
+The SPICE runtime is a whole different ballgame. SPICE's model of computation is essentially solving the combined system of (a) Kirchoff's current and voltage laws, and (b) the very-elaborate modern device-model equations. This system is both non-linear and time-varying, requiring a combination of iterative (i.e. "guess and check") tactics and numerical integration. Modern device models, such as the [BSIM4](http://bsim.berkeley.edu/models/bsim4/) devices used in our project, will include multi-thousand-line evaluation procedures, per transistor, per time-step, per guess. So it's a lot of math. 
+
+In summary:
+
+| Language         | How Simulations Work                                         |
+| ---------------- | ------------------------------------------------------------ |
+| (System) Verilog | * More or less a C compiler<br />* Discrete-event runtime tells which "functions" when to run |
+| SPICE            | * Lots of non-linear matrix math<br />* Bazillion-line transistor models |
+| Verilog-A        | * Same non-linear matrix-math<br />* Your code replaces those transistor models |
+| Verilog-AMS      | Just a merge of Verilog and Verilog-A, with some glue in between |
+
+It's difficult to find super-rigorous apples-to-apples comparisons between the computational complexity of these simulation paradigms. One such study, appraising models of the same phase-locked loop, found over an *eight order of magnitude* such difference: 
+
+![Simulation performance of PLL models](../assets/hdl-designhouse-simulation-performance-of-pll-modeling-fig5-12132016.png)
+
+*[Igor Ikodinovic, Modeling for Analog and Mixed-Signal Verification](https://www.chipestimate.com/Modeling-for-Analog-and-Mixed-Signal-Verification/HDL-Design-House/Technical-Article/2016/12/13)*
+
+For a sense of scale: were the Verilog simulation at right to take one second, this would imply the SPICE-level simulation would take over *three years*. It's hard to say how well this maps onto the author's own experience, since in practice, the three-year simulations just don't get started in the first place. (And for clarity: there are certainly PLL SPICE simulations that take far less time, although still a long time.) 
+
+The take-away should nonetheless be: there are orders-of-magnitude differences in how costly these different simulation-paradigms can be. Our chip will be sufficiently complicated that the slower ones will take far longer than the time we have to design it. Our only realistic alternative is to create these more-abstract models. 
+
+
+
+---
+
 ### Implications for Building Hierarchical Systems
 
 Unlike the parametric-spec abstracts, those for behavior, physical layout, and timing generally are included in the compilation pipeline for every layer of hierarchy above them. Each of the primary digital construction tools uses some combination of them while inline-analyzing its input and producing its ultimate output. 
@@ -416,7 +407,7 @@ The abstract views for timing, layout, and behavior also have a lot of informati
 
 The early requirements for interfaces and behavior also aligns with a mixed-signal chip-style, in which a set of digital logic configures and collaborates with a set of deeper-nested analog circuitry. Settings, configuration registers, calibration steps, and the like appear "from thin air" in MATLAB and similar models of these blocks, but typically require someone, often someone else, to design into silicon. 
 
-This course's design process won't adopt the full ten-billion-transistor flow, but will be hierarchical. So we'll need a similar set of priorities to enable upper-layers and lower-layers to work in parallel: define interfaces and behavior early, and implement against them to follow. **Defining interfaces early is a crucial part of this process.**
+This course's design process won't adopt the full ten-billion-transistor flow, but will be hierarchical. So we'll need a similar set of priorities to enable upper-layers and lower-layers to work in parallel: define interfaces and behavior early, and implement against them to follow. **Defining interfaces early is a crucial part of this process.** Several of our upcoming design milestones will focus on this hierarchical division of labor. 
 
 
 
