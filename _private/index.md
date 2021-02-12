@@ -157,7 +157,7 @@ Agenda:
 Action Items: 
 
 * [x] @kris - consult with @bora re sending department solicitation email. Send by this Friday, or don't.
-* [ ] @kris / @bora - students need BWRC accounts by Thurs 1/21 ("drop dead date")
+* [x] @kris / @bora - students need BWRC accounts by Thurs 1/21 ("drop dead date")
 * [x] @bora - TSMC NDA email 
 * [x] @dan will share editing of CY labs
 * [x] @avi - design of initial layout lab 
@@ -283,8 +283,8 @@ Action Items:
 
 * [ ] @bora choose a reading on layout 
 * [ ] @avi digging up past CORDIC lab 
-* [ ] @kris Tues lecture/ talk (50min) 
-* [ ] @dan next Thurs lecture/ talk 
+* [x] @kris Tues lecture/ talk (50min) 
+* [x] @dan next Thurs lecture/ talk 
 
 
 ### Fri Feb 5, 2021
@@ -313,8 +313,27 @@ Didn't Get To:
 
 Action Items: 
 
-* [ ] @dan sending datasheets 
+* [x] @bora sending datasheets 
 * [ ] @ali sending proposed RF specs 
+
+
+
+### Fri Feb 12, 2021
+
+Agenda: 
+
+* Upcoming Week's Lectures/ Meetings
+  * Announced student presentations every lecture unless we announce otherwise 
+  * Upcoming: layout content, sort out between @bora & @ali
+  * Discuss what content will follow 
+* 28HPC Setup Status 
+  * Got correct QRC file(s) from Muse/TSMC, PnR and SRAM up and running 
+  * Updates to ChipYard lab posted as demo for students, some appear to be trial'ing
+* Follow-up on student presentations/ progress
+  * Compute - memory-mapping, peripherals 
+  * RF - target specs from @ali 
+  * Integration - area distributions, physical-design partitioning 
+
 
 
 
