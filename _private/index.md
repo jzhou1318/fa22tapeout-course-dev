@@ -314,8 +314,7 @@ Didn't Get To:
 Action Items: 
 
 * [x] @bora sending datasheets 
-* [ ] @ali sending proposed RF specs 
-
+* [x] @ali sending proposed RF specs (students did well to make these!) 
 
 
 ### Fri Feb 12, 2021
@@ -324,16 +323,30 @@ Agenda:
 
 * Upcoming Week's Lectures/ Meetings
   * Announced student presentations every lecture unless we announce otherwise 
-  * Upcoming: layout content, sort out between @bora & @ali
-  * Discuss what content will follow 
+  * Upcoming: @ali on layout Tues & Thurs 
+  * Future Topics:
+    * @ali (or delegate) - ESD & latch-up
+    * @avi - BAG/ associated design process 
+    * @avi - Verilog-A for simulation & test-benching 
+    * @ali (possibly) OCEAN/ SKILL/ other Cadence-scripting
+    * More on timing analysis, debugging thereof 
+    * Testing / bring-up / lab intro. Packaging, off-chip interfaces, PCB, equipment etc. 
 * 28HPC Setup Status 
   * Got correct QRC file(s) from Muse/TSMC, PnR and SRAM up and running 
   * Updates to ChipYard lab posted as demo for students, some appear to be trial'ing
+  * No BAG yet, should be relatively straightforward port from 28HPM
 * Follow-up on student presentations/ progress
-  * Compute - memory-mapping, peripherals 
-  * RF - target specs from @ali 
+  * Compute - memory-mapping, peripherals. Calling in @abe on this. 
+  * RF - working on setting up deep(er) dive with @ali 
+    * Re-arranging a bit, move one of the filter-designers to LO 
   * Integration - area distributions, physical-design partitioning 
+* ADC Generator
+  * Zhaokai reporting some porting-trouble, @avi reaching out 
+  * Also then needs the HPM->HPC port 
+  
+Action Items: 
 
+* [ ] @dan & @avi setting up session with integration team 
 
 
 
