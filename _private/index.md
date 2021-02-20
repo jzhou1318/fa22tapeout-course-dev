@@ -346,8 +346,39 @@ Agenda:
   
 Action Items: 
 
-* [ ] @dan & @avi setting up session with integration team 
+* [x] @dan & @avi setting up session with integration team 
 
+
+### Fri Feb 19, 2021
+
+Agenda: 
+
+* Upcoming Week's Lectures/ Meetings
+  * @ali layout ongoing, will continue through Tues
+  * @avi Thurs - Verilog-A, BAG if time permits 
+  * Following Tues, try to line up BAG ADC generator w/ Zhaokai 
+  * @ali (or delegate) - ESD & latch-up
+  * @bora could do baseband in ~ 2wk
+* Design Status 
+  * BAG bring-up remains ongoing, @avi working with Zhaokai on ADC generator 
+  * CPU/ Mem-system meeting with Abe Thurs, generally pushed back towards cache. 
+    * Cheng seems to be doing everything. Nayiri probably overloaded, not clear what Josh is doing. 
+  * Accel - plan looking good, primary remaining question is interaction with memory system. 
+    * Anson seems to be doing everything. Unclear what Eric & Daniel doing 
+  * Radio BB - seem to have good handle, making progress
+  * RF PLL - DCO design proceeding with Alex, Sherwin going slower, way less background on FLL/PLL 
+  * Radio front-end - @avi conveying lack of expectation they'll get Sashank RX 
+  * Analog baseband - appears to be all Jeffrey, haven't heard from others (Kerry, Leon)
+  * Integration/ Verification - met with TAs Tues, got them started on block diagram, floor-plan, chip IOs 
+  * LDOs getting started, no news on clocking 
+  * @avi putting together draft pad-ring 
+* Teams Sheet reminder: https://docs.google.com/spreadsheets/d/1hplb9Z_7FnNUo0PhU-6-kT6RhHMyovPSAs2sZPMetd8/edit#gid=0
+
+Action Items 
+
+* [ ] @avi line up Zhaokai for BAG/ADC presentation 
+* [ ] @avi setting up Virtuoso layout session, outside lecture 
+* [ ] @dan reaching out to Daniel re bring-up 
 
 
 
