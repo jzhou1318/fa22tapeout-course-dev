@@ -377,8 +377,17 @@ Agenda:
 Action Items 
 
 * [ ] @avi line up Zhaokai for BAG/ADC presentation 
-* [ ] @avi setting up Virtuoso layout session, outside lecture 
-* [ ] @dan reaching out to Daniel re bring-up 
+* [x] @avi setting up Virtuoso layout session, outside lecture 
+* [x] @dan reaching out to Daniel re bring-up 
 
 
+### Fri Feb 19, 2021
+
+Agenda: 
+
+* Upcoming Week's Lecture
+* Chip Bring-Up
+  * Daniel described existing bring-up setup, and it's pretty elaborate
+  * FPGA running Linux soft-core, with its own (custom?) Linux, talking OpenOCD over JTAG to the DUT
+  * @dan looking at the setups for comparable commercial embedded chips in contrast 
 
