@@ -42,22 +42,13 @@ by the end of the first week of classes.
 |         | 1/21        | BWRC Orientation | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
 | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
 | 3       | 2/2         | RF Systems Overview                         |               |
-| 3-4     | 2/4-2/9     | Team Updates <br/> Hierarchical Design Flow | [Notes](./notes) |
+| 3-4     | 2/4-2/11    | Hierarchical Design Flow                    | [Notes](./notes) |
+| 5-6     | 2/16-2/23   | Analog & RF Layout                          |               |
 
-<!-- 
-| 4-5         | 2/9-2/18    | Digital Back-End <br/> HAMMER Lab         |               |
-| 6-7         | 2/23-3/4    | Analog Design Practice <br/> Cadence Lab  |               |
-| 8           | 3/9-3/11    | Analog Generators <br/> BAG Lab           |               |
-| 9           | 3/16-3/18   | RF Design Practice                        |               |
-| 10          | 3/23-3/25   | *Spring Break*                            |               |
-| 11-15       | 3/30-4/30   | Team Updates                              |               |
-| 16          | 5/4-5/6     | Reading Week <br/> *TBD*                  |               |
-| 17          | 5/11-5/13   | Exam Week <br/> *TBD*                     |               |
---> 
 
 ## Design Schedule 
 
-| Week(s)     | Date(s)     | Agenda                                    |                |
+| Week(s)     | Date(s)     | Design Calendar                           | Academic Calendar |
 | ----------- | ----------- | ----------------------------------------- | -------------- |
 | 1           | 1/19-1/21   | Intro To Our Chip                         |                |
 | 2           | 1/28        | Initial Presentations                     |                |
@@ -68,13 +59,16 @@ by the end of the first week of classes.
 | 7           | 3/4         | Trial Integration, Interface Lock         |                |
 | 8           | 3/11        |                                           |                |
 | 9           | 3/18        | Mock Tape-Out                             |                |
-| 10          | 3/23-3/25   | *Spring Break*                            |                |
+| 10          | 3/25        |                                           | *Spring Break* |
 | 11          | 4/1         |                                           |                |
 | 12          | 4/8         | RTL & Schematic Freeze                    |                |
 | 13          | 4/15        |                                           |                |
 | 14          | 4/21        | Final Sub-Block Layout                    |                |
-| 15          | 4/28        | Trial (Really Final) Layout               |                |
-| 16          | 5/5         | Final Layout to Foundry                   |                |
+| 15          | 4/28        | Full-Chip LVS & DRC Clean Layout          |                |
+| 16          | 5/5         | Foundry Feedback <br/>Final Layout        | *Reading Week* |
+| 16          | 5/12        |                                           | *Exam Week*    |
+| ...         |             |                                           |                |
+|             | 7/29        | Wafers Ship Back to Berkeley              |                |
 
 
 ## Staff
@@ -91,12 +85,9 @@ by the end of the first week of classes.
 
 |               |                                                                |               |
 | ------------- | -------------------------------------------------------------- | ------------- |
-| Lectures      | Tues, Thurs	3:30 - 5 pm	                                     |               |
-| Office Hours  | Thurs	11:00 am - 12:00 pm	    Dan Fritchman                    | [Zoom](https://berkeley.zoom.us/j/5647050451) |
-|               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       | [Zoom](https://berkeley.zoom.us/j/94493755498) |
-|               | TBA                   		Borivoje Nikolic                 |               |
-|               | TBA                   		Ali Niknejad                     |               |
-|               | TBA                   		Kris Pister                      |               |
+| Lectures      | Tues, Thurs	3:30 - 5 pm	                                       | [Zoom](https://berkeley.zoom.us/j/94845992590) |
+| Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    | [Zoom](https://berkeley.zoom.us/j/5647050451)  |
+|               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       | [Zoom](https://berkeley.zoom.us/j/94493755498) | 
 
 
 ## Links 
