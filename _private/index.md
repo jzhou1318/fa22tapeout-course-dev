@@ -385,9 +385,41 @@ Action Items
 
 Agenda: 
 
-* Upcoming Week's Lecture
+* Upcoming Lectures
+  * (Tentative) 
+  * @ali finish layout Tues
+  * @avi analog testing, Verilog-A, etc Thurs
+  * Zhaokai to follow(?)
+  * Bring-up to follow that(?)
 * Chip Bring-Up
-  * Daniel described existing bring-up setup, and it's pretty elaborate
+  * Daniel G described existing bring-up setup, and it's pretty elaborate
   * FPGA running Linux soft-core, with its own (custom?) Linux, talking OpenOCD over JTAG to the DUT
-  * @dan looking at the setups for comparable commercial embedded chips in contrast 
+  * Simpler commercial setup: https://github.com/sparkfun/Red_V 
+* ChipYard - merging v1.4 into their lab-version
+  * Config used for lab was removed, as were most "SmallRocket" configs
+* Design Schedule
+  * Recommendation: either stick to this (at least mentioning it), or delete it. 
+* Design Status 
+  * CPU 
+    * Been tough to extract any design-work from them. 
+    * Seeing DRC attempts was progress. 
+    * Still not much sign of Josh A. 
+    * Still no idea how or whether this thing will ever boot. 
+  * Accel 
+    * Probably furthest along 
+    * Found some reference software; may require some help getting anything running. 
+    * Added a 2nd visible contributor, still not much sign of the 3rd
+  * LDOs/ Jackson 
+    * Hadn't done anything as of Weds. Now at least trying stuff. Propose letting him proceed. 
+  * SoC PLL/ Kareem 
+    * Hadn't done anything as of Weds. Still doesn't appear to have done anything. Meeting on Monday, probably gotta cut him off if he's not producing anything. Question is what to move him to. 
+  * Top-Level / Integration 
+    * Meeting with them regularly, slowly getting moving. Dylan picking it up, Troy less so. 
+  * Radio 
+    * Analog Baseband - not much progress, @avi meeting with them
+    * Digital Baseband - doing great on design internals. Starting to talk with other teams about actually getting CPU, BB, and RF PHY to talk. 
+    * (Other sub-systems) - TBC 
 
+Action Items 
+
+* [ ] 
