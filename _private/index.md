@@ -386,19 +386,24 @@ Action Items
 Agenda: 
 
 * Upcoming Lectures
-  * (Tentative) 
   * @ali finish layout Tues
   * @avi analog testing, Verilog-A, etc Thurs
-  * Zhaokai to follow(?)
-  * Bring-up to follow that(?)
+  * Daniel G to follow on bring-up 
+  * Zhaokai to follow that(?) 
+  * Simone Guest lecture - first week of April 
+  * SV Test-benching, assertions
 * Chip Bring-Up
   * Daniel G described existing bring-up setup, and it's pretty elaborate
   * FPGA running Linux soft-core, with its own (custom?) Linux, talking OpenOCD over JTAG to the DUT
   * Simpler commercial setup: https://github.com/sparkfun/Red_V 
+  * Asking Daniel G to guest-lecture on this setup, @dan will prepare some content on simpler setups 
 * ChipYard - merging v1.4 into their lab-version
   * Config used for lab was removed, as were most "SmallRocket" configs
 * Design Schedule
-  * Recommendation: either stick to this (at least mentioning it), or delete it. 
+  * Updated https://ucberkeley-ee290c.github.io/sp21/
+  * @bora & @ali presenting their admonishments to follow it on Tues
+  * @dan writing up some more detail on these milestones
+* ADC - Zhaokai working on porting, should be reaching out to @avi 
 * Design Status 
   * CPU 
     * Been tough to extract any design-work from them. 
@@ -416,10 +421,19 @@ Agenda:
   * Top-Level / Integration 
     * Meeting with them regularly, slowly getting moving. Dylan picking it up, Troy less so. 
   * Radio 
+    * RX Front-End - Felicia working on mixer-first, showing progress 
+    * TX - not much progress, looking to Shreesha for this
     * Analog Baseband - not much progress, @avi meeting with them
+    * LO - Alex has shown some work, needs adding control/ tuning 
+    * LO PLL - Sherwin in early days, looking at CppSim, referred him to some MATLAB models 
     * Digital Baseband - doing great on design internals. Starting to talk with other teams about actually getting CPU, BB, and RF PHY to talk. 
     * (Other sub-systems) - TBC 
 
+
 Action Items 
 
-* [ ] 
+* [ ] @bora starting deck on SV/ digital test tactics, assertions et al 
+* [ ] @dan starting deck on embedded bring-up environments 
+
+
+
