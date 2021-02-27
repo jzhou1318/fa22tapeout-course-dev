@@ -54,13 +54,13 @@ by the end of the first week of classes.
 | 2           | 1/28        | Initial Presentations                     |                |
 | 3           | 2/4         |                                           |                |
 | 4           | 2/11        |                                           |                |
-| 5           | 2/18        | Prelim Interfaces, Specs, and Floor-Plans |                |
-| 6           | 2/25        | Prelim Schematics & RTL                   |                |
-| 7           | 3/4         | Trial Integration, Interface Lock         |                |
-| 8           | 3/11        |                                           |                |
-| 9           | 3/18        | Mock Tape-Out                             |                |
-| 10          | 3/25        |                                           | *Spring Break* |
-| 11          | 4/1         |                                           |                |
+| 5           | 2/18        |                                           |                |
+| 6           | 2/25        | Prelim Interfaces, Specs, and Floor-Plans |                |
+| 7           | 3/4         |                                           |                |
+| 8           | 3/11        | Prelim Schematics & RTL <br/> Trial Integration, Interface Lock |                |
+| 9           | 3/18        | Industry-Partners Design Review           |                |
+| 10          | 3/25        | -                                         | *Spring Break* |
+| 11          | 4/1         | Mock Tape-Out                             |                |
 | 12          | 4/8         | RTL & Schematic Freeze                    |                |
 | 13          | 4/15        |                                           |                |
 | 14          | 4/21        | Final Sub-Block Layout                    |                |
