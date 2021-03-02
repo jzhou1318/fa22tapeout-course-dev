@@ -11,7 +11,7 @@ We'll cover our milestones accordingly: starting from the end.
 The last stages of our schedule include a few steps of back-and-forth with our foundry partners. 
 
 **Final layout** is exactly that: the date we provide our final layout to the foundry.
-After that, absent urgent demand from our foundry partners, we're done. 
+After that, absent urgent feedback from our foundry partners, we're done. 
 (And we do not want to field such feedback.) 
 This will incude a preceding week in which Muse has our ostensibly-final layout, 
 and can offer DRC and other feedback. 
