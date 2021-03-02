@@ -46,7 +46,7 @@ by the end of the first week of classes.
 | 5-6     | 2/16-2/23   | Analog & RF Layout                          |               |
 
 
-## Design Schedule 
+## [Design Schedule](./milestones)
 
 | Week(s)     | Date(s)     | Design Calendar                           | Academic Calendar |
 | ----------- | ----------- | ----------------------------------------- | -------------- |
