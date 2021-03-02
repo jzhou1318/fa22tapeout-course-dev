@@ -26,7 +26,7 @@ Otherwise, final is final, until wafers ship back to us months later.
 Prior to having a clean chip-level, we'll need LVS and DRC-clean layouts of each major sub-block. 
 (Digital from PnR, RF, any remaining analog.) 
 On this date final GDSes for everything but the chip's top-level are due. 
-After this date only the integration-level layout should be in progress. 
+After this date only the integration-level layout will be edited. 
 Everyone else will be working on some form of verification. 
 
 ### RTL & Schematic Freeze 
@@ -38,11 +38,46 @@ After this date all work will be either on physical design (layout) or verificat
 
 ### Mock Tape-Out 
 
-### Interface Lock 
+For the final month-plus of our design we'll be iterating on working (in senses) but incomplete versions of our full-chip design. 
+This is a hallmark of our *agile* approach. 
+
+The mock tape-out will create a full-chip GDS, including the best-guess versions of each sub-system available. 
+This will be a stress-test for our ability to integrate everything, pass DRC checks at boundaries between blocks, 
+and verify we can craft a layout which implements our (near-frozen) front-end designs. 
+
+### Interface Lock & Trial Integration 
+
+Before completing the mock tape-out we'll freeze the interfaces for each sub-system. 
+This includes both the logical/ behavioral interface (i.e. the ports and their actions), 
+as well as the physical interface (i.e. the abstract layout as defined by a LEF). 
+
+Trial integration will use these sub-block designs to first create a working chip-level front-end design, 
+and then to create the layout for the mock tape-out. 
 
 ### Preliminary Schematics & RTL 
 
+Our second major milestone will require initial front-end designs. 
+These schematic and RTL designs will not be *final*, but should be *complete* in the sense that they: 
+
+* Adhere to the already-defined prelim interfaces (with any caveats you work out between teams) 
+* Include all sub-systems, comprehend and preferably connect all interactions between them 
+
+Prelim front-end designs do not necessarily need to meet every parametric spec - 
+but must include reasonable analysis to assure you *can* meet specs, 
+under your area budget and power targets. 
+
 ### Preliminary Interfaces, Specs, & Floor-Plans 
+
+Among our first milestones will be defining how our major subsystems interact and talk to one another. 
+As we've reviewed in covering a [hierarchical design flow](./notes), this will include their port-interfaces, 
+along with (at this point) general descriptions of what how those interfaces are used, 
+and how they might be connected in physical layout (i.e. to a chip-level pad, versus to an on-die register). 
+
+Both the chip-level and each sub-system will need a paired floor-plan diagram, 
+illustrating its rough placement, area allocation, and general plans for routing between its sub-blocks. 
+
+These preliminary interfaces will be the basis for all work at all levels of hierachy above. 
+Note no *internal* design need necessarily be provided - but boundary information is a must. 
 
 
 --- 
