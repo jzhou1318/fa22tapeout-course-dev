@@ -411,6 +411,55 @@ This course's design process won't adopt the full ten-billion-transistor flow, b
 
 
 
+---
+
+
+
+## Embedded Bring-Up Notes
+
+Once all of this design-work is done, it'll turn into actual, real-life, physical pieces of silicon. Question is: then what? 
+
+We'll need lots of specialty equipment for testing our RF transceiver, and for powering up our chip in the first place. For processor-based systems such as ours, which execute code that can be written post silicon-design-time, a central step will be: how does the processor get that code? And more importantly for now: what do we need to design into the chip to support this? 
+
+More elaborate systems such as a PC or smartphone have a multi-step boot process, starting from a minimal set of *boot code*, working often in several steps up to loading an operating system from disk or flash, which in turn loads any further applications. Processor-systems like our own, in contrast, are often referred to as *embedded*, in the sense that while they run code, that code's function is not immediately user-visible or editable. Unlike on their PC or smartphone, users don't have much control over what code runs in these embedded systems, potentially save for infrequent version-updates. Examples abound throughout your life - many of which are sufficiently *embedded* that you may not realize a processor is even present. (Inside a remote-control or electronic greeting card, for example.) 
+
+Much of our research infrastructure is designed to generate processor-based systems which range in scale from these embedded-sizes to large, high-performance, multi-core systems. (Our chip is at the low-end of this spectrum.) The Berkeley Architecture Research test-environment is designed for some of the more elaborate cases, and requires some correspondingly elaborate setup. 
+
+![](../assets/test-setup.png)
+
+Here "Beagle" is the researcher-designed custom chip, and everything else is its test and bring-up environment. Program-loading and interaction runs through a large FPGA, which in turn runs its own custom soft-CPU core, running its own custom flavor of Linux. "Your" computer, i.e. the laptop you type the code into, is the "Host x86" box at left. 
+
+By emedded standards, this is a lot of stuff - particularly all the FPGA-programming parts. (Plus a VCU118 costs a few grand.) Most smaller systems can get by with simpler fixed-function programming and debug hardware, with more lower programming-burden and costs often in the hundreds or even tens of dollars. These devices generally aim to support either or both of: 
+
+* **Program Loading**, often just called *programming* - i.e. downloading the program onto some in-system non-voltatile memory-store
+* **Debugging** - adding the capacity to interact with a running program, with capabilities such as inserting breakpoints, inspecting the code and system state, directly editing memory and/or register data
+
+The test-infrastructure for these setups then generally consists of:
+
+* "Your" computer, where the code gets written and compiled
+* A little widget-board that plugs into it, typically via USB
+* A connector between that widget and a (somewhat) standard interface on the chip 
+
+For example: 
+
+![](https://images.app.goo.gl/V59K2ZEzucLz9Auu8)
+
+Our chip will include two such standard interfaces: JTAG and SPI. 
+
+
+
+### Processor-Specific Debuggers 
+
+For most of embedded-system history, most embedded processors have used custom (and typically closed-source) ISAs. This generally requires such processors include a compiler chain and associated tools for interactive with a host-PC, where the code gets written and compiled. Many of these devices also include custom-designed programming and/or debug interfaces, to reduce wire-count, or add features, or for whatever reason the designers didn't like the standard ones. The TI MSP430 programmer pictured above is one such example. 
+
+Unlike ours, many such processors also include on-die non-volatile memory (e.g. embedded flash), and the capacity to program that memory in-circuit. This often unifies the program-loading and debug interfaces into one. 
+
+
+
+### Standard Programming & Debug Interfaces
+
+Embedded-system boards such as [SparkFun's RED-V](https://www.sparkfun.com/products/15594) use solely standard interfaces for programming and debug - conveniently the same JTAG and SPI included on our chip. Its [schematic](https://cdn.sparkfun.com/assets/d/d/1/e/7/RedFive.pdf) shows it routes those two interfaces to external (and semi-standard) connectors. For JTAG, the little-widget functionality is built-in, via a custom-programmed ARM processor and its USB connection. 
+
 
 
 
