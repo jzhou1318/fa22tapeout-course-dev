@@ -433,7 +433,39 @@ Agenda:
 Action Items 
 
 * [ ] @bora starting deck on SV/ digital test tactics, assertions et al 
-* [ ] @dan starting deck on embedded bring-up environments 
+* [x] @dan starting deck on embedded bring-up environments - https://ucberkeley-ee290c.github.io/sp21/notes
+
+
+
+### Fri Feb 26, 2021
+
+Agenda: 
+
+* Upcoming Lectures
+  * Tues - @avi analog testing, Verilog-A, etc 
+  * Thurs - Daniel G to follow on bring-up 
+  * Following week (Tues or Thurs?) design review
+  * Week after that - Spring Break 
+* Design Status 
+  * Dropped SoC/CPU PLL, re-directed Kareem to help LO PLL
+  * RF was looking pretty rough yesterday 
+  * Challenged CPU to produce sim of boot process 
+
+Action Items 
+
+* [ ] 
+
+
+### Lecture Topics Backlog 
+
+* Simone Guest lecture - first week of April 
+* Zhaokai BAG ADC
+* SV Test-benching, assertions
+* @ali (or delegate) - ESD & latch-up
+* @bora - baseband 
+* @ali - OCEAN/ SKILL/ other Cadence-scripting
+* More on timing analysis, debugging thereof 
+* Testing / bring-up / lab intro. Packaging, off-chip interfaces, PCB, equipment etc. 
 
 
 
