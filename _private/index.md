@@ -436,7 +436,7 @@ Action Items
 * [x] @dan starting deck on embedded bring-up environments - https://ucberkeley-ee290c.github.io/sp21/notes
 
 
-### Fri Feb 26, 2021
+### Fri March 5, 2021
 
 Agenda: 
 
