@@ -436,7 +436,6 @@ Action Items
 * [x] @dan starting deck on embedded bring-up environments - https://ucberkeley-ee290c.github.io/sp21/notes
 
 
-
 ### Fri Feb 26, 2021
 
 Agenda: 
@@ -444,21 +443,44 @@ Agenda:
 * Upcoming Lectures
   * Tues - @avi analog testing, Verilog-A, etc 
   * Thurs - Daniel G to follow on bring-up 
-  * Following week (Tues or Thurs?) design review
+  * Tues 3/16 - all-student time, prep for design review
+  * Thurs 3/18 - design review. Meeting w/ Ramesh next week. 
   * Week after that - Spring Break 
+  * After break - James Dunn on packaging & friends
+* ADC Status
+  * @avi running through BAG TSMC28HP**M**
+  * Missing input sampling
+  * Rest seems to look OK
+  * Still needs converting to HPC 
+* Design Review Plan 
+  * Plan to extend this to 2.5hr - check with students 
+  * How long is Apple team OK to participate? 
+  * Meeting w/ Ramesh next Tues, should offer some detail 
+  * What is OK to share: everything but "raw PDK data". "Derived" are OK. 
 * Design Status 
-  * Dropped SoC/CPU PLL, re-directed Kareem to help LO PLL
-  * RF was looking pretty rough yesterday 
+  * Dropped SoC/CPU PLL, re-directed Kareem to help Sherwin on LO PLL
+  * Anson complaining accelerator teammates not doing anything, especially Daniel. Eric doing some SW now. 
+  * @bora asked Daniel to write Verilog TB for AES SV IP. No real contribution so far. 
+  * Also caught up with Ryan, thinks he needs to write all the Chisel, Griffin not familiar with it, doing Chisel bootcamp 
   * Challenged CPU to produce sim of boot process 
+  * RF 
+    * Felicia going OK on RX front-end
+    * Alex seems stuck on DCO 
+    * Sherwin largely driving LO PLL, now has Kareem help 
+    * Baseband showed some stuff, better than not seeing anything 
+    * Spec division down to sub-blocks hasn't really seemed to happen. Make Felicia the owner of this. 
+    * Missing in action: Shreesha, Leon Wu 
+  * Plan to get Jackson in on RF top-level, especially for layout phase 
 
 Action Items 
 
-* [ ] 
+* [ ] @ali meeting with Felicia on RF budgeting 
 
 
 ### Lecture Topics Backlog 
 
 * Simone Guest lecture - first week of April 
+* James D volunteered to repeat his package-design talk, perhaps could be converted into some PCB & lab 
 * Zhaokai BAG ADC
 * SV Test-benching, assertions
 * @ali (or delegate) - ESD & latch-up
@@ -466,6 +488,7 @@ Action Items
 * @ali - OCEAN/ SKILL/ other Cadence-scripting
 * More on timing analysis, debugging thereof 
 * Testing / bring-up / lab intro. Packaging, off-chip interfaces, PCB, equipment etc. 
+
 
 
 
