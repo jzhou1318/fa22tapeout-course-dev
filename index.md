@@ -46,13 +46,15 @@ by the end of the first week of classes.
 | 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
 | 8       | 3/9         | Testing, in Simulation                      |               |
 |         | 3/11        | Testing, in Real Life                       |               |
+| 9       | 3/16-3/18   | Industry Design Review                      |               |
+| 10      | 3/23-3/25   | *Spring Break*                              |               |
 
 
 ## [Design Schedule](./milestones)
 
-| Week(s)     | Date(s)     | Design Calendar                           | Academic Calendar |
+| Week(s)     | Date (Thurs) | Design Calendar                          | Academic Calendar |
 | ----------- | ----------- | ----------------------------------------- | -------------- |
-| 1           | 1/19-1/21   | Intro To Our Chip                         |                |
+| 1           | 1/21        | Intro To Our Chip                         |                |
 | 2           | 1/28        | Initial Presentations                     |                |
 | 3           | 2/4         |                                           |                |
 | 4           | 2/11        |                                           |                |
