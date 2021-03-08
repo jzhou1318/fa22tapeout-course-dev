@@ -43,7 +43,9 @@ by the end of the first week of classes.
 | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
 | 3       | 2/2         | RF Systems Overview                         |               |
 | 3-4     | 2/4-2/11    | Hierarchical Design Flow                    | [Notes](./notes) |
-| 5-6     | 2/16-2/23   | Analog & RF Layout                          |               |
+| 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
+| 8       | 3/9         | Testing, in Simulation                      |               |
+|         | 3/11        | Testing, in Real Life                       |               |
 
 
 ## [Design Schedule](./milestones)
@@ -88,6 +90,7 @@ by the end of the first week of classes.
 | Lectures      | Tues, Thurs	3:30 - 5 pm	                                       |
 | Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    |
 |               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       |
+|               | Monday 4:30 - 5:30 pm		Borivoje Nikoli                     |
 
 
 ## Links 
