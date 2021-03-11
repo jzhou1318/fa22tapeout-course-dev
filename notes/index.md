@@ -433,7 +433,7 @@ Much of our research infrastructure is designed to generate processor-based syst
 
 Here "Beagle Chip" is the researcher-designed custom IC, and everything else is its test and bring-up environment. Program-loading and interaction runs through a large FPGA, which in turn runs its own custom soft-CPU core, running its own custom flavor of Linux. "Your" computer, i.e. the laptop you type the code into, is the "Host x86" box at left. 
 
-By emedded standards, this is a lot of stuff - particularly all the FPGA-programming parts. (Plus a VCU118 costs a few grand.) Most smaller systems can get by with simpler fixed-function programming and debug hardware, with more lower programming-burden and costs often in the hundreds or even tens of dollars. These devices generally aim to support either or both of: 
+By emedded standards, this is a lot of stuff - particularly all the FPGA-programming parts. (Plus a VCU118 costs a few grand.) Most smaller systems can get by with simpler fixed-function programming and debug hardware, with much lower programming-burden and costs often in the hundreds or even tens of dollars. These devices generally aim to support either or both of: 
 
 * **Program Loading**, often just called *programming* - i.e. downloading the program onto some in-system non-voltatile memory-store
 * **Debugging** - adding the capacity to interact with a running program, with capabilities such as inserting breakpoints, inspecting the code and system state, directly editing memory and/or register data
