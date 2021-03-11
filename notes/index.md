@@ -154,7 +154,7 @@ Many of you will have seen static-timing analysis (STA) as a part of past digita
 
 For the same reasons as all of our other analyses, large systems will commonly invoke static-timing hierarchically. Module-level static-timing models are commonly stored in the Liberty format. They are often referred to as "libs" or "dot-libs", and generally have the file-suffix `.lib`. That name often invokes plenty of confusion, since it's just as likely to sound like a "library", either in the binary-program sense or in the collection-of-circuits-and-related-stuff sense we often use in IC design. These Liberty-models are the same format typically provided as part of standard-logic-cell libraries. 
 
-Like LEF, Liberty is a text-based format. It has a handful of scoped definition features, such as its own concept of a "library". For our discussion of hierarchical design and analysis, we're really most interested in its `module`-analogous concept, which Liberty calls `cell`. A Liberty `cell` conceptually consists of:
+Like LEF, Liberty is a text-based format. It has a handful of scoped definition features, such as its own concept of a "library". For our discussion of hierarchical design and analysis, we're again most interested in its `module`-analogous concept, which Liberty calls `cell`. A Liberty `cell` conceptually consists of:
 
 * The cell's pins, and all timing relationships between each pin. 
     * For combinational logic paths, these generally take the form of delays, specified in semi-tabular format across variables such as loading and input slew rate.
@@ -284,7 +284,7 @@ cell (AND2) {
 
 So this gets complicated fast. But nowhere near as fast as eschewing the hierarchical representations and attempting to close timing on billions of paths at once. 
 
-Note the role of the process, temperature, and voltage conditions. SPICE-verified circuits can generally both (a) sweep the entire outer product of these conditions, and (b) expect their circuit peroformance to (usually) be relatively smooth functions of those conditions. Hierarchical timing descriptions, in contrast, generally enumerate each of a set of "PVTs", or conditions at which their cell libraries are characterized in simulation. 
+Note the role of the process, temperature, and voltage conditions. SPICE-verified circuits can generally both (a) sweep the entire outer product of these conditions, and (b) expect their circuit performance to (usually) be relatively smooth functions of those conditions. Hierarchical timing descriptions, in contrast, generally enumerate each of a set of "PVTs", or conditions at which their cell libraries are characterized in simulation. 
 
 
 
@@ -321,7 +321,7 @@ And they will have a typical file-extension of: nothing. Such is our field; comp
 
 ### Behavioral Models 
 
-Verifying our digital systems will generally require some form of whole-system integrated simulation, often requiring interaction with an analog sub-system. In the context, the parametric spec-table ceases to really describe the analog circuits very well; we need a better indication of what they *do*, or in other words, how they *behave*. For example, here's a very-analog circuit that appears over-and-over in modern SoCs: [Banba's sub-1V band-gap reference](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.825.9557&rep=rep1&type=pdf).
+Verifying our digital systems will generally require some form of whole-system integrated simulation, often requiring interaction with an analog sub-system. In this context, the parametric spec-table ceases to really describe the analog circuits very well; we need a better indication of what they *do*, or in other words, how they *behave*. For example, here's a very-analog circuit that appears over-and-over in modern SoCs: [Banba's sub-1V band-gap reference](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.825.9557&rep=rep1&type=pdf).
 
 ![image-20210208113359635](../assets/banba.png)
 
