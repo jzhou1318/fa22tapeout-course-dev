@@ -460,7 +460,7 @@ For most of embedded-system history, most embedded processors have used custom, 
 
 
 
-![MSP430 SPY‐BI‐WIRE to TC2030‐MCP Adapter Board | Tag-Connect](https://www.tag-connect.com/wp-content/uploads/2018/03/msp430-with-spy-bi-wire-adapter-tc2030-mcp.jpg)
+![](https://www.tag-connect.com/wp-content/uploads/2018/03/msp430-with-spy-bi-wire-adapter-tc2030-mcp.jpg)
 
 
 
