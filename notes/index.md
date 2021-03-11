@@ -419,15 +419,19 @@ This course's design process won't adopt the full ten-billion-transistor flow, b
 
 Once all of this design-work is done, it'll turn into actual, real-life, physical pieces of silicon. Question is: then what? 
 
-We'll need lots of specialty equipment for testing our RF transceiver, and for powering up our chip in the first place. For processor-based systems such as ours, which execute code that can be written post silicon-design-time, a central step will be: how does the processor get that code? And more importantly for now: what do we need to design into the chip to support this? 
+We'll need lots of specialty lab equipment for testing our RF transceiver, and for powering up our chip in the first place. But getting our chip to *do* much of anything will require interacting with our processor. A central step will be: how does our processor get its code? And more importantly for now: what do we need to design into the chip to support this? 
 
-More elaborate systems such as a PC or smartphone have a multi-step boot process, starting from a minimal set of *boot code*, working often in several steps up to loading an operating system from disk or flash, which in turn loads any further applications. Processor-systems like our own, in contrast, are often referred to as *embedded*, in the sense that while they run code, that code's function is not immediately user-visible or editable. Unlike on their PC or smartphone, users don't have much control over what code runs in these embedded systems, potentially save for infrequent version-updates. Examples abound throughout your life - many of which are sufficiently *embedded* that you may not realize a processor is even present. (Inside a remote-control or electronic greeting card, for example.) 
+More elaborate systems such as a PC or smartphone have a multi-step boot process, starting from a minimal set of *boot code*, working often in several steps up to loading an operating system from disk or flash, which in turn loads any further applications. Processor-systems like our own, in contrast, are often referred to as *embedded*, in the sense that while they run code, its function is not immediately user-visible or editable. Unlike on their PC or smartphone, users don't have much control over what code runs in these embedded systems, potentially save for infrequent version-updates. Examples abound throughout your life - many of which are sufficiently *embedded* that you may not realize a processor is even present. (Inside a remote-control or electronic greeting card, for example.) 
 
-Much of our research infrastructure is designed to generate processor-based systems which range in scale from these embedded-sizes to large, high-performance, multi-core systems. (Our chip is at the low-end of this spectrum.) The Berkeley Architecture Research test-environment is designed for some of the more elaborate cases, and requires some correspondingly elaborate setup. 
+Much of our research infrastructure is designed to generate processor-based systems which range in scale from these embedded-sizes to large, high-performance, multi-core systems. (Our chip is at the low end of this spectrum.) The Berkeley Architecture Research test-environment is designed for some of the more elaborate cases, and requires some correspondingly elaborate setup. 
+
+
 
 ![](../assets/test-setup.png)
 
-Here "Beagle" is the researcher-designed custom chip, and everything else is its test and bring-up environment. Program-loading and interaction runs through a large FPGA, which in turn runs its own custom soft-CPU core, running its own custom flavor of Linux. "Your" computer, i.e. the laptop you type the code into, is the "Host x86" box at left. 
+
+
+Here "Beagle Chip" is the researcher-designed custom IC, and everything else is its test and bring-up environment. Program-loading and interaction runs through a large FPGA, which in turn runs its own custom soft-CPU core, running its own custom flavor of Linux. "Your" computer, i.e. the laptop you type the code into, is the "Host x86" box at left. 
 
 By emedded standards, this is a lot of stuff - particularly all the FPGA-programming parts. (Plus a VCU118 costs a few grand.) Most smaller systems can get by with simpler fixed-function programming and debug hardware, with more lower programming-burden and costs often in the hundreds or even tens of dollars. These devices generally aim to support either or both of: 
 
@@ -442,25 +446,78 @@ The test-infrastructure for these setups then generally consists of:
 
 For example: 
 
-![](https://images.app.goo.gl/V59K2ZEzucLz9Auu8)
+![](https://embeddedcomputing.weebly.com/uploads/1/1/6/2/11624344/segger-2_orig.jpg)
 
-Our chip will include two such standard interfaces: JTAG and SPI. 
+*A common embedded-programming and debug rig, including an Atmel microcontroller board and SEGGER JTAG widget. In this case, as in many, the widget-board is encased in the plastic box labeled "Segger" and "J-Link". The smaller, bare board is just a connector-size-shrinking adapter.*
+
+Our chip will include two such standard interfaces: JTAG and SPI. JTAG is frequently used for a wider range of things, but in this context we'll examine its use for embedded debug.
 
 
 
 ### Processor-Specific Debuggers 
 
-For most of embedded-system history, most embedded processors have used custom (and typically closed-source) ISAs. This generally requires such processors include a compiler chain and associated tools for interactive with a host-PC, where the code gets written and compiled. Many of these devices also include custom-designed programming and/or debug interfaces, to reduce wire-count, or add features, or for whatever reason the designers didn't like the standard ones. The TI MSP430 programmer pictured above is one such example. 
+For most of embedded-system history, most embedded processors have used custom, closed-source ISAs. This generally requires such processors include a compiler chain and associated tools for interactive with a host-PC, where the code gets written and compiled. Many of these devices also include custom-designed programming and/or debug interfaces, to reduce wire-count, or add features, or for whatever reason the designers didn't like the standard ones. The TI MSP430 programmer pictured below is one such example. Unlike ours, many such processors also include on-die non-volatile memory (e.g. embedded flash), and the capacity to program that memory in-circuit. This often unifies the program-loading and debug interfaces into one. 
 
-Unlike ours, many such processors also include on-die non-volatile memory (e.g. embedded flash), and the capacity to program that memory in-circuit. This often unifies the program-loading and debug interfaces into one. 
+
+
+![MSP430 SPY‐BI‐WIRE to TC2030‐MCP Adapter Board | Tag-Connect](https://www.tag-connect.com/wp-content/uploads/2018/03/msp430-with-spy-bi-wire-adapter-tc2030-mcp.jpg)
+
+
+
+
+
+
+
+Many of the Arduino family of boards, which feature Atmel microcontrollers, use a similar custom-debug-bus internally, but include on-board circuitry (in the form of a second microcontroller) to expose their programming interface via USB. (Think of this as the board and plastic box above merged into one.) 
+
+![](https://store-cdn.arduino.cc/usa/catalog/product/cache/1/image/1000x750/f8876a31b63532bbba4e781c30024a0a/a/0/a000066_iso_1_3.jpg)
+
+*Arduino's Uno board, featuring an ATmega328P microcontroller*
+
+In this case the chip has a custom debug interface, and the board reconciles it to a standard one, USB. 
+
+
 
 
 
 ### Standard Programming & Debug Interfaces
 
+Our own chip is as open-source as we can make it, and won't use or define any custom debug interfaces. Instead for sake of compatibility and reusability, we use industry-standard interfaces: SPI and JTAG. Many embedded processors with similar goals adopt a similar approach, and benefit from a suite of common tools which use these interfaces. Among the most popular are Segger's J-Link family, one of which was pictured in our first example, and a smaller cousin below. 
+
+
+
+![](https://embeddedcomputing.weebly.com/uploads/1/1/6/2/11624344/segger-edu-mini-2_1_orig.jpg)
+
+*A Segger JTAG Board*
+
+These boards and boxes are in wide industry circulation. Some companies go as far as [open-source publishing](https://github.com/square/pylink) their libraries making use of the Segger boxes.
+
 Embedded-system boards such as [SparkFun's RED-V](https://www.sparkfun.com/products/15594) use solely standard interfaces for programming and debug - conveniently the same JTAG and SPI included on our chip. Its [schematic](https://cdn.sparkfun.com/assets/d/d/1/e/7/RedFive.pdf) shows it routes those two interfaces to external (and semi-standard) connectors. For JTAG, the little-widget functionality is built-in, via a custom-programmed ARM processor and its USB connection. 
 
 
 
+![](https://cdn.sparkfun.com//assets/parts/1/4/2/0/0/15594-SparkFun_RED-V_RedBoard_-_SiFive_RISC-V_FE310_SoC-01.jpg)
+
+*SparkFun's RED-V Board, featuring a SiFive RISC-V SoC not all that dissimilar from our own. Note this includes a USB-JTAG programming widget in the form of a custom-programmed ARM Cortex, right on the board.* 
 
 
+
+![](https://cdn.shopify.com/s/files/1/0925/6626/products/debug3_400x.jpg?v=1570089939)
+
+*Particle's USB-JTAG Debugger* 
+
+
+
+
+
+### Standard Programming (Without Debugging) Interfaces
+
+Embedded processors without on-die non-volatile memory (such as ours) commonly store their program and persistent data in external flash chips, commonly connected via SPI. The processor's boot-code will then quickly read the program from the SPI flash into program memory to begin program execution. These off-die program stores offer a bit easier opportunity for program loading, especially since the SPI interface is standard and widely used. This largerly just requires holding the processor in reset while a programmer-widget loads bits into the flash via SPI. Such SPI-compatible programmers, such as those from [TotalPhase](https://www.totalphase.com/products/aardvark-i2cspi/) are often quite low-cost and low-effort to set up. 
+
+
+
+![](https://www.totalphase.com/media/catalog/product/cache/1/image/265x/9df78eab33525d08d6e5fb8d27136e95/f/l/flash-progrkit-soic8-1034.jpg)
+
+*A SPI flash programmer. An out-of-circuit version is shown here; similar devices commonly program in-circuit as well.*
+
+Of course a primary downside to the SPI-based program loading is that SPI is largely incapable of the kinds of in-circuit debugging one can access via JTAG. 
