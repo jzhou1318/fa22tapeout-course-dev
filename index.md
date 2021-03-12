@@ -44,8 +44,8 @@ by the end of the first week of classes.
 | 3       | 2/2         | RF Systems Overview                         |               |
 | 3-4     | 2/4-2/11    | Hierarchical Design Flow                    | [Notes](./notes) |
 | 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
-| 8       | 3/9         | Testing, in Simulation                      |               |
-|         | 3/11        | Testing, in Real Life                       |               |
+| 8       | 3/9         | *Student Updates*                           |               |
+|         | 3/11        | Testing, in Real Life                       | [Slides](./assets/ee290_bringup_guest_lecture.pdf) |
 | 9       | 3/16-3/18   | Industry Design Review                      |               |
 | 10      | 3/23-3/25   | *Spring Break*                              |               |
 
