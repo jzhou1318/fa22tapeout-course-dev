@@ -511,11 +511,13 @@ Agenda:
   * Kareem working on IO/pad ring, sifting through IO cells, @avi following up 
   * Package - planning for 40-pin QFN 
 
+Action Items 
+
 * [ ] All - "pound on" spec, add comments, try to generate students agreeing on sections 
-* [ ] @avi - announcing need for trial layout before 
+* [x] @avi - announcing need for trial layout before 
 * [ ] @avi following up on RF floor-plan 
 * [ ] @avi checking with Quik-Pak on package/bond-wire OK-ness 
-* [ ] @dan announcing all this other design review stuff 
+* [x] @dan announcing all this other design review stuff 
 
 
 ### Lecture Topics Backlog 
