@@ -477,6 +477,47 @@ Action Items
 * [ ] @ali meeting with Felicia on RF budgeting 
 
 
+### Fri March 12, 2021
+
+Agenda: 
+
+* Design Review Planning 
+  * Apple "source" claims 10 accepted for Tues, 6 for Thurs
+  * "CPU, AMS, a bit of RF, verification, digital circuits" backgrounds
+  * Run til 6pm Tues, maybe a bit beyond 5pm Thurs 
+  * Will post link to starter Google-slides
+  * Require slides by Monday 5pm 
+* Distribution of Time 
+  * Kris - history, past course iterations, updates for this year
+  * Bora - prior research infrastructure (CY, Chisel, BAG ADC, etc) 
+  * Chip Overview: 15min - Anson, Ryan, Nayiri, Felicia 
+    * Chip block diagram, spec targets, teams 
+  * Tues 2.5hr: up to 30min each
+    * CPU, AES Accel, RF BB, Integration 
+  * Thurs 1.5hr - tell everybody to be ready Tues, but plan for: 
+    * RF Transceiver 1hr, other analog 30min
+* Student Reminders:
+  * Intros, photos, one-line student bios 
+  * Recommend turning on video to present! 
+  * External reviewers won't know any Berkeley-specific stuff (Rocket, Hammer, Chisel tools, etc) 
+  * Stuff that is industry-general: analog, Virtuoso, Verilog, synth/PnR tools 
+
+* Design Status 
+  * AES - gotta start simulating SV core, nothing on that yet 
+  * LO VCO seems to have stalled, hopefully got message to get rolling 
+  * Analog BB ramping up after a slow start 
+  * Analog layout - about where 1st course was
+  * Gotta get some trial layout before schematic freeze 
+  * Kareem working on IO/pad ring, sifting through IO cells, @avi following up 
+  * Package - planning for 40-pin QFN 
+
+* [ ] All - "pound on" spec, add comments, try to generate students agreeing on sections 
+* [ ] @avi - announcing need for trial layout before 
+* [ ] @avi following up on RF floor-plan 
+* [ ] @avi checking with Quik-Pak on package/bond-wire OK-ness 
+* [ ] @dan announcing all this other design review stuff 
+
+
 ### Lecture Topics Backlog 
 
 * Simone Guest lecture - first week of April 
