@@ -520,6 +520,34 @@ Action Items
 * [x] @dan announcing all this other design review stuff 
 
 
+### Fri March 19, 2021
+
+Agenda: 
+
+* Next week Spring break 
+* Week After 
+  * Tuesday - Avi
+  * Thursday - James 
+  * Following Tues - Simone 
+  * Following Thurs - Bora on radio baseband 
+* Design Review Follow-Up 
+  * A Few Themes of Feedback 
+    * In-Circuit Testability & Debuggability
+    * Verification 
+    * Attention on Analog-Digital Crossover
+  * Baseband - discussing adding paths for ADC data 
+  * Analog - adding analog test mux, buffers, controls therefore 
+    * @avi providing unity-gain test buffer from prior tape-out 
+* Added TSI interface, should help de-risk CPU bring-up 
+* Tape-Out date - next round after our announced one is 6/16, can catch that as fallback 
+* RF team needs to be showing layout in every update from here on 
+
+Action Items: 
+
+* @dan - Discuss synchronization of live controls, e.g. dividers, with PLL team 
+* @avi - talk to RF team about adding ref-clock bypass, for RX test w/o LO PLL 
+
+
 ### Lecture Topics Backlog 
 
 * Simone Guest lecture - first week of April 
