@@ -544,14 +544,12 @@ Agenda:
 
 Action Items: 
 
-* @dan - Discuss synchronization of live controls, e.g. dividers, with PLL team 
-* @avi - talk to RF team about adding ref-clock bypass, for RX test w/o LO PLL 
+* [ ] @dan - Discuss synchronization of live controls, e.g. dividers, with PLL team 
+* [ ] @avi - talk to RF team about adding ref-clock bypass, for RX test w/o LO PLL 
 
 
 ### Lecture Topics Backlog 
 
-* Simone Guest lecture - first week of April 
-* James D volunteered to repeat his package-design talk, perhaps could be converted into some PCB & lab 
 * Zhaokai BAG ADC
 * SV Test-benching, assertions
 * @ali (or delegate) - ESD & latch-up
