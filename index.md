@@ -38,16 +38,18 @@ by the end of the first week of classes.
 
 | Week(s) | Date(s)     | Agenda                                      |                |
 | ------- | ----------- | ------------------------------------------- | -------------- |
-| 1       | 1/19        | Course Intro, Our Chip | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) |
-|         | 1/21        | BWRC Orientation | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
-| 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
+| 1       | 1/19        | Course Intro, Our Chip              | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) |
+|         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
+| 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
 | 3       | 2/2         | RF Systems Overview                         |               |
-| 3-4     | 2/4-2/11    | Hierarchical Design Flow                    | [Notes](./notes) |
+| 3-4     | 2/4-2/11    | Hierarchical Design Flow            | [Notes](./notes) |
 | 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
-| 8       | 3/9         | *Student Updates*                           |               |
-|         | 3/11        | Testing & Bring-Up                          | [Slides](./assets/ee290_bringup_guest_lecture.pdf) |
+| 8       | 3/9         | Design Updates                              |               |
+|         | 3/11        | Guest Lecture: Testing & Bring-Up   | [Slides](./assets/ee290_bringup_guest_lecture.pdf) |
 | 9       | 3/16-3/18   | Industry Design Review                      |               |
 | 10      | 3/23-3/25   | *Spring Break*                              |               |
+| 11      | 3/30        | Design Updates                              |               |
+|         | 4/1         | Guest Lecture: Package & PCB Design | [Slides](https://drive.google.com/file/d/1LKhzhb_q6fVETYbvka6vH6LdFAwouZzB/view?usp=sharing) |
 
 
 ## [Design Schedule](./milestones)
