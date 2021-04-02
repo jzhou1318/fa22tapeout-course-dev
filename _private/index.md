@@ -548,6 +548,40 @@ Action Items:
 * [ ] @avi - talk to RF team about adding ref-clock bypass, for RX test w/o LO PLL 
 
 
+
+### Fri March 19, 2021
+
+Agenda: 
+
+* Lectures 
+  * Tuesday - Simone guest lecture
+  * Thursday - either all updates, or Avi 
+* Follow-up on package lecture, provide more specifics on our own chip's setup 
+* Design Status 
+  * RF 
+    * DCO design definitely going slower than hoped
+      * Encourage getting *something* rolling vs full-breadth of specs 
+      * @ali & @kris getting together with Alex 
+    * PLL can probably use some help 
+    * Analog baseband has some layout, a bit of a head start 
+  * RF Baseband 
+    * Phase alignment/ CDR now in progress
+    * Anson getting in & helping starting ~tomorrow 
+    * Priority to get something feature-complete, get into back-end 
+  * 
+* Post-Semester
+  * @bora sorting out budget to hire board design, post-silicon work 
+  * Ideally someone associated with the course. Alex M looking for summer job.
+* Tape-Out Schedule 
+  * Univ shuttle was overbooked, had to move May Si to July
+  * @kris reserved 2mm2 for May Muse shuttle
+  * Next shuttle tape-out 9/8, likely will require waiting for this 
+
+Action Items: 
+
+* [ ] @kris contacting Muse about moving to next shuttle 
+
+
 ### Lecture Topics Backlog 
 
 * Zhaokai BAG ADC
