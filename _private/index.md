@@ -161,7 +161,7 @@ Action Items:
 * [x] @bora - TSMC NDA email 
 * [x] @dan will share editing of CY labs
 * [x] @avi - design of initial layout lab 
-* [ ] @bora - set up dedicated compute machine/pool for students 
+* [x] @bora - set up dedicated compute machine/pool for students 
 
 
 ### Tues Jan 12, 2021 (Doubleheader) 
@@ -515,7 +515,7 @@ Action Items
 
 * [ ] All - "pound on" spec, add comments, try to generate students agreeing on sections 
 * [x] @avi - announcing need for trial layout before 
-* [ ] @avi following up on RF floor-plan 
+* [x] @avi following up on RF floor-plan 
 * [ ] @avi checking with Quik-Pak on package/bond-wire OK-ness 
 * [x] @dan announcing all this other design review stuff 
 
@@ -548,7 +548,6 @@ Action Items:
 * [ ] @avi - talk to RF team about adding ref-clock bypass, for RX test w/o LO PLL 
 
 
-
 ### Fri March 19, 2021
 
 Agenda: 
@@ -568,7 +567,6 @@ Agenda:
     * Phase alignment/ CDR now in progress
     * Anson getting in & helping starting ~tomorrow 
     * Priority to get something feature-complete, get into back-end 
-  * 
 * Post-Semester
   * @bora sorting out budget to hire board design, post-silicon work 
   * Ideally someone associated with the course. Alex M looking for summer job.
@@ -579,11 +577,28 @@ Agenda:
 
 Action Items: 
 
-* [ ] @kris contacting Muse about moving to next shuttle 
+* [x] @kris contacting Muse about moving to next shuttle 
+
+### Fri April 9, 2021
+
+Agenda: 
+
+* Lectures 
+  * Any forward lecturing this week? 
+* Design Updates
+  * CPU - largely divert to back-end work
+  * Baseband - ?
+  * PLL - reluctantly doing stuff
+  * Did anyone drop the class? Leon on analog baseband appears missing. 
+
+Action Items: 
+
+* [ ] ...
 
 
 ### Lecture Topics Backlog 
 
+* Avi on Verilog-A, testbenching, structured analog design 
 * Zhaokai BAG ADC
 * SV Test-benching, assertions
 * @ali (or delegate) - ESD & latch-up
