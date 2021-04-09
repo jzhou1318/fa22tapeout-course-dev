@@ -579,21 +579,36 @@ Action Items:
 
 * [x] @kris contacting Muse about moving to next shuttle 
 
+
 ### Fri April 9, 2021
 
 Agenda: 
 
 * Lectures 
-  * Any forward lecturing this week? 
+  * All student updates, and likely so going forward 
 * Design Updates
   * CPU - largely divert to back-end work
-  * Baseband - ?
-  * PLL - reluctantly doing stuff
-  * Did anyone drop the class? Leon on analog baseband appears missing. 
+    * Nayiri still doing most, starting to split out work 
+    * Anson, Josh, Eric Wu volunteered to start contributing
+    * Line up for verif work: Daniel Fan, Cheng Cao 
+  * Baseband - RTL work getting there, not "that done" yet, Ryan & Griffin staying on it
+  * RF Top - Felicia & Jackson getting most (all) hooked up. No LO PLL yet.
+  * RF Front End - schematics OK, layout started 
+  * LO PLL - reluctantly doing stuff 
+    * Remaining pieces of schematic - divider, CP leakage updates 
+  * RF Analog Baseband - seems furthest along 
+    * Did Leon Wu drop the class? Appears missing. 
+    * Seems likely to need re-routing one of these guys to PLL 
+  * Analog Top/ Power/ Bias
+    * Bias network layout started 
+    * LDO layout started 
+* Needs
+  * RF TX driver/ buffer 
 
 Action Items: 
 
-* [ ] ...
+* [ ] @avi pinging RF group on TX driver 
+* [ ] @dan getting Cheng, Daniel onto verification, BB-RF interaction 
 
 
 ### Lecture Topics Backlog 
