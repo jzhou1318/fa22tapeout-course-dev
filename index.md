@@ -50,6 +50,8 @@ by the end of the first week of classes.
 | 10      | 3/23-3/25   | *Spring Break*                              |               |
 | 11      | 3/30        | Design Updates                              |               |
 |         | 4/1         | Guest Lecture: Package & PCB Design | [Slides](https://drive.google.com/file/d/1LKhzhb_q6fVETYbvka6vH6LdFAwouZzB/view?usp=sharing) |
+| 12      | 4/6         | Guest Lecture: Mixed-Signal Verification    |               |
+|         | 4/8         | Design Updates                              |               |
 
 
 ## [Design Schedule](./milestones)
@@ -94,7 +96,7 @@ by the end of the first week of classes.
 | Lectures      | Tues, Thurs	3:30 - 5 pm	                                       |
 | Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    |
 |               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       |
-|               | Monday 4:30 - 5:30 pm		Borivoje Nikoli                     |
+|               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 |
 
 
 ## Links 
