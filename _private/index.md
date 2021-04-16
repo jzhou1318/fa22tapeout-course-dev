@@ -607,9 +607,44 @@ Agenda:
 
 Action Items: 
 
-* [ ] @avi pinging RF group on TX driver 
-* [ ] @dan getting Cheng, Daniel onto verification, BB-RF interaction 
+* [x] @avi pinging RF group on TX driver 
+* [x] @dan getting Cheng, Daniel onto verification, BB-RF interaction 
 
+
+### Fri April 16, 2021
+
+Agenda: 
+
+* Lectures 
+  * All student updates, and likely so going forward 
+  * Two more weeks of lectures 
+  * Plan to continue meeting, same times, during reading week 
+* Design Status 
+  * PLL - probably furthest behind. Stay on em. Discussed going open-loop, probably too risky that it'd work. 
+  * Analog baseband - good layout progress, probably need them to contribue up-hierarchy. Re-direct Kerry & Jeffrey to its top layout. 
+  * RF Top-Level - push this to Shreesha 
+  * Integration - pad ring in LVS, not much else. 
+    * Free up Jackson to contribute some more here. 
+    * Kareem working LVS on pad-ring, hopefully can contribute to top
+    * Troy, Dylan struggling
+  * Digital 
+    * LVS is clean 
+    * DRCs - fixed via1, single-site gap, looking reasonable 
+    * Remaining DRCs - via4 enclosure, random vias, 
+    * Baseband - debugging, finding bugs, squashing bugs, Ryan & Griffin to stick with this. Anson helping. Move to help verify core next week. 
+  * Digital-Side Assignments 
+    * Nayiri - driving back-end work 
+    * Eric Wu - lots of back-n-forth on gate-level sims 
+    * Others on back-end - Josh, Anson (some) 
+    * Cheng - working out digital top level, IO controls, reset sync
+    * Daniel Fan - has said he's still doing AES software thus far. Reiterate need mixed verification instead. 
+* Leon Wu - remains missing 
+
+Action Items: 
+
+* [ ] @avi sit down with Troy/Dylan, get them started on LVS & debug thereof 
+* [ ] @dan reiterate with Daniel Fan, get on mixed-signal verif 
+* [ ] @dan reminding of PLL bypass path 
 
 ### Lecture Topics Backlog 
 
