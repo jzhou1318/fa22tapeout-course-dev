@@ -642,9 +642,38 @@ Agenda:
 
 Action Items: 
 
-* [ ] @avi sit down with Troy/Dylan, get them started on LVS & debug thereof 
-* [ ] @dan reiterate with Daniel Fan, get on mixed-signal verif 
-* [ ] @dan reminding of PLL bypass path 
+* [x] @avi sit down with Troy/Dylan, get them started on LVS & debug thereof 
+* [x] @dan reiterate with Daniel Fan, get on mixed-signal verif 
+* [x] @dan reminding of PLL bypass path 
+
+
+### Fri April 23, 2021
+
+Agenda: 
+
+* Lectures 
+  * Same design meeting format from here 
+* Design Status 
+  * Baseband - latest-forming digital part. Reviewing immediately after this. 
+  * Where is that digital top-level cell? With the synchronizers etc. 
+  * LO PLL - lots left to go, putting together top-level schematic, block-level layouts
+* Tape-out quality metrics
+  * Corners - research chips have generally been getting very close to TT, how important are these? Less than in real life. 
+  * Starting to evaluate PLL late-drop-in 
+  * Chip finishing - seal ring, pad DRCs OK, would need fill / density 
+    * Density fill tends to screw up on resistors, OD fill, should be relatively quick fix
+  * Pad-frame layers DRC clean
+* To Do a 4/28 Drop to Muse:
+  * Weds 4/28 @ 11:59pm - GDS to FTP server
+  * Tues 4/27 EOD - full GDS to fill, debug density, write up DRC waivers 
+  * Mon 4/26 - Digital layout into Virtuoso, Chip-Level LVS & DRC 
+  * Gotta have all device-types down, notably including *inductor* 
+
+Action Items: 
+
+* [ ] @avi trialing fill, sending typical fixes 
+* [ ] @dan sending this mad-rush tape-out schedule 
+
 
 ### Lecture Topics Backlog 
 
