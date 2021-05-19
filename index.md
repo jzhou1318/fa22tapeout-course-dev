@@ -46,12 +46,13 @@ by the end of the first week of classes.
 | 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
 | 8       | 3/9         | Design Updates                              |               |
 |         | 3/11        | Guest Lecture: Testing & Bring-Up   | [Slides](./assets/ee290_bringup_guest_lecture.pdf) |
-| 9       | 3/16-3/18   | Industry Design Review                      |               |
+| 9       | 3/16-3/18   | Industry Design Review              | [Slides](./assets/review-mid.pdf) |
 | 10      | 3/23-3/25   | *Spring Break*                              |               |
 | 11      | 3/30        | Design Updates                              |               |
 |         | 4/1         | Guest Lecture: Package & PCB Design | [Slides](https://drive.google.com/file/d/1LKhzhb_q6fVETYbvka6vH6LdFAwouZzB/view?usp=sharing) |
 | 12      | 4/6         | Guest Lecture: Mixed-Signal Verification    |               |
-|         | 4/8         | Design Updates                              |               |
+| 12-16   | 4/8-5/6     | Design Updates                              |               |
+|         | 5/17        | Industry Design Review              | [Slides](./assets/review-final.pdf) |
 
 
 ## [Design Schedule](./milestones)
