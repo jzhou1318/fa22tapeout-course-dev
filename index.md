@@ -94,7 +94,7 @@ TBD
     * Ali Niknejad [niknejad@berkeley.edu](niknejad@berkeley.edu)
 * GSIs
     * Sherwin Afshar [sherwina210@berkeley.edu](sherwina210@berkeley.edu)
-    * Paul Kwon [hyunjaekwon@berkeley.edh](hyunjaekwon@berkeley.edu)
+    * Paul Kwon [hyunjaekwon@berkeley.edu](hyunjaekwon@berkeley.edu)
 	* Zhaokai Liu [zhaokai\_liu@berkeley.edu](zhaokai_liu@berkeley.edu)
     * Jerry Zhao [jzh@berkeley.edu](jzh@berkeley.edu)
     * Bob Zhou [bob.linchuan@berkeley.edu](bob.linchuan@berkeley.edu)
@@ -104,12 +104,12 @@ TBD
 
 TBD
 
-<!-- |               |                                                                | -->
-<!-- | ------------- | -------------------------------------------------------------- | -->
-<!-- | Lectures      | Tues, Thurs	3:30 - 5 pm	                                       | -->
-<!-- | Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    | -->
-<!-- |               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       | -->
-<!-- |               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 | -->
+|               |                                                                |
+| ------------- | -------------------------------------------------------------- |
+| Lectures      | Tues, Thurs	3:30 - 5 pm	                                       |
+| Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    |
+|               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       |
+|               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 |
 
 
 ## Links 
