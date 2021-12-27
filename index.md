@@ -1,11 +1,13 @@
 # Advanced Topics in Circuit Design 
-## 28nm SoC for IoT 
+## 22nm SoC for IoT 
 
 In this class, we will design and send out for fabrication a
-system-on-a-chip (SoC) intended for internet-of-things applications
-(IoT).  The chip will contain a RISC-V microprocessor, a radio
-transceiver, and a baseband signal processor, and will be designed in
-a 28nm CMOS process (And we really mean it!)
+system-on-a-chip (SoC).
+
+<!-- TODO: Blurb on what the chip is -->
+<!-- The chip will contain a RISC-V microprocessor, a radio -->
+<!-- transceiver, and a baseband signal processor, and will be designed in -->
+<!-- a 28nm CMOS process (And we really mean it!) -->
 
 The course will be hands-on, covering many of the aspects of practical
 integrated circuit design, using state-of-the art tools in a modern
@@ -36,68 +38,78 @@ by the end of the first week of classes.
 
 ## Lecture Schedule 
 
-| Week(s) | Date(s)     | Agenda                                      |                |
-| ------- | ----------- | ------------------------------------------- | -------------- |
-| 1       | 1/19        | Course Intro, Our Chip              | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) |
-|         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) |
-| 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) |
-| 3       | 2/2         | RF Systems Overview                         |               |
-| 3-4     | 2/4-2/11    | Hierarchical Design Flow            | [Notes](./notes) |
-| 5-7     | 2/16-3/4    | Analog & RF Layout                          |               |
-| 8       | 3/9         | Design Updates                              |               |
-|         | 3/11        | Guest Lecture: Testing & Bring-Up   | [Slides](./assets/ee290_bringup_guest_lecture.pdf) |
-| 9       | 3/16-3/18   | Industry Design Review              | [Slides](./assets/review-mid.pdf) |
-| 10      | 3/23-3/25   | *Spring Break*                              |               |
-| 11      | 3/30        | Design Updates                              |               |
-|         | 4/1         | Guest Lecture: Package & PCB Design | [Slides](https://drive.google.com/file/d/1LKhzhb_q6fVETYbvka6vH6LdFAwouZzB/view?usp=sharing) |
-| 12      | 4/6         | Guest Lecture: Mixed-Signal Verification    |               |
-| 12-16   | 4/8-5/6     | Design Updates                              |               |
-|         | 5/17        | Industry Design Review              | [Slides](./assets/review-final.pdf) |
+TBD
+
+<!-- | Week(s) | Date(s)     | Agenda                                      |                | -->
+<!-- | ------- | ----------- | ------------------------------------------- | -------------- | -->
+<!-- | 1       | 1/19        | Course Intro, Our Chip              | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) | -->
+<!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
+<!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
+<!-- | 3       | 2/2         | RF Systems Overview                         |               | -->
+<!-- | 3-4     | 2/4-2/11    | Hierarchical Design Flow            | [Notes](./notes) | -->
+<!-- | 5-7     | 2/16-3/4    | Analog & RF Layout                          |               | -->
+<!-- | 8       | 3/9         | Design Updates                              |               | -->
+<!-- |         | 3/11        | Guest Lecture: Testing & Bring-Up   | [Slides](./assets/ee290_bringup_guest_lecture.pdf) | -->
+<!-- | 9       | 3/16-3/18   | Industry Design Review              | [Slides](./assets/review-mid.pdf) | -->
+<!-- | 10      | 3/23-3/25   | *Spring Break*                              |               | -->
+<!-- | 11      | 3/30        | Design Updates                              |               | -->
+<!-- |         | 4/1         | Guest Lecture: Package & PCB Design | [Slides](https://drive.google.com/file/d/1LKhzhb_q6fVETYbvka6vH6LdFAwouZzB/view?usp=sharing) | -->
+<!-- | 12      | 4/6         | Guest Lecture: Mixed-Signal Verification    |               | -->
+<!-- | 12-16   | 4/8-5/6     | Design Updates                              |               | -->
+<!-- |         | 5/17        | Industry Design Review              | [Slides](./assets/review-final.pdf) | -->
 
 
 ## [Design Schedule](./milestones)
 
-| Week(s)     | Date (Thurs) | Design Calendar                          | Academic Calendar |
-| ----------- | ----------- | ----------------------------------------- | -------------- |
-| 1           | 1/21        | Intro To Our Chip                         |                |
-| 2           | 1/28        | Initial Presentations                     |                |
-| 3           | 2/4         |                                           |                |
-| 4           | 2/11        |                                           |                |
-| 5           | 2/18        |                                           |                |
-| 6           | 2/25        | Prelim Interfaces, Specs, and Floor-Plans |                |
-| 7           | 3/4         |                                           |                |
-| 8           | 3/11        | Prelim Schematics & RTL <br/> Trial Integration, Interface Lock |                |
-| 9           | 3/18        | Industry-Partners Design Review           |                |
-| 10          | 3/25        | -                                         | *Spring Break* |
-| 11          | 4/1         | Mock Tape-Out                             |                |
-| 12          | 4/8         | RTL & Schematic Freeze                    |                |
-| 13          | 4/15        |                                           |                |
-| 14          | 4/21        | Final Sub-Block Layout                    |                |
-| 15          | 4/28        | Full-Chip LVS & DRC Clean Layout          |                |
-| 16          | 5/5         | Foundry Feedback <br/>Final Layout        | *Reading Week* |
-| 16          | 5/12        |                                           | *Exam Week*    |
-| ...         |             |                                           |                |
-|             | 7/29        | Wafers Ship Back to Berkeley              |                |
+TBD
+
+<!-- | Week(s)     | Date (Thurs) | Design Calendar                          | Academic Calendar | -->
+<!-- | ----------- | ----------- | ----------------------------------------- | -------------- | -->
+<!-- | 1           | 1/21        | Intro To Our Chip                         |                | -->
+<!-- | 2           | 1/28        | Initial Presentations                     |                | -->
+<!-- | 3           | 2/4         |                                           |                | -->
+<!-- | 4           | 2/11        |                                           |                | -->
+<!-- | 5           | 2/18        |                                           |                | -->
+<!-- | 6           | 2/25        | Prelim Interfaces, Specs, and Floor-Plans |                | -->
+<!-- | 7           | 3/4         |                                           |                | -->
+<!-- | 8           | 3/11        | Prelim Schematics & RTL <br/> Trial Integration, Interface Lock |                | -->
+<!-- | 9           | 3/18        | Industry-Partners Design Review           |                | -->
+<!-- | 10          | 3/25        | -                                         | *Spring Break* | -->
+<!-- | 11          | 4/1         | Mock Tape-Out                             |                | -->
+<!-- | 12          | 4/8         | RTL & Schematic Freeze                    |                | -->
+<!-- | 13          | 4/15        |                                           |                | -->
+<!-- | 14          | 4/21        | Final Sub-Block Layout                    |                | -->
+<!-- | 15          | 4/28        | Full-Chip LVS & DRC Clean Layout          |                | -->
+<!-- | 16          | 5/5         | Foundry Feedback <br/>Final Layout        | *Reading Week* | -->
+<!-- | 16          | 5/12        |                                           | *Exam Week*    | -->
+<!-- | ...         |             |                                           |                | -->
+<!-- |             | 7/29        | Wafers Ship Back to Berkeley              |                | -->
 
 
 ## Staff
 
 * Faculty 
-    * Borivoje Nikolic bora@berkeley.edu
-    * Kris Pister ksjp@berkeley.edu
-    * Ali Niknejad niknejad@berkeley.edu
+    * Borivoje Nikolic [bora@berkeley.edu](bora@berkeley.edu)
+    * Kris Pister [ksjp@berkeley.edu](ksjp@berkeley.edu)
+    * Ali Niknejad [niknejad@berkeley.edu](niknejad@berkeley.edu)
 * GSIs
-    * Dan Fritchman dan_fritchman@berkeley.edu
-    * Aviral Pandey aviral0607@berkeley.edu
+    * Sherwin Afshar [sherwina210@berkeley.edu](sherwina210@berkeley.edu)
+    * Paul Kwon [hyunjaekwon@berkeley.edh](hyunjaekwon@berkeley.edu)
+	* Zhaokai Liu [zhaokai\_liu@berkeley.edu](zhaokai_liu@berkeley.edu)
+    * Jerry Zhao [jzh@berkeley.edu](jzh@berkeley.edu)
+    * Bob Zhou [bob.linchuan@berkeley.edu](bob.linchuan@berkeley.edu)
+
 
 ## Lectures and Office Hours
 
-|               |                                                                |
-| ------------- | -------------------------------------------------------------- |
-| Lectures      | Tues, Thurs	3:30 - 5 pm	                                       |
-| Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    |
-|               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       |
-|               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 |
+TBD
+
+<!-- |               |                                                                | -->
+<!-- | ------------- | -------------------------------------------------------------- | -->
+<!-- | Lectures      | Tues, Thurs	3:30 - 5 pm	                                       | -->
+<!-- | Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    | -->
+<!-- |               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       | -->
+<!-- |               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 | -->
 
 
 ## Links 
