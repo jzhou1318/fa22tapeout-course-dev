@@ -1,5 +1,5 @@
-# Advanced Topics in Circuit Design 
-## 22nm SoC for IoT 
+# Advanced Topics in Circuit Design
+## 22nm SoC for IoT
 
 In this class, we will design and send out for fabrication a
 system-on-a-chip (SoC).
@@ -16,27 +16,27 @@ through guided laboratory exercises from the very beginning, and all
 students interested in this exciting opportunity will need to sign up
 by the end of the first week of classes.
 
---- 
+---
 
-## Topics 
+## Topics
 
 * Our SoC for IoT
-    * State-of-the art micro-robotics, RISC-V, low-power RF 
-* Digital Front-End Design 
+    * State-of-the art micro-robotics, RISC-V, low-power RF
+* Digital Front-End Design
     * Verilog, Chisel
-* Digital Back-End 
-    * Logic Synthesis, Place-and-Route Layout, HAMMER, Clock & Power Networks 
+* Digital Back-End
+    * Logic Synthesis, Place-and-Route Layout, HAMMER, Clock & Power Networks
 * Analog Design Practice
-    * Design for layout, matching, performance 
+    * Design for layout, matching, performance
     * Cadence, ADE, OCEAN, SKILL, Extraction
-* Analog Generators 
+* Analog Generators
     * BAG Framework, Python
 * Chip & Tape-Out Practice
-    * ESD, IOs, Package & PCB Design 
-* RF, Wireless, Signal Processing 
+    * ESD, IOs, Package & PCB Design
+* RF, Wireless, Signal Processing
 
 
-## Lecture Schedule 
+## Lecture Schedule
 
 | Week(s) | Date(s)     | Agenda                                      |                |
 | ------- | ----------- | ------------------------------------------- | -------------- |
@@ -87,7 +87,7 @@ TBD
 
 ## Staff
 
-* Faculty 
+* Faculty
     * Borivoje Nikolic [bora@berkeley.edu](bora@berkeley.edu)
     * Kris Pister [ksjp@berkeley.edu](ksjp@berkeley.edu)
     * Ali Niknejad [niknejad@berkeley.edu](niknejad@berkeley.edu)
@@ -108,13 +108,16 @@ TBD
 | Office Hours  | TBD                                                            |
 
 
-## Links 
+## Links
 
-* [*Tapeout class: Taking students from schematic to silicon in one semester*](https://ieeexplore-ieee-org.libproxy.berkeley.edu/stamp/stamp.jsp?tp=&arnumber=8351506) David C. Burnett; Brian Kilberg; Rachel Zoll; Osama Khan; Kristofer S. J. Pister, 2018 IEEE International Symposium on Circuits and Systems (ISCAS)
-* ChipYard [Repository](https://github.com/ucb-bar/chipyard) and [Documentation](https://chipyard.readthedocs.io/en/latest/)
-* Chisel [Bootcamp](https://github.com/freechipsproject/chisel-bootcamp)
-* [Course Archives](https://inst.eecs.berkeley.edu/~ee290c/archives.html)
-* [Piazza Forum](https://piazza.com/class/kiqf7tz0bsp1oj)
-* [bCourses Site](https://bcourses.berkeley.edu/courses/1500979)
-* [GradeScope](https://www.gradescope.com/courses/214436)
+* [Piazza](https://piazza.com/class/kyer4edhzkd5wy?cid=10)
+* [Slack](tapeout.slack.com)
+* [BWRC Repos](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22)
 
+<!-- * [*Tapeout class: Taking students from schematic to silicon in one semester*](https://ieeexplore-ieee-org.libproxy.berkeley.edu/stamp/stamp.jsp?tp=&arnumber=8351506) David C. Burnett; Brian Kilberg; Rachel Zoll; Osama Khan; Kristofer S. J. Pister, 2018 IEEE International Symposium on Circuits and Systems (ISCAS) -->
+<!-- * ChipYard [Repository](https://github.com/ucb-bar/chipyard) and [Documentation](https://chipyard.readthedocs.io/en/latest/) -->
+<!-- * Chisel [Bootcamp](https://github.com/freechipsproject/chisel-bootcamp) -->
+<!-- * [Course Archives](https://inst.eecs.berkeley.edu/~ee290c/archives.html) -->
+<!-- * [Piazza Forum](https://piazza.com/class/kiqf7tz0bsp1oj) -->
+<!-- q* [bCourses Site](https://bcourses.berkeley.edu/courses/1500979) -->
+<!-- * [GradeScope](https://www.gradescope.com/courses/214436) -->
