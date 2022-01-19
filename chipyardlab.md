@@ -213,11 +213,33 @@ make CONFIG=RocketConfig TOP=RocketTile tech_name=intech22 INPUT_CONFS="rocketti
 
 In the actual class tapeout, and in most large tapeouts, the flow is hierarchical. Meaning that subcomponents will be place-and-routed as blocks, before the parent module places them as macros. If we were to do a two-level hierarchical flow, where the RocketTile is the only child module, the next step would be to synthesize and place-and-route the parent ChipTop module.
 
-## Rest of the VLSI Flow
+### DRC
 
-Running DRC and LVS is not required for this lab, but you can run them though Hammer just like before.
-The placement of macros like SRAMs can cause considerable numbers of DRC and LVS errors if placed incorrectly and can cause considerable congestion if placed non-optimally.
-The floorplan visualization tools in Hammer can help you root out these problems early in your design process.
+Running DRC (Design rule checks) verifies that the layout emitted after place-and-route adheres to all the foundry rules, and is manufacturable.
+
+Note: The example design is not intended to be DRC-clean.
+
+```
+make CONFIG=RocketConfig TOP=RocketTile tech_name=intech22 INPUT_CONFS="rockettile.yml" drc-block
+```
+
+
+### LVS
+
+Running LVS (layout vs. schematic) verifies that the netlist in the final layout matches the expected netlist.
+
+Note: The example design is not intended to be LVS-clean.
+
+```
+make CONFIG=RocketConfig TOP=RocketTile tech_name=intech22 INPUT_CONFS="rockettile.yml" lvs-block
+```
+
+
+<!-- ## Rest of the VLSI Flow -->
+
+<!-- Running DRC and LVS is not required for this lab, but you can run them though Hammer just like before. -->
+<!-- The placement of macros like SRAMs can cause considerable numbers of DRC and LVS errors if placed incorrectly and can cause considerable congestion if placed non-optimally. -->
+<!-- The floorplan visualization tools in Hammer can help you root out these problems early in your design process. -->
 
 ## Conclusion
 

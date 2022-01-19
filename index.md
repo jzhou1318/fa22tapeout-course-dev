@@ -40,7 +40,7 @@ by the end of the first week of classes.
 
 | Week(s) | Date(s)     | Agenda                                      |                |
 | ------- | ----------- | ------------------------------------------- | -------------- |
-| 1       | 1/19        | Course Intro, Our Chip                      |                |
+| 1       | 1/19        | Course Intro, Our Chip                      | [Chipyard Lab](./chipyardlab) |
 
 <!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
 <!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
