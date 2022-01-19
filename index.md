@@ -38,11 +38,10 @@ by the end of the first week of classes.
 
 ## Lecture Schedule 
 
-TBD
+| Week(s) | Date(s)     | Agenda                                      |                |
+| ------- | ----------- | ------------------------------------------- | -------------- |
+| 1       | 1/19        | Course Intro, Our Chip                      |                |
 
-<!-- | Week(s) | Date(s)     | Agenda                                      |                | -->
-<!-- | ------- | ----------- | ------------------------------------------- | -------------- | -->
-<!-- | 1       | 1/19        | Course Intro, Our Chip              | [Slides](https://drive.google.com/file/d/1FV78X3iNcFyxaLOvjwVR6R8wI_zvcF8G/view?usp=sharing) | -->
 <!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
 <!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
 <!-- | 3       | 2/2         | RF Systems Overview                         |               | -->
@@ -102,14 +101,11 @@ TBD
 
 ## Lectures and Office Hours
 
-TBD
 
 |               |                                                                |
 | ------------- | -------------------------------------------------------------- |
-| Lectures      | Tues, Thurs	3:30 - 5 pm	                                       |
-| Office Hours  | Thurs	11:00 am - 12:00 pm	   Dan Fritchman                    |
-|               | Thurs 12:00 am - 1:00 pm		Avi Pandey                       |
-|               | Monday 4:30 - 5:30 pm		   Borivoje Nikolic                 |
+| Lectures      | Monday, Wednesday	2:00 - 3:30 pm	                             |
+| Office Hours  | TBD                                                            |
 
 
 ## Links 
