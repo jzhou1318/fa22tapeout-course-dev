@@ -56,7 +56,7 @@ All required materials are stored in the [BWRC-Repo GitLab instance](https://bwr
 First source the following environment file. This will add pre-compiled binaries of all the RISC-V tools to your PATH.
 
 ```
-source /tools/C/ee290/riscv-env.sh
+source /tools/C/ee290/env-riscv-tools.sh
 ```
 
 
