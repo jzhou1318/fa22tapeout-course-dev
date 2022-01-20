@@ -53,6 +53,13 @@ This lab will likely generate too much data for it to fit in your home directory
 All required materials are stored in the [BWRC-Repo GitLab instance](https://bwrcrepo.eecs.berkeley.edu).
 
 
+First source the following environment file. This will add pre-compiled binaries of all the RISC-V tools to your PATH.
+
+```
+source /tools/C/ee290/riscv-env.sh
+```
+
+
 Run the commands below. These commands clone the Chipyard repository, then initialize all the submodules.
 
 ```
@@ -65,11 +72,6 @@ cd chipyard
 ./scripts/init-submodules-no-riscv-tools.sh
 ```
 
-Now source the following environment file. This will add pre-compiled binaries of all the RISC-V tools to your PATH.
-
-```
-source /tools/C/ee290/riscv-env.sh
-```
 
 You may have noticed while initializing your Chipyard repo that there are many submodules.  
 Chipyard is built to allow the designer to generate complex configurations from different projects 
