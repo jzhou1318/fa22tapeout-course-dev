@@ -138,6 +138,12 @@ cd chipyard/vlsi
 source hammer/sourceme.sh
 ```
 
+**Note: For all make commands in the VLSI flow (all make commands from this point forwards), run them on the LSF.** In other words, prepend the command with
+
+```
+bsub -Is
+```
+
 To setup the Hammer back-end flow, run:
 
 ```

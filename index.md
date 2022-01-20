@@ -104,8 +104,9 @@ TBD
 
 |               |                                                                |
 | ------------- | -------------------------------------------------------------- |
-| Lectures      | Monday, Wednesday	2:00 - 3:30 pm	                             |
-| Office Hours  | TBD                                                            |
+| Lectures      | Monday, Wednesday	2:00 - 3:30 pm	                         |
+| Office Hours  | Bora: Thursdays 11am - 12pm (See Piazza for Zoom Link)         |
+
 
 
 ## Links
