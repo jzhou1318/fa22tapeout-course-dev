@@ -97,14 +97,23 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
 In this lab, we are just focusing on a Rocket core in isolation, so we will run some assembly tests on a Rocket config.
 You can edit the configs being used through overriding the make invocation with 
 `CONFIG=YourConfig`.
-We'll start by building and simulating the default ChipYard configuration. Run:
+We'll start by building and simulating the default ChipYard configuration. 
+
+**Note:** For running VCS simulations, we will run on a specific BWRC host machine to avoid some nasty bugs due to toolchain version incompatibilities. For all other steps our remote machine will be a bwrcrdsl machine
 
 ```
-cd sims/vcs
+# SSH to a specific machine (bwrcr740-8)
+ssh bwrcr740-8
+cd /tools/C/userName/intech22/chipyard/sims/vcs
+source /tools/C/ee290/env-riscv-tools.sh
+
 # build the default configuration
 make CONFIG=RocketConfig
 # run the BINARY on the simulator and log instructions to a file 
 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple 
+
+# Return to bwrcrdsl
+exit
 ```
 
 The first command will elaborate the design and create Verilog.
