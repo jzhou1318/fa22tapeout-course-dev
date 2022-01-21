@@ -65,9 +65,7 @@ Run the commands below. These commands clone the Chipyard repository, then initi
 ```
 mkdir -p /tools/C/userName/intech22
 cd /tools/C/userName/intech22
-git clone \
-    git@bwrcrepo.eecs.berkeley.edu:EE290C_EE194_intech22/ \
-    chipyard-lab.git chipyard
+git clone git@bwrcrepo.eecs.berkeley.edu:EE290C_EE194_intech22/chipyard-lab.git chipyard
 cd chipyard
 ./scripts/init-submodules-no-riscv-tools.sh
 ```
