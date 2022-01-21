@@ -115,7 +115,7 @@ TBD
 
 * [Piazza](https://piazza.com/class/kyer4edhzkd5wy?cid=10)
 * [Slack](tapeout.slack.com)
-* [BWRC Repos](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22)
+<!-- * [BWRC Repos](https://bwrcrepo.eecs.berkeley.edu/ee290c_ee194_intech22)
 
 <!-- * [*Tapeout class: Taking students from schematic to silicon in one semester*](https://ieeexplore-ieee-org.libproxy.berkeley.edu/stamp/stamp.jsp?tp=&arnumber=8351506) David C. Burnett; Brian Kilberg; Rachel Zoll; Osama Khan; Kristofer S. J. Pister, 2018 IEEE International Symposium on Circuits and Systems (ISCAS) -->
 <!-- * ChipYard [Repository](https://github.com/ucb-bar/chipyard) and [Documentation](https://chipyard.readthedocs.io/en/latest/) -->
