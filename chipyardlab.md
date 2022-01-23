@@ -217,7 +217,7 @@ To rerun only place-and-route after editing only floorplan constraints, run
 make CONFIG=RocketConfig TOP=RocketTile tech_name=intech22 INPUT_CONFS="rockettile.yml" HAMMER_EXTRA_ARGS="-p rockettile.yml" redo-par
 ```
 
-**Q: Include a picture of your design in Innovus with M8 and M9 turned off.**
+**Q: Include a picture of your design in Innovus with the top two metal layers turned off.**
 
 **Q: Explain your modification to the provided floorplan, and show it in the layout.**
 
