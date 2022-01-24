@@ -45,7 +45,7 @@ by the end of the first week of classes.
 |        |         |                       |[Chipyard Lab](./chipyardlab)  |
 |        | 1/24    | Chipyard                                         |[Slides](https://drive.google.com/file/d/15cKE18UfQhnMKITdDX1jQe64bPfaLbL0/view)   |
 |        |         |                                                  |[Chipyard details](./assets/chipyard_details.pdf)  |
-|        |         |                                                  |[Unix + Git review](https://docs.google.com/presentation/d/1s4x2yZdOdIiADDnlelZPZ1QeH5E_qYvaaA-RdW2VpLA/edit?usp=sharing)  |
+
 <!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
 <!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
 <!-- | 3       | 2/2         | RF Systems Overview                         |               | -->
