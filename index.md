@@ -44,6 +44,7 @@ by the end of the first week of classes.
 |        |         |                       |[SCUM-V Intro](https://docs.google.com/presentation/d/11S1dx3a6r4vA29wQQcYUO5wl2g7PSl9p/edit?usp=sharing&ouid=114241049124280929588&rtpof=true&sd=true)  |
 |        |         |                       |[Chipyard Lab](./chipyardlab)  |
 |        | 1/24    | Chipyard                                         |[Slides](https://drive.google.com/file/d/15cKE18UfQhnMKITdDX1jQe64bPfaLbL0/view)   |
+|        |         |                                                  |[Chipyard details](./assets/chipyard_details.pdf)  |
 
 <!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
 <!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
