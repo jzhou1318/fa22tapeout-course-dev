@@ -43,7 +43,8 @@ by the end of the first week of classes.
 | 1       | 1/19        | Course Intro, Our Chip                      |[slides](https://docs.google.com/presentation/d/1O6NQxIgmDE3Ufo8fASbfssEy0wwD0lQ2/edit?usp=sharing&ouid=114241049124280929588&rtpof=true&sd=true) [Recording](https://drive.google.com/file/d/1W4mxO4KyndbOJxWArM4YXtXkEMy6Uxjw/view) |
 |        |         |                       |[SCUM-V Intro](https://docs.google.com/presentation/d/11S1dx3a6r4vA29wQQcYUO5wl2g7PSl9p/edit?usp=sharing&ouid=114241049124280929588&rtpof=true&sd=true)  |
 |        |         |                       |[Chipyard Lab](./chipyardlab)  |
-|        | 1/24    | Chipyard                                         |[slides](https://drive.google.com/file/d/15cKE18UfQhnMKITdDX1jQe64bPfaLbL0/view   |
+|        | 1/24    | Chipyard                                         |[slides](https://drive.google.com/file/d/15cKE18UfQhnMKITdDX1jQe64bPfaLbL0/view)   |
+
 <!-- |         | 1/21        | BWRC Orientation                    | [Slides](https://drive.google.com/file/d/1QIy9ShYp3JyN0DxwnQvG-xXvsr9WZu07/view?usp=sharing) | -->
 <!-- | 2       | 1/26-1/28   | Team Formation <br> ChipYard Intro  | [Slides](https://drive.google.com/file/d/1HnRFrYKzJU2kpmtHaocyfN1TqhUVv2Te/view?usp=sharing) | -->
 <!-- | 3       | 2/2         | RF Systems Overview                         |               | -->
