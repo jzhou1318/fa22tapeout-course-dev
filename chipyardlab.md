@@ -137,7 +137,7 @@ cd chipyard/vlsi
 source hammer/sourceme.sh
 ```
 
-**Note: For all make commands in the VLSI flow (all make commands from this point forwards), run them on the LSF.** In other words, prepend the command with
+**Note: For all compute intensive commands in the VLSI flow (all make commands from this point forwards, as well as launching Innovus via `open_chip`), run them on the LSF.** In other words, prepend the command with
 
 ```
 bsub -Is
