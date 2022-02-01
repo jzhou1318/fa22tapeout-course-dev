@@ -111,7 +111,8 @@ TBD
 | ------------- | -------------------------------------------------------------- |
 | Lectures      | Monday, Wednesday	2:00 - 3:30 pm	                         |
 | Office Hours  | Bora: Thursdays 11am - 12pm (See Piazza for Zoom Link)         |
-
+|               | Sherwin: Wednesdays 11am - 12pm (See Piazza for Zoom Link)     |
+|               | Bob: Tuesdays 1:30PM - 2:30PM (See Piazza for Zoom Link)       |
 
 
 ## Links
