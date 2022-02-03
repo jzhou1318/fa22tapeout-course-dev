@@ -99,7 +99,7 @@ TBD
 * GSIs
     * Sherwin Afshar [sherwina210@berkeley.edu](sherwina210@berkeley.edu)
     * Paul Kwon [hyunjaekwon@berkeley.edu](hyunjaekwon@berkeley.edu)
-	* Zhaokai Liu [zhaokai\_liu@berkeley.edu](zhaokai_liu@berkeley.edu)
+    * Zhaokai Liu [zhaokai\_liu@berkeley.edu](zhaokai_liu@berkeley.edu)
     * Jerry Zhao [jzh@berkeley.edu](jzh@berkeley.edu)
     * Bob Zhou [bob.linchuan@berkeley.edu](bob.linchuan@berkeley.edu)
 
@@ -113,6 +113,8 @@ TBD
 | Office Hours  | Bora: Thursdays 11am - 12pm (See Piazza for Zoom Link)         |
 |               | Sherwin: Wednesdays 11am - 12pm (See Piazza for Zoom Link)     |
 |               | Bob: Tuesdays 1:30PM - 2:30PM (See Piazza for Zoom Link)       |
+|               | Zhaokai: Monday 11am - 12pm (See Piazza for Zoom Link)         |
+
 
 
 ## Links
