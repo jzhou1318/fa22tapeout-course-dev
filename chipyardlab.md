@@ -75,7 +75,10 @@ You may have noticed while initializing your Chipyard repo that there are many s
 Chipyard is built to allow the designer to generate complex configurations from different projects 
 including the in-order Rocket Chip core, the out-of-order BOOM core, the systolic array Gemmini, and many other components needed to build a chip.
 Thankfully, Chipyard has some great documentation, which can be found 
-[here](https://chipyard.readthedocs.io/en/latest/).
+[here](https://chipyard.readthedocs.io/en/latest/). 
+
+PORT TUTORIAL STUFF INTO HERE & ADD QUESTIONS TO ANSWER ABT CONFIGS
+
 You can find most of these in the `chipyard/generators/` directory.
 All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
 You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
