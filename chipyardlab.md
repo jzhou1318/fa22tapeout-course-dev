@@ -70,6 +70,21 @@ cd chipyard
 ./scripts/init-submodules-no-riscv-tools.sh
 ```
 
+## Chipyard Repo Tour
+
+```
+ chipyard/
+  generators/ <------- library of Chisel generators
+    chipyard/
+    sha3/
+  sims/         <----- utilities for simulating SoCs
+    verilator/
+    firesim/
+  fpga/
+  software/
+  vlsi/ <------------- HAMMER VLSI Flow
+  toolchains/ <------- RISC-V Toolchain
+```
 
 You may have noticed while initializing your Chipyard repo that there are many submodules.  
 Chipyard is built to allow the designer to generate complex configurations from different projects 
@@ -77,15 +92,39 @@ including the in-order Rocket Chip core, the out-of-order BOOM core, the systoli
 Thankfully, Chipyard has some great documentation, which can be found 
 [here](https://chipyard.readthedocs.io/en/latest/). 
 
-PORT TUTORIAL STUFF INTO HERE & ADD QUESTIONS TO ANSWER ABT CONFIGS
-
 You can find most of these in the `chipyard/generators/` directory.
 All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
+
+
+![](assets/chipyard.jpg)
+
+#### Tiles:
+- Each Tile contains a RISC-V core and private caches
+- Several varieties of Cores supported
+- Interface supports integrating your own RISC-V core implementation
+
+
+#### RoCC Accelerators:
+- Tightly-coupled accelerator interface
+- Attach custom accelerators to Rocket or BOOM cores
+- More on this later
+
+#### MMIO Accelerators:
+- Controlled by MMIO-mapped registers
+- Supports DMA to memory system
+- Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
+
+
 You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
 You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `chipyard/generators/chipyard/src/main/scala/example`.
 Many times, an accelerator block is connected to the Rocket core with a memory-mapped interface over the system bus. 
 This allows the core to configure and read from the block.
 Again, there is far too much to discuss fully here, but you can really put together a system very quickly using the infrastructure of Chipyard.
+
+### Config Exercise
+
+## RoCC/MMIO Design
+
 
 ## Chipyard Simulation and Design Benchmarking
 
