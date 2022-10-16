@@ -18,6 +18,8 @@ Chipyard brings together much of the work on hardware design methodology from Be
 A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-based SoC.
 This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
 Information about Chisel can be found in [https://www.chisel-lang.org/](https://www.chisel-lang.org/).
+
+# TODO
 While you will not be required to write any Chisel code in this lab, basic familiarity with the language will be helpful in understanding many of the components in the system and how they are put together.
 
 <!-- An initial introduction to Chisel can be found in the Chisel bootcamp:  [https://github.com/freechipsproject/chisel-bootcamp](https://github.com/freechipsproject/chisel-bootcamp).  -->
@@ -25,11 +27,11 @@ While you will not be required to write any Chisel code in this lab, basic famil
 
 Throughout the rest of the course, we will be developing our SoC using Chipyard as the base framework. 
 There is a lot in Chipyard so we will only be able to explore a part of it in this lab, but hopefully you will get a brief sense of its capabilities.
-We will simulate a Rocket Chip-based design at the RTL level, and then synthesize and place-and-route it in Intel 22nm technology using the Hammer back-end flow.
+We will simulate a Rocket Chip-based design at the RTL level, and then synthesize and place-and-route it in ~Intel 22nm~ technology using the Hammer back-end flow.
 
 ![](assets/chipyard-components.PNG)
 
-
+# TODO - edit this to separate lab from the rest of the class
 ## Access & Setup
 
 It should be clear by now this isn't going like most other courses. Most don't require signing non-disclosure agreements, or setting up a long string of IT infrastructure. Such is chip-design life. Running the Intel22 ChipYard lab will require access to a handful of BWRC research resources, including:
@@ -95,24 +97,107 @@ Thankfully, Chipyard has some great documentation, which can be found
 You can find most of these in the `chipyard/generators/` directory.
 All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
 
+# TODO mark what part of the overview image this is
+### SoC Architecture 
+<p align="center">
+  <img src="assets/tutorial/chipyard.jpg" />
+</p>
 
-![](assets/chipyard.jpg)
+<img style="float: left;" src="assets/tutorial/tile.jpg" width="200">
 
 #### Tiles:
-- Each Tile contains a RISC-V core and private caches
+- Each Tile contains a RISC-V core and private caches (specified through configs)
 - Several varieties of Cores supported
 - Interface supports integrating your own RISC-V core implementation
 
+<br /> 
+<br /> 
+<br /> 
+<br /> 
+
+<img style="float: left;" src="assets/tutorial/rocc.jpg" width="200">
 
 #### RoCC Accelerators:
 - Tightly-coupled accelerator interface
 - Attach custom accelerators to Rocket or BOOM cores
 - More on this later
 
+<br /> 
+<br /> 
+<br /> 
+<br /> 
+
+<img style="float: left;" src="assets/tutorial/mmio.jpg" width="200">
+
+
 #### MMIO Accelerators:
 - Controlled by MMIO-mapped registers
 - Supports DMA to memory system
 - Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
+- More on this later
+
+<br /> 
+<br /> 
+<br /> 
+<br /> 
+
+<img style="float: left;" src="assets/tutorial/tilelink.jpg" width="200">
+
+#### TileLink Standard:
+- TileLink is open-source chip-scale interconnect standard
+- Comparable to AXI/ACE
+- Supports multi-core, accelerators, peripherals, DMA, etc
+
+#### Interconnect IP:
+- Library of TileLink RTL generators provided in RocketChip
+- RTL generators for crossbar-based buses
+- Width-adapters, clock-crossings, etc.
+- Adapters to AXI4, APB
+
+<img style="float: left;" src="assets/tutorial/shared_mem.jpg" width="200">
+
+##### Shared memory:
+- Open-source TileLink L2 developed by SiFive
+- Directory-based coherence with MOESI-like protocol
+- Configurable capacity/banking
+- Support broadcast-based coherence in no-L2 systems
+- Support incoherent memory systems
+ 
+##### DRAM:
+- AXI-4 DRAM interface to external memory controller
+- Interfaces with DRAMSim/FASED
+
+<br /> 
+<br /> 
+<br /> 
+<br /> 
+
+<img style="float: left;" src="assets/tutorial/peripherals.jpg" width="200">
+
+##### Peripherals and IO:
+- Open-source RocketChip + SiFive blocks:
+  - Interrupt controllers
+  - JTAG, Debug module, BootROM
+  - UART, GPIOs, SPI, I2C, PWM, etc.
+- TestChipIP: useful IP for test chips
+  - Clock-management devices
+  - SerDes
+  - Scratchpads
+
+
+
+<p align="center">
+  <img src="assets/tutorial/noc.jpg" />
+</p>
+
+##### Constellation
+- A parameterized Chisel generator for SoC interconnects
+- Protocol-independent transport layer
+- Supports TileLink, AXI-4
+- Highly parameterized
+- Deadlock-freedom
+- Virtual-channel wormhole-routing
+
 
 
 You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
@@ -121,7 +206,10 @@ Many times, an accelerator block is connected to the Rocket core with a memory-m
 This allows the core to configure and read from the block.
 Again, there is far too much to discuss fully here, but you can really put together a system very quickly using the infrastructure of Chipyard.
 
+
 ### Config Exercise
+
+### Running through tutorial
 
 ## RoCC/MMIO Design
 
