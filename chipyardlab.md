@@ -19,7 +19,7 @@ A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-b
 This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
 Information about Chisel can be found in [https://www.chisel-lang.org/](https://www.chisel-lang.org/).
 
-# TODO
+# TODO - edit this to separate lab from class specifics like process tech
 While you will not be required to write any Chisel code in this lab, basic familiarity with the language will be helpful in understanding many of the components in the system and how they are put together.
 
 <!-- An initial introduction to Chisel can be found in the Chisel bootcamp:  [https://github.com/freechipsproject/chisel-bootcamp](https://github.com/freechipsproject/chisel-bootcamp).  -->
@@ -31,7 +31,7 @@ We will simulate a Rocket Chip-based design at the RTL level, and then synthesiz
 
 ![](assets/chipyard-components.PNG)
 
-# TODO - edit this to separate lab from the rest of the class
+# TODO - edit this to separate lab from class specifics like process tech
 ## Access & Setup
 
 It should be clear by now this isn't going like most other courses. Most don't require signing non-disclosure agreements, or setting up a long string of IT infrastructure. Such is chip-design life. Running the Intel22 ChipYard lab will require access to a handful of BWRC research resources, including:
@@ -99,10 +99,13 @@ All of these modules are built as generators (a core driving point of using Chis
 
 # TODO mark what part of the overview image this is
 ### SoC Architecture 
-<p align="center">
-  <img src="assets/tutorial/chipyard.jpg" />
-</p>
 
+<table border-"0">
+  <tr>
+    <td><img src="assets/tutorial/rtl_gen_layer.png" /></td>
+    <td><img src="assets/tutorial/chipyard.jpg" /></td>
+  </tr>
+</table>
 
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
@@ -110,108 +113,144 @@ All of these modules are built as generators (a core driving point of using Chis
  <tr>
     <td><img style="float: left;" src="assets/tutorial/tile.jpg" width="200"></td>
     <td>
-      <h2>Tiles:</h2>
+      <h2>Tiles</h2>
       <ul>
-        <li> Each Tile contains a RISC-V core and private caches (specified through configs)
-        <li> Several varieties of Cores supported
+        <li> A tile is the basic unit of replication of a core and its associated hardware
+        <li> Each tile contains a RISC-V core and can contain additional hardware such as private caches, page table walker, TileBus (specified using configs)
+        <li> Several varieties of cores (Rocket, BOOM, Sodor, CVA-6 (Ariane), Ibex) supported
         <li> Interface supports integrating your own RISC-V core implementation
       </ul>
     </td>
- </tr>
+  </tr>
+
+  <tr>
+    <td><img style="float: left;" src="assets/tutorial/rocc.jpg" width="200"></td>
+    <td>
+      <h2>RoCC Accelerators</h2>
+      <ul>
+        <li> Tightly-coupled accelerator interface
+        <li> Attach custom accelerators to Rocket or BOOM cores
+        <li> More on this later
+      </ul>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td><img style="float: left;" src="assets/tutorial/mmio.jpg" width="200"></td>
+    <td>
+      <h2>MMIO Accelerators</h2>
+      <ul>
+        <li> Controlled by memory-mapped IO registers
+        <li> Support DMA to memory system
+        <li> Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
+        <li> More on this later
+      </ul>
+    </td>
+  </tr>
+
+  <tr>    
+    <td>
+      <table border="0">
+        <tr>
+        </tr>
+        <tr>
+          <td><img style="float: left;" src="assets/tutorial/tilelink.jpg" width="200"></td>
+        </tr>
+        <tr>
+          <td><img style="float: left;" src="assets/tutorial/noc.jpg" width="200"></td>
+        </tr>
+      </table>
+    </td>
+    <td>
+      <table border="0">
+        <tr>
+          <td><h2>Chip Interconnect</h2></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>TileLink Standard</h3>
+            <ul>
+              <li> TileLink is an open-source chip-scale interconnect standard (i.e., a protocol defining the communication interface between different modules on a chip)
+              <li> Comparable to industry-standard protocols such as AXI/ACE
+              <li> Supports multi-core, accelerators, peripherals, DMA, etc.
+            </ul>
+            <h3>Interconnect IP in Chipyard</h3>
+            <ul>
+              <li> Library of TileLink RTL generators provided in RocketChip
+              <li> RTL generators for crossbar-based buses
+              <li> Width-adapters, clock-crossings, etc.
+              <li> Adapters to AXI4, APB
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Constellation</h3>
+            <ul>
+              <li> A parameterized Chisel generator for SoC interconnects
+              <li> Protocol-independent transport layer
+              <li> Supports TileLink, AXI-4
+              <li> Highly parameterized
+              <li> Deadlock-freedom
+              <li> Virtual-channel wormhole-routing
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <tr>
+      <td><img style="float: left;" src="assets/tutorial/shared_mem.jpg" width="200"></td>
+      <td>
+        <h2>Shared Memory</h2>
+        <ul>
+          <li> Open-source L2 cache that communicates over TileLink (developed by SiFive, iykyk)
+          <li> Directory-based coherence with MOESI-like protocol
+          <li> Configurable capacity/banking
+          <li> Support broadcast-based coherence in no-L2 systems
+          <li> Support incoherent memory systems
+        </ul>
+        <h2>DRAM</h2>
+        <ul>
+          <li> AXI-4 DRAM interface to external memory controller
+          <li> Interfaces to DRAM simulators such as DRAMSim/FASED
+        </ul>
+      </td>
+    </tr>
+  </tr>
+
+  <tr>
+    <td><img style="float: left;" src="assets/tutorial/peripherals.jpg" width="200"></td>
+    <td>
+      <h2>Peripherals and IO</h2>
+      <ul>
+        <li> TODO: Expand on the following 
+        <li> Open-source RocketChip + SiFive blocks:
+        <ul>
+          <li> Interrupt controllers
+          <li> JTAG, Debug module, BootROM
+          <li> UART, GPIOs, SPI, I2C, PWM, etc.
+        </ul>
+        <li> TestChipIP: useful IP for test chips
+        <ul>
+          <li> Clock-management devices
+          <li> SerDes
+          <li> Scratchpads
+        </ul>
+      </ul>
+    </td>
+  </tr>
+
 </table>
 
-
-
-<br /> 
-<br /> 
-<br /> 
-<br />
-
-<img style="float: left;" src="assets/tutorial/rocc.jpg" width="200">
-
-#### RoCC Accelerators:
-- Tightly-coupled accelerator interface
-- Attach custom accelerators to Rocket or BOOM cores
-- More on this later
-
-<br /> 
-<br /> 
-<br /> 
-<br /> 
-
-<img style="float: left;" src="assets/tutorial/mmio.jpg" width="200">
-
-
-#### MMIO Accelerators:
-- Controlled by MMIO-mapped registers
-- Supports DMA to memory system
-- Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
-- More on this later
-
-<br /> 
-<br /> 
-<br /> 
-<br /> 
-
-<img style="float: left;" src="assets/tutorial/tilelink.jpg" width="200">
-
-#### TileLink Standard:
-- TileLink is open-source chip-scale interconnect standard
-- Comparable to AXI/ACE
-- Supports multi-core, accelerators, peripherals, DMA, etc
-
-#### Interconnect IP:
-- Library of TileLink RTL generators provided in RocketChip
-- RTL generators for crossbar-based buses
-- Width-adapters, clock-crossings, etc.
-- Adapters to AXI4, APB
-
-<img style="float: left;" src="assets/tutorial/shared_mem.jpg" width="200">
-
-##### Shared memory:
-- Open-source TileLink L2 developed by SiFive
-- Directory-based coherence with MOESI-like protocol
-- Configurable capacity/banking
-- Support broadcast-based coherence in no-L2 systems
-- Support incoherent memory systems
- 
-##### DRAM:
-- AXI-4 DRAM interface to external memory controller
-- Interfaces with DRAMSim/FASED
-
-<br /> 
-<br /> 
-<br /> 
-<br /> 
-
-<img style="float: left;" src="assets/tutorial/peripherals.jpg" width="200">
-
-##### Peripherals and IO:
-- Open-source RocketChip + SiFive blocks:
-  - Interrupt controllers
-  - JTAG, Debug module, BootROM
-  - UART, GPIOs, SPI, I2C, PWM, etc.
-- TestChipIP: useful IP for test chips
-  - Clock-management devices
-  - SerDes
-  - Scratchpads
-
-
-
 <p align="center">
-  <img src="assets/tutorial/noc.jpg" />
+  <img alt="How Configs Work" src="assets/tutorial/02_chipyard_basics.gif" width=760>
 </p>
 
-##### Constellation
-- A parameterized Chisel generator for SoC interconnects
-- Protocol-independent transport layer
-- Supports TileLink, AXI-4
-- Highly parameterized
-- Deadlock-freedom
-- Virtual-channel wormhole-routing
-
-## TODO gif of slide 26 https://docs.google.com/presentation/d/1gDoLQzga65vSrr1FffLy-9yaR3zJeOVc/edit#slide=id.p26
-## TODO slides 27-33
+## TODO: Put all of these at the end? Or do an overview now and then dive into the weeds? slides 27-33 (maybe even 34?)
 
 #### In summary...
 - Configs: Describe parameterization of a multi-generator SoC
@@ -222,19 +261,170 @@ All of these modules are built as generators (a core driving point of using Chis
 
 
 
-### Config Exercise
+## Config Exercise
 You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
+
+Look at the configs located in `chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala`, specifically `RocketConfig`
+
+```
+class RocketConfig extends Config(
+  new freechips.rocketchip.subsystem.WithNBigCores(1) ++         // single rocket-core
+  new chipyard.config.AbstractConfig)                            // builds one on top of another, so the single rocket-core is built on top of the AbstractConfig
+```
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th>How we found the answer?</th>
+  </tr>
+  <tr>
+    <td>Is MMIO enabled? If so, which config fragments enabled it?</td>
+    <td>No[come back to]</td>
+    <td>We grep (<code>grep -r -I</code>, -r sets recrusive and -I ignores binary files) for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> MMIO </code> and see the fragment <code> new freechips.rocketchip.subsystem.WithNoMMIOPort</code> </td>
+  </tr>
+  <tr>
+    <td>Is UART enabled? If so, which config fragments enabled it?</td>
+    <td>Yes<code> new chipyard.config.WithUART</code>,  <code>new chipyard.iobinders.WithUARTIOCells T</code>,  <code> new chipyard.harness.WithUARTAdapter</code></td>
+    <td>We grep for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> UART </code> </td>
+  </tr>
+  <tr>
+    <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
+    <td>64 Block Bytes, 64 Sets, 4 Ways</td>
+    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
+  </tr>
+</table>
+
+Inspect `MMIOScratchpadOnlyRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `chipyard/generators/chipyard/src/main/scala/` or `chipyard/generators/rocket-chip/src/main/scala/`.
+
+**What config fragment adds a MMIO port?**
+**How large is the scratchpad?**
+
+
+Inspect `L1ScratchpadRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `chipyard/generators/chipyard/src/main/scala/` or `chipyard/generators/rocket-chip/src/main/scala/`.
+
+**How many sets & ways are the DCache scratchpads?**
+**What are the valid memory addresses for the DCache scratchpad??**
+**What are the valid memory addresses for the ICache scratchpad??**
+
+
+Inspect `SmallNVDLARocketConfig` & answer the following questions. You should be able to find the answers by grepping in `chipyard/generators/chipyard/src/main/scala/` or `chipyard/generators/nvdla/src/main/scala/`.
+
+**What address does the NVDLA use?**
+###### TODO how did the mmio get added?
+
 You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `chipyard/generators/chipyard/src/main/scala/example`.
-### Running Some Commands
+
+
+## Running Some Commands
+
+Let's run some commands! Navigate to `chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`
+
+All commands should be run in `chipyard/sims/verilator`. After the runs are done (some can take ~20 minutes), check the `chipyard/sims/verilator/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
+- `XXX.top.v`: Synthesizable Verilog source
+- `XXX.harness.v`: TestHarness
+- `XXX.dts`: device tree string
+- `XXX.memmap.json`: memory map
+
+<table>
+  <tr>
+    <th>Config</th>
+    <th>Explanation</th>
+    <th>What to run & questions to answer</th>
+  </tr>
+  <tr>
+    <td>TutorialStarterConfig</td>
+    <td>Choose how many cores you want & customize the L2.</td>
+    <td>make CONFIG=TutorialStarterConfig -j16</code> </td>
+  </tr>
+   <tr>
+    <td>TutorialMMIOConfig</td>
+    <td>Attach either a TileLink or AXI4 version of GCD</td>
+    <td>make CONFIG=TutorialMMIOConfig -j16</code> </td>
+  </tr>
+   <tr>
+    <td>TutorialSha3Config</td>
+    <td>Add the Sha3 accelerator.</td>
+    <td>make CONFIG=TutorialSha3Config -j16</code> </td>
+  </tr>
+  </tr>
+   <tr>
+    <td>TutorialSha3BlackBoxConfig</td>
+    <td>Add the black box version of the Sha3 accelerator.</td>
+    <td>make CONFIG=TutorialSha3BlackBoxConfig -j16</code> </td>
+  </tr>
+  </tr>
+   <tr>
+    <td>TutorialNoCConfig</td>
+    <td>Add one of the Constellation topologies</td>
+    <td>make CONFIG=TutorialNoCConfig -j16</code> </td>
+  </tr>
+</table>
+
+Everything has been elaborated, we can run some tests now. First, go to the `chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `chipyard/sims/verilator` and try running:
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv`
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv`
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv`
+
+
+## Designing Custom Accelerators
+In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
+
+Note that the idea here is to learn how to incorporate a custom accelerator in an SoC by writing an accelerator generator and effectively utilizing the simplicity and extensibility of Chipyard. Our emphasis here is NOT on designing an accelerator from scratch, as that involves learning how to write RTL of significant size and complexity in Chisel, which might not be useful to the majority of the class. 
+
+# TODO
+
+We encourage you to look at sections x through y of the Chisel Tutorial (link) to write following modules.  
+
+## RoCC Design
+
+- RoCC stands for Rocket Custom Coprocessor. 
+- A block using the RoCC interface sits on a Rocket Tile. 
+- Such a block uses custom non-standard instructions reserved in the RISC-V ISA encoding space.
+- It can communicate using a ready-valid interface with the following:
+  - A core on the Rocket Tile, such as BOOM or Rocket Chip (yes, it's an overloaded name :)
+  - L1 D$
+  - Page Table Walker (available by default on a Rocket Tile)
+  - SystemBus, which can be used to communicate with the outer memory system, for instance
+
+<p align="center">
+  <img alt="RoCC Interface" src="assets/tutorial/RoCC Interface.png" width=760>
+</p>
+
+Here's an overview of the  `customAccRoCC` directory inside `chipyard/generators/`.
+```
+ customAccRoCC/
+  baremetal_test/       <------ bare-metal functional tests
+    Makefile            <------ Invoke gcc for RISC-V and generate test executable
+    functionalTest.c
+  project/              <------ ???
+  src/                  <------ source code
+    main/               <------ Chisel RTL
+      scala/
+        Configs.scala   <------ Config to include this accelerator
+        customAccRoCC.scala <------ Accelerator description
+    test/               <------ Chisel tests
+      scala/
+        unitTest.scala
+  target/               <------ ???
+```
+
+Your tasks for this section are:
+  1. Inspect `Configs.scala`. What does `p` here represent?
+  2. Write RTL for lines containing the comment `\* TODO: YOUR CODE HERE *\` in the `customAccRoCC.scala`.
+  3. Build your design by running `???`
+
+# TODO talk about sbt console
+
 
 
 ## MMIO Design
 
-Many times, an accelerator block is connected to the Rocket core with a memory-mapped interface over the system bus. 
-This allows the core to configure and read from the block.
+Often, an accelerator or peripheral block is connected to the rest of the SoC with a memory-mapped interface over the system bus. 
+This allows the core and external IO to configure and communicate with the block.
 
-## Rocc Design
-
+## Testing the Design
 
 ## Chipyard Simulation and Design Benchmarking
 
