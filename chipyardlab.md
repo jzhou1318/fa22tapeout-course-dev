@@ -103,17 +103,29 @@ All of these modules are built as generators (a core driving point of using Chis
   <img src="assets/tutorial/chipyard.jpg" />
 </p>
 
-<img style="float: left;" src="assets/tutorial/tile.jpg" width="200">
 
-#### Tiles:
-- Each Tile contains a RISC-V core and private caches (specified through configs)
-- Several varieties of Cores supported
-- Interface supports integrating your own RISC-V core implementation
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<table border="0">
+ <tr>
+    <td><img style="float: left;" src="assets/tutorial/tile.jpg" width="200"></td>
+    <td>
+      <h2>Tiles:</h2>
+      <ul>
+        <li> Each Tile contains a RISC-V core and private caches (specified through configs)
+        <li> Several varieties of Cores supported
+        <li> Interface supports integrating your own RISC-V core implementation
+      </ul>
+    </td>
+ </tr>
+</table>
+
+
 
 <br /> 
 <br /> 
 <br /> 
-<br /> 
+<br />
 
 <img style="float: left;" src="assets/tutorial/rocc.jpg" width="200">
 
@@ -198,20 +210,30 @@ All of these modules are built as generators (a core driving point of using Chis
 - Deadlock-freedom
 - Virtual-channel wormhole-routing
 
+## TODO gif of slide 26 https://docs.google.com/presentation/d/1gDoLQzga65vSrr1FffLy-9yaR3zJeOVc/edit#slide=id.p26
+## TODO slides 27-33
 
+#### In summary...
+- Configs: Describe parameterization of a multi-generator SoC
+- Generators: Flexible, reusable library of open-source Chisel generators (and Verilog too)
+- IOBinders/HarnessBinders: Enable configuring IO strategy and Harness features
+- FIRRTL Passes: Structured mechanism for supporting multiple flows
+- Target flows: Different use-cases for different types of users
 
-You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
-You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `chipyard/generators/chipyard/src/main/scala/example`.
-Many times, an accelerator block is connected to the Rocket core with a memory-mapped interface over the system bus. 
-This allows the core to configure and read from the block.
-Again, there is far too much to discuss fully here, but you can really put together a system very quickly using the infrastructure of Chipyard.
 
 
 ### Config Exercise
+You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
+You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `chipyard/generators/chipyard/src/main/scala/example`.
+### Running Some Commands
 
-### Running through tutorial
 
-## RoCC/MMIO Design
+## MMIO Design
+
+Many times, an accelerator block is connected to the Rocket core with a memory-mapped interface over the system bus. 
+This allows the core to configure and read from the block.
+
+## Rocc Design
 
 
 ## Chipyard Simulation and Design Benchmarking
