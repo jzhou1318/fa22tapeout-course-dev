@@ -97,12 +97,11 @@ Thankfully, Chipyard has some great documentation, which can be found
 You can find most of these in the `chipyard/generators/` directory.
 All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
 
-# TODO mark what part of the overview image this is
 ### SoC Architecture 
 
 <table border-"0">
   <tr>
-    <td><img src="assets/tutorial/rtl_gen_layer.png" /></td>
+    <td><img src="assets/tutorial/rtl_gen_layer.png" width=700 /></td>
     <td><img src="assets/tutorial/chipyard.jpg" /></td>
   </tr>
 </table>
@@ -246,9 +245,12 @@ All of these modules are built as generators (a core driving point of using Chis
 
 </table>
 
-<p align="center">
-  <img alt="How Configs Work" src="assets/tutorial/02_chipyard_basics.gif" width=760>
-</p>
+<table border-"0">
+  <tr>
+    <td><img src="assets/tutorial/config_gen_layer.png" width=700 /></td>
+    <td><img alt="How Configs Work" src="assets/tutorial/02_chipyard_basics.gif" width=760></td>
+  </tr>
+</table>
 
 ## TODO: Put all of these at the end? Or do an overview now and then dive into the weeds? slides 27-33 (maybe even 34?)
 
@@ -367,6 +369,27 @@ Everything has been elaborated, we can run some tests now. First, go to the `chi
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv`
 
+## Chipyard Simulation
+
+### RTL Simulation
+## TODO explain the commands we just ran
+Many Chipyard Chisel-based design looks something like a Rocket core connected to some kind of "accelerator" (eg. a DSP block like an FFT module).
+When building something like that, you would typically build your "accelerator" generator in Chisel, and unit test it using ChiselTesters.
+You can then write integration tests (eg. a baremetal C program) which can then be simulated with your Rocket Chip and "accelerator" block together to test end-to-end system functionality. 
+Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source).
+
+Recall one of the commands that was run: 
+```make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv```
+The first command will elaborate the design and create Verilog.
+This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
+Next it will run VCS to build a simulator out of the generated Verilog that can run RISC-V binaries.
+The second command will run the test specified by `BINARY` and output results as an `.out` file.
+This file will be emitted to the `output/` directory.
+
+Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/`and can be run as:
+```make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple ```
+
+
 
 ## Designing Custom Accelerators
 In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
@@ -414,8 +437,7 @@ Your tasks for this section are:
   1. Inspect `Configs.scala`. What does `p` here represent?
   2. Write RTL for lines containing the comment `\* TODO: YOUR CODE HERE *\` in the `customAccRoCC.scala`.
   3. Build your design by running `???`
-
-# TODO talk about sbt console
+     - # TODO talk about sbt console
 
 
 
@@ -424,45 +446,116 @@ Your tasks for this section are:
 Often, an accelerator or peripheral block is connected to the rest of the SoC with a memory-mapped interface over the system bus. 
 This allows the core and external IO to configure and communicate with the block.
 
-## Testing the Design
+## Testing Your Design
 
-## Chipyard Simulation and Design Benchmarking
+There are two main ways to test your design at this point: 
+1. using Chiseltest 
+2. baremetal functional testing: baremetal here refers to the fact that your tests directly run on the hardware, i.e., no OS underneath.
 
-### RTL Simulation
+Both will run tests in functional simulation.
+  
+We will be going through each in this section & guiding you through testing your RoCC accelerator. We will be asking you to do the same with the MMIO accelerator. 
 
-Many Chipyard Chisel-based design looks something like a Rocket core connected to some kind of "accelerator" (eg. a DSP block like an FFT module).
-When building something like that, you would typically build your "accelerator" generator in Chisel, and unit test it using ChiselTesters.
-You can then write integration tests (eg. a baremetal C program) which can then be simulated with your Rocket Chip and "accelerator" block together to test end-to-end system functionality. 
-Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source).
-In this lab, we are just focusing on a Rocket core in isolation, so we will run some assembly tests on a Rocket config.
-You can edit the configs being used through overriding the make invocation with 
-`CONFIG=YourConfig`.
-We'll start by building and simulating the default ChipYard configuration. 
+### Chisel Testing
 
-**Note:** For running VCS simulations, we will run on a specific BWRC host machine to avoid some nasty bugs due to toolchain version incompatibilities. For all other steps our remote machine will be a bwrcrdsl machine
+Chiseltest is the batteries-included testing and formal verification library for Chisel-based RTL designs. Chiseltest emphasizes tests that are lightweight (minimizes boilerplate code), easy to read and write (understandability), and compose (for better test code reuse). You can find the repo [here](https://github.com/ucb-bar/chiseltest). 
 
-```
-# SSH to a specific machine (bwrcr740-8)
-ssh bwrcr740-8
-cd /tools/C/userName/intech22/chipyard/sims/vcs
-source /tools/C/ee290/env-riscv-tools.sh
-
-# build the default configuration
-make CONFIG=RocketConfig
-# run the BINARY on the simulator and log instructions to a file 
-make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple 
-
-# Return to bwrcrdsl
-exit
+To use chisel-testers as a managed dependency, add this in your build.sbt:
+```scala
+libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.2"
 ```
 
-The first command will elaborate the design and create Verilog.
-This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
-Next it will run VCS to build a simulator out of the generated Verilog that can run RISC-V binaries.
-The second command will run the test specified by `BINARY` and output results as an `.out` file.
-This file will be emitted to the `output/` directory.
+If you are also directly depending on the `chisel3` library, please
+[make sure that your chisel3 and chiseltest versions match](https://www.chisel-lang.org/chisel3/docs/appendix/versioning.html)
+to avoid linking errors.
 
-**Q: 1. In your lab report, include the last 10 lines of the `.out` file generated by the assembly test you ran.  It should include the *** PASSED *** flag.**
+As a reminder, your RoCC accelerator should be a typical Chisel project with `MyRoCCAccelerator` defined in `chipyard/generators/customAccRoCC/src/main/scala/MyModule.scala`:
+
+```scala
+class MyRoCCAccelerator extends Module {
+    val io = IO(new Bundle {
+        // your code here
+    })
+}
+```
+
+Let us now write some unit tests using Chiseltest in `unitTest.scala`.
+
+
+In this file:
+1.  Add the necessary imports:
+    ```scala
+    import chisel3._
+    import chiseltest._
+    import org.scalatest.flatspec.AnyFlatSpec
+    ```
+2.  Create a test class:
+    ```scala
+    class BasicRoCCTest extends AnyFlatSpec with ChiselScalatestTester {
+      behavior of "MyRoCCAccelerator"
+      // test class body here
+    }
+    ```
+    - `AnyFlatSpec` is the [default and recommended ScalaTest style for unit testing](http://www.scalatest.org/user_guide/selecting_a_style).
+    - `ChiselScalatestTester` provides testdriver functionality and integration (like signal value assertions) within the context of a ScalaTest environment.
+    - For those interested in additional ScalaTest assertion expressibility, `Matchers` provides additional [assertion syntax options](http://www.scalatest.org/user_guide/using_matchers). `Matchers` is optional as it's mainly for Scala-land assertions and does not inter-operate with circuit operations.
+    
+3.  In the test class, define a test case:
+    ```scala
+    it should "do something" in {
+      // test case body here
+    }
+    ```
+    There can be multiple test cases per test class, and we recommend one test class per Module being tested, and one test case per individual test. 
+
+    ## TODO: give actual test cases
+4.  In the test case, define the module being tested:
+    ```scala
+    test(new MyRoCCAccelerator) { c =>
+      // test body here
+    }
+    ```
+    `test` automatically runs the default simulator (which is [treadle](https://github.com/freechipsproject/treadle)), and runs the test stimulus in the block.
+    The argument to the test stimulus block (`c` in this case) is a handle to the module under test.
+
+5.  In the test body, use `poke`, `step`, and `expect` operations to write the test:
+    ```scala
+    c.io.in.poke(0.U)
+    c.clock.step()
+    c.io.out.expect(0.U)
+    c.io.in.poke(42.U)
+    c.clock.step()
+    c.io.out.expect(42.U)
+    println("Last output value :" + c.io.out.peek().litValue)
+    ```
+
+     ## TODO: give a real examples of peek-poke testing
+6.  With your test case complete, you can run all the test cases in your project by invoking ScalaTest.
+    If you're using [sbt](http://scala-sbt.org), you can either run `sbt test` from the command line, or `test` from the sbt console.
+    `testOnly` can also be used to run specific tests.
+
+    ## TODO: give specific lines to run
+
+
+### Baremetal Functional Testing
+
+1. Write the C test in `functionalTest.c`. Since RoCC uses custom instructions, this file imports a definition for the `custom0` opcode.
+   - Quick Aside: Writing a Functional Model 
+2. Use GCC for RISCV to cross-compile your C file into a RISCV binary. `TODO: insert command here`
+3. Quick Aside: Disassemble the binary file into a readable file.
+4. Run the test in functional simulation.
+5. Look at waveforms using a wavefom viewer such as vpd or gtkwave. Follow the module hierarchy to the correct module.
+```
+TestDriver
+  .testHarness
+    .chiptop
+      .system
+        .tile_prci_domain
+          .tile_reset_domain
+            .rocket_tile
+              .youraccel (MyRoCCAccelerator)
+```
+
 
 ## VLSI Flow
 
