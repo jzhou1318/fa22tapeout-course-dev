@@ -4,29 +4,34 @@
 
 ## Tutorial & Lab
 
-BWRC & Intel 22nm Edition
+<!-- BWRC & Intel 22nm Edition --> 
 
 ## Overview
 
 ![](assets/chipyard-flow.PNG)
 
 In this lab, we will explore the [Chipyard](https://github.com/ucb-bar/chipyard) framework. 
-Chipyard is an integrated design, simulation, and implementation framework for open source hardware development developed here at UC Berkeley. 
-Chipyard is open-sourced online and is based on the Chisel and FIRRTL hardware description libraries, as well as the Rocket Chip SoC generation ecosystem.
-Chipyard brings together much of the work on hardware design methodology from Berkeley over the last decade as well as useful tools into a single repository that guarantees version compatibility between the projects it submodules.
 
-A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-based SoC.
-This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
+Chipyard is an integrated design, simulation, and implementation framework for open source hardware development developed here at UC Berkeley. It is open-sourced online and is based on the Chisel and FIRRTL hardware description libraries, as well as the Rocket Chip SoC generation ecosystem. It brings together much of the work on hardware design methodology from Berkeley over the last decade as well as useful tools into a single repository that guarantees version compatibility between the projects it submodules.
+
+A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-based SoC. This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
+
+Chisel is the primary hardware description language used at Berkeley. It is a domain-specific language built on top of Scala. Thus, it provides designers with the power of a modern programming language to write complex, parameterizable circuit generators that can be compiled into synthesizable Verilog. You will be writing some basic Chisel code in this lab.
+
 Information about Chisel can be found in [https://www.chisel-lang.org/](https://www.chisel-lang.org/).
 
-You will be writing some base Chisel code in this lab.
+An initial introduction to Chisel can be found in the Chisel bootcamp:  [https://github.com/freechipsproject/chisel-bootcamp](https://github.com/freechipsproject/chisel-bootcamp).
+Detailed documentation of Chisel functions can be found in [https://www.chisel-lang.org/api/chisel3/latest/](https://www.chisel-lang.org/api/chisel3/latest/). 
+Intensivate's [Chisel Learning Journey](https://github.com/Intensivate/learning-journey/wiki) is another great resource.
 
-<!-- An initial introduction to Chisel can be found in the Chisel bootcamp:  [https://github.com/freechipsproject/chisel-bootcamp](https://github.com/freechipsproject/chisel-bootcamp).  -->
-<!-- Detailed documentation of Chisel functions can be found in [https://www.chisel-lang.org/api/SNAPSHOT/index.html](https://www.chisel-lang.org/api/SNAPSHOT/index.html). -->
 
 Throughout the rest of the course, we will be developing our SoC using Chipyard as the base framework. 
 There is a lot in Chipyard so we will only be able to explore a part of it in this lab, but hopefully you will get a brief sense of its capabilities.
-We will simulate a Rocket Chip-based design at the RTL level, and then synthesize and place-and-route it in Inten 16nm technology using the Hammer back-end flow.
+In particular, the lab provides a brief overview of Chipyard's diverse features, and then guides one through designing, verifying, and incorporating an accelerator into an SoC (via RoCC and MMIO interfaces).
+
+<!-- We will simulate a Rocket Chip-based design at the RTL level, and then synthesize and place-and-route it in Inten 16nm technology using the Hammer back-end flow. -->
+
+<!-- 
 
 ![](assets/chipyard-components.PNG)
 
@@ -45,14 +50,22 @@ If you don't have access to any of these, this isn't going to work yet. As of th
 
 This lab also presumes much of its GitLab interaction will occur via SSH. While setting up git to use HTTPS instead is possible by editing several lab materials, we recommend instead setting up [SSH keys](https://bwrcrepo.eecs.berkeley.edu/profile/keys) on the BWRC-Repo GitLab instance. 
 
-## Getting Started
-##### TODO - edit this to reflect Chipyard changes.
-##### Currently, to run the lab you should: 
+-->
 
-1) Run `source /tools/C/ee290-dev-sp23/miniforge3/bin/activate `
-2) clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git & swtich to lab-dev branch
-3) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env`
-4) `source /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/scripts/fix-open-files.sh`
+## Getting Started
+
+First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username.
+
+1) Run `source /tools/C/ee290-dev-sp23/miniforge3/bin/activate`
+2) clone the lab chipyard repo at `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git` 
+3) `cd sp23-chipyard-lab-dev`
+4) `git checkout lab-dev`
+5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env`
+6) Run `./scripts/init-submodules-no-riscv-tools.sh`
+7) Run `source env.sh`
+<!-- 1) `source /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/scripts/fix-open-files.sh` -->
+
+<!--
 
 First, we will need to setup our Chipyard workspace.  
 All of our work will occur on the BWRC compute cluster. 
@@ -77,6 +90,8 @@ git clone git@bwrcrepo.eecs.berkeley.edu:EE290C_EE194_intech22/chipyard-lab.git 
 cd chipyard
 ./scripts/init-submodules-no-riscv-tools.sh
 ```
+
+-->
 
 ## Chipyard Repo Tour
 
@@ -258,7 +273,7 @@ All of these modules are built as generators (a core driving point of using Chis
   </tr>
 </table>
 
-###### Expand on everything below (and maybe create images?) slides 27-33 (maybe even 34?) from MICRO tutorial would be useful
+### TODO: Expand on everything below (and maybe create images?) slides 27-33 (maybe even 34?) from [MICRO tutorial](https://docs.google.com/presentation/d/1gDoLQzga65vSrr1FffLy-9yaR3zJeOVc/edit#slide=id.p29) would be useful
 
 #### In summary...
 - Configs: Describe parameterization of a multi-generator SoC
@@ -393,14 +408,14 @@ Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-test
 ```make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple ```
 
 
-
 # Designing Custom Accelerators
 In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
 
+![](assets/acc-design.png)
+
 Note that the idea here is to learn how to incorporate a custom accelerator in an SoC by writing an accelerator generator and effectively utilizing the simplicity and extensibility of Chipyard. Our emphasis here is NOT on designing an accelerator from scratch, as that involves learning how to write RTL of significant size and complexity in Chisel, which might not be useful to the majority of the class. 
 
-
-We encourage you to look at sections x through y of the Chisel Tutorial (link) to write following modules.  
+We encourage you to look at sections 1 through 5 of the [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp) to write following modules.  
 
 # RoCC Design
 
@@ -417,132 +432,129 @@ We encourage you to look at sections x through y of the Chisel Tutorial (link) t
   <img alt="RoCC Interface" src="assets/tutorial/RoCC Interface.png" width=760>
 </p>
 
-Here's an overview of the  `customAccRoCC` directory inside `chipyard/generators/`.
+For more on RoCC, we encourage you to refer to:
+1. Sections 6.5 and 6.6 of the Chipyard docs, and related examples
+2. Bespoke Silicon Group's [RoCC Doc V2](https://docs.google.com/document/d/1CH2ep4YcL_ojsa3BVHEW-uwcKh1FlFTjH_kg5v8bxVw/edit)
+
+Here's an overview of the `customAccRoCC` directory inside `chipyard/generators/`.
 ```
  customAccRoCC/
-  baremetal_test/       <------ bare-metal functional tests
-    Makefile            <------ Invoke gcc for RISC-V and generate test executable
+  baremetal_test/       <------ (4) bare-metal functional tests            <------ Invoke gcc for RISC-V and generate test executable
     functionalTest.c
-  project/              <------ ???
+  project/              <------ project properties/settings
   src/                  <------ source code
     main/               <------ Chisel RTL
       scala/
-        Configs.scala   <------ Config to include this accelerator
-        customAccRoCC.scala <------ Accelerator description
+        configs.scala   <------ (3) Config to include this accelerator
+        customAccRoCC.scala <------ RoCC Scaffolding RTL
+        vectorAdd.scala     <------ (1) Accelerator RTL 
     test/               <------ Chisel tests
       scala/
-        unitTest.scala
-  target/               <------ ???
+        testVectorAdd.scala <----- (2) Basic unit test
+  target/               <------ output from build system
 ```
 
-Your tasks for this section are:
-  1. Inspect `Configs.scala`. What does `p` here represent?
-  2. Write RTL for lines containing the comment `\* TODO: YOUR CODE HERE *\` in the `customAccRoCC.scala`.
-  3. Build your design by running `???`
-     ### TODO talk about sbt console
+Let us begin by inspecting `src/main/scala/customAccRoCC.scala`. 
+`LazyRoCC` and `LazyRoCCModuleImp` are *abstract* classes that allows us to separate the implementation of a RoCC accelerator from the definition and implementation of the RoCC interface. 
+`customAcceleratorModule` provides the implementation of our specific accelerator module. For ease of understanding, we define all functionality in a module called `vectorAdd`, and wire up RoCC I/O signals to `vectorAdd` I/O signals.
+
+## Accelerator RTL
+
+Let us now **implement the accelerator** in `src/main/scala/vectorAdd.scala`, as described above. Your task here is to fill in all blocks/lines marked `/* YOUR CODE HERE */`. 
+Questions to consider:
+  - What kinds of inputs/outputs does the `vectorAdd` module use? You should inspect the `io` field of the module for this.
+  - Does this module use ready-valid interfaces for I/O? How many ready-valid interfaces, and in which directions?
 
 
 ## Testing
-There are two main ways to test your design at this point: 
-1. using Chiseltest 
+
+The next logical step is testing the `vectorAdd` module to ensure it behaves as expected. There are two main ways to test your design: 
+1. using ChiselTest 
 2. baremetal functional testing: baremetal here refers to the fact that your tests directly run on the hardware, i.e., no OS underneath.
 
-Both will run tests in functional simulation.
+The former is more useful for fine-grained module-specific testing while the latter is more useful to test the accelerator as a whole, and its interactions with the rest of the SoC. Both kinds of tests will be run in RTL simulation. 
+
+We will unit test with ChiselTest right now, and come back to baremetal testing when integrating our accelerator with the rest of the SoC.
   
 <!--
 We will be going through each in this section & guiding you through testing your RoCC accelerator. We will be asking you to do the same with the MMIO accelerator. 
 -->
 
-### Chisel Testing
+### ChiselTest
 
-Chiseltest is the batteries-included testing and formal verification library for Chisel-based RTL designs. Chiseltest emphasizes tests that are lightweight (minimizes boilerplate code), easy to read and write (understandability), and compose (for better test code reuse). You can find the repo [here](https://github.com/ucb-bar/chiseltest). 
+ChiselTest is the batteries-included testing and formal verification library for Chisel-based RTL designs. It emphasizes tests that are lightweight (minimizes boilerplate code), easy to read and write (understandability), and compose (for better test code reuse). You can find the repo [here](https://github.com/ucb-bar/chiseltest), an overview [here](https://www.chisel-lang.org/chiseltest/) and API documentation [here](https://www.chisel-lang.org/api/chiseltest/latest).
 
-To use chisel-testers as a managed dependency, add this in your build.sbt:
-```scala
-libraryDependencies += "edu.berkeley.cs" %% "chiseltest" % "0.5.2"
-```
+Let us now write a unit test using Chiseltest in `src/test/scaka/testVectorAdd.scala`. 
 
-If you are also directly depending on the `chisel3` library, please
-[make sure that your chisel3 and chiseltest versions match](https://www.chisel-lang.org/chisel3/docs/appendix/versioning.html)
-to avoid linking errors.
+`vectorAddTest` is our test class here, and `"Basic Testcase"` is the name of our only test case. A test case is defined inside a `test()` block, and takes the DUT as a parameter. There can be multiple test cases per test class, and we recommend one test class per Module being tested, and one test case per individual test. 
 
-As a reminder, your RoCC accelerator should be a typical Chisel project with `MyRoCCAccelerator` defined in `chipyard/generators/customAccRoCC/src/main/scala/MyModule.scala`:
+Here, we will be using Verilator as our simulator backend, and generate waveforms in an fst file.
 
-```scala
-class MyRoCCAccelerator extends Module {
-    val io = IO(new Bundle {
-        // your code here
-    })
-}
-```
+Most simulation testing infrastructure is based on setting signals, advancing the clock, and checking signals, and asserting their values. ChiselTest does the same with `poke`, `step`, `peek`, and `expect` respectively.
 
-Let us now write some unit tests using Chiseltest in `unitTest.scala`.
+**Complete the unit test names "Basic Testcase"** in `testVectorAdd.scala` by filling in all lines marked `/* YOUR CODE HERE */`.
 
+Before we run any tests, we must keep in mind that our RTL is written in Chisel whereas most simulator backends and VLSI tools expect Verilog/SystemVerilog. Thus, we compile our code from Chisel down to an Intermediate Representation (FIRRTL), and finally the relevant Verilog/System Verilog. 
 
-In this file:
-1.  Add the necessary imports:
-    ```scala
-    import chisel3._
-    import chiseltest._
-    import org.scalatest.flatspec.AnyFlatSpec
-    ```
-2.  Create a test class:
-    ```scala
-    class BasicRoCCTest extends AnyFlatSpec with ChiselScalatestTester {
-      behavior of "MyRoCCAccelerator"
-      // test class body here
-    }
-    ```
-    - `AnyFlatSpec` is the [default and recommended ScalaTest style for unit testing](http://www.scalatest.org/user_guide/selecting_a_style).
-    - `ChiselScalatestTester` provides testdriver functionality and integration (like signal value assertions) within the context of a ScalaTest environment.
-    - For those interested in additional ScalaTest assertion expressibility, `Matchers` provides additional [assertion syntax options](http://www.scalatest.org/user_guide/using_matchers). `Matchers` is optional as it's mainly for Scala-land assertions and does not inter-operate with circuit operations.
-    
-3.  In the test class, define a test case:
-    ```scala
-    it should "do something" in {
-      // test case body here
-    }
-    ```
-    There can be multiple test cases per test class, and we recommend one test class per Module being tested, and one test case per individual test. 
+To compile the design and run our tests, we use the Scala Build Tool (sbt). `build.sbt` in the root Chipyard directory contains project settings, dependencies, and sub-project settings. Feel free to search for `customAccRoCC` to find the sub-project entry.
 
-    ##### TODO: give actual test cases
-4.  In the test case, define the module being tested:
-    ```scala
-    test(new MyRoCCAccelerator) { c =>
-      // test body here
-    }
-    ```
-    `test` automatically runs the default simulator (which is [treadle](https://github.com/freechipsproject/treadle)), and runs the test stimulus in the block.
-    The argument to the test stimulus block (`c` in this case) is a handle to the module under test.
+In a new terminal window inside **the root Chipyard directory**, run `sbt`. Give it a minute or so to launch the sbt console and load all settings.
+In the sbt console, set the current project with `project customAccRoCC`.
 
-5.  In the test body, use `poke`, `step`, and `expect` operations to write the test:
-    ```scala
-    c.io.in.poke(0.U)
-    c.clock.step()
-    c.io.out.expect(0.U)
-    c.io.in.poke(42.U)
-    c.clock.step()
-    c.io.out.expect(42.U)
-    println("Last output value :" + c.io.out.peek().litValue)
-    ```
+To compile the design, run `compile` in the sbt console. This might take a while as it compiles all dependencies of the project.
+To run all tests, run `test` in the sbt console. (You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `<root Chipyard dir>/tests_run_dir/<test_name>`.
 
-     ##### TODO: give a real examples of peek-poke testing
-6.  With your test case complete, you can run all the test cases in your project by invoking ScalaTest.
-    If you're using [sbt](http://scala-sbt.org), you can either run `sbt test` from the command line, or `test` from the sbt console.
-    `testOnly` can also be used to run specific tests.
+Use `gtkwave` or `dve` to inspect the waveform at `<root Chipyard dir>/tests_run_dir/Basic_Testcase/vectorAdd.fst`.
 
-    ##### TODO: give specific lines to run
+**Please ensure your accelerator passes the basic test case before proceeding.**
 
- ##### TODO: adding configs
+## Integrating our Accelerator
+
+Now that our accelerator works, it is time to incorporate it into an SoC. We do this by:
+1. Defining a config fragment for our accelerator
+1. Defining a new config that uses this config fragment
+
+Inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragment here. Answer the following questions:
+1. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)
+2. Give the 7-bit opcode used for instructions to our accelerator.
+
+Next, navigate to `<root Chipyard dir>/generators/chipyard/src/main/scala/config/RocketConfigs.scala`. **Define `CustomAccRoCCConfig`** such that it adds our accelerator to `RocketConfig`. `customAccRoCC` should already be available as a package here.
 
 ### Baremetal Functional Testing
-##### TODO: flesh out
-1. Write the C test in `functionalTest.c`. Since RoCC uses custom instructions, this file imports a definition for the `custom0` opcode.
-   - Quick Aside: Writing a Functional Model 
-2. Use GCC for RISCV to cross-compile your C file into a RISCV binary. `TODO: insert command here`
-3. Quick Aside: Disassemble the binary file into a readable file.
-4. Run the test in functional simulation.
-5. Look at waveforms using a wavefom viewer such as vpd or gtkwave. Follow the module hierarchy to the correct module.
+
+Let us begin by inspecting `baremetal_test/functionalTest.c`. `rocc.h` contains definitions for different kinds of RoCC instructions and the custom opcodes. We use the same test case as before, but we test integration of the whole system as values are loaded into registers on the Rocket core, sent to the RoCC accelerator, and results from the accelerator are loaded into a register. 
+
+Since our accelerator reads two source registers and writes to one destination register, we use `ROCC_INSTRUCTION_DSS`.
+
+Inline assembly instructions in C are invoked with the `asm volatile` command. Before the first instruction, and after each RoCC instruction, the fence command is invoked. This ensures that all previous memory accesses will complete before executing subsequent instructions, and is required to avoid mishaps as the Rocket core and coprocessor pass data back and forth through the shared data cache. (The processor uses the “busy” bit from your accelerator to know when to clear the fence.) A fence command is not strictly required after each custom instruction, but it must stand between any use of shared data by the two subsystems.
+
+While one can compute results for each test case a priori, and test for equality against the accelerator's results, such a strategy is not reliable nor scalable as tests become complex - such as when using random inputs or writing multiple tests. Thus, there lies significant value in writing a functional model that performs the same task as the accelerator, but in software. Of course, care must be taken in writing a correct functional model that adheres to the spec.
+
+**Inspect `<root Chipyward dir>/tests/rocc.h`**. What does the last argument of `ROCC_INSTRUCTION_DSS` stand for? In what situation would you need to use that argument?
+
+Next, we compile our test by running the following in the `baremetal_test` directory:
+```
+riscv64-unknown-elf-gcc -fno-common -fno-builtin-printf -specs=htif_nano.specs -c functionalTest.c
+riscv64-unknown-elf-gcc -static -specs=htif_nano.specs functionalTest.o -o functionalTest
+```
+
+Here, we're using a version of gcc with the target architecture set to riscv (without an OS underneath). This comes as part of the riscv toolchain. Since we want a self-contained binary, we compile it statically. 
+
+Now, let's disassemble the executable `functionalTest` by running:
+`riscv64-unknown-elf-objdump -d functionalTest | less`
+**Inspect the output and find the address of the `ROCC_INSTRUCTION_DSS`**. Looking through `<main>` and looking for `opcode0` should be helpful.
+
+It's time to run our functional test. In the **root Chipyard directory**, run:
+`make CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug`
+
+It might take a few minutes to build and compile the test harness, and run the simulation.
+
+Navigate to `<root Chipyard dir>/sims/verilator`.
+`generated-src` contains the test harness and `output` contains output files (log/output/waveform) for each config.
+
+**Inspect the log and output for our config.** Do the results of the accelerator and model match?
+
+**Inspect the waveform (.vcd) for our config** using `dve` or `gtkwave`. Follow the module hierarchy to the correct module.
 ```
 TestDriver
   .testHarness
@@ -551,8 +563,16 @@ TestDriver
         .tile_prci_domain
           .tile_reset_domain
             .rocket_tile
-              .youraccel (MyRoCCAccelerator)
+              .customAccRoCC
 ```
+
+Currently, our accelerator wraps around the range [0, 255], i.e., when the sum of two numbers exceeds 255, you get the result modulo 255. Let's say we desire values saturating at 255. Implement this feature. (Note: As the sum of two unsigned ints >= 0, we don't have to worry about the lower bound.)
+
+You should do the following:
+1. Modify RTL
+2. Write 1 more unit test
+3. Modify the functional model
+4. Write an integration test that uses random numbers in the entire range as inputs.
 
 
 # MMIO Design
@@ -574,8 +594,7 @@ generator/
 ## Setting up & designing our accelerator
 Navigate to `/chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
-##### TODO: \*32-bit for now; aiming for 64-bit
-
+##### TODO: 32-bit for now; aiming for 64-bit
 
 Most of the logic of the accelerator will go in `VecAddMMIOChiselModule`. This module will be wrapped by the `VecAddModule` which interfaces with the rest of the SoC and determines where our MMIO registers are placed.
 
@@ -673,14 +692,13 @@ To generate the binary file of the test, run two following two commands in the t
 
 `riscv64-unknown-elf-gcc -static -specs=htif_nano.specs examplemmio.o -o examplemmio.riscv`
 
-Then, navigate to `chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocketConfig BINARY=../../tests/examplemmio.riscv run-binary` to run the test. If successful, you should see the terminal print whether you passed the test or not. This may take a while.
+Then, navigate to `chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocketConfig BINARY=../../tests/examplemmio.riscv run-binary-debug` to run the test. If successful, you should see the terminal print whether you passed the test or not. This may take a while.
 
-##### TODO: maybe something abotu debugging chisel? making sense of logs?
-
-
+##### TODO: maybe something about debugging chisel? making sense of logs?
 
 # END OF LAB 1
 
+ <!--
 ## VLSI Flow
 
 ### Design Elaboration
@@ -809,12 +827,15 @@ Note: The example design is not intended to be LVS-clean.
 make CONFIG=RocketConfig TOP=RocketTile tech_name=intech22 INPUT_CONFS="rockettile.yml" lvs-block
 ```
 
+-->
 
 <!-- ## Rest of the VLSI Flow -->
 
 <!-- Running DRC and LVS is not required for this lab, but you can run them though Hammer just like before. -->
 <!-- The placement of macros like SRAMs can cause considerable numbers of DRC and LVS errors if placed incorrectly and can cause considerable congestion if placed non-optimally. -->
 <!-- The floorplan visualization tools in Hammer can help you root out these problems early in your design process. -->
+
+<!---
 
 ## Conclusion
 
@@ -828,3 +849,4 @@ We recommend that you continue to explore what you can build with Chipyard given
 
 Thank you to the whole Chipyard dev team for figures and documentation on Chipyard, and to Daniel Grubb for authorship of the original tutorial on which this lab is based.
 
+-->
