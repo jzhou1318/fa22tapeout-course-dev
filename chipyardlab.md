@@ -458,6 +458,8 @@ Let us begin by inspecting `src/main/scala/customAccRoCC.scala`.
 `LazyRoCC` and `LazyRoCCModuleImp` are *abstract* classes that allows us to separate the implementation of a RoCC accelerator from the definition and implementation of the RoCC interface. 
 `customAcceleratorModule` provides the implementation of our specific accelerator module. For ease of understanding, we define all functionality in a module called `vectorAdd`, and wire up RoCC I/O signals to `vectorAdd` I/O signals.
 
+Find the file `LazyRoCC.scala`. The RoCC interface is defined in `RoCCIO`. What keywords are used here to make this a ready-valid interface? What does `Flipped` do?
+
 ## Accelerator RTL
 
 Let us now **implement the accelerator** in `src/main/scala/vectorAdd.scala`, as described above. Your task here is to fill in all blocks/lines marked `/* YOUR CODE HERE */`. 
