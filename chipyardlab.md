@@ -346,6 +346,8 @@ All commands should be run in `chipyard/sims/verilator`. After the runs are done
 - `XXX.dts`: device tree string
 - `XXX.memmap.json`: memory map
 
+##### TODO: ask questions about each run based on the generated files?
+
 <table>
   <tr>
     <th>Config</th>
@@ -579,6 +581,8 @@ You should do the following:
 
 # MMIO Design
 
+##### TODO: a nice picture where the MMIO accelerator sits? similar to the RoCC accelerator image
+
 Often, an accelerator or peripheral block is connected to the rest of the SoC with a memory-mapped interface over the system bus. 
 This allows the core and external IO to configure and communicate with the block.
 
@@ -588,15 +592,15 @@ generator/
     src/main/scala/
       example/GCD.scala <--------- If you want to see another example
       unittest/         
-      config/           <--------- 3. Where we'll test our design
-      DigitalTop.scala  <--------- 2. Where we'll connect our deisgn to the rest of the SoC.
-      ExampleMMIO.scala <--------- 1. Where we'll design & setup our accelerator. We do this now!
+      config/           <--------- (3) Where we'll test our design
+      DigitalTop.scala  <--------- (2) Where we'll connect our deisgn to the rest of the SoC.
+      ExampleMMIO.scala <--------- (1) Where we'll design & setup our accelerator. 
 ```
 
 ## Setting up & designing our accelerator
 Navigate to `/chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
-##### TODO: 32-bit for now; aiming for 64-bit
+##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
 
 Most of the logic of the accelerator will go in `VecAddMMIOChiselModule`. This module will be wrapped by the `VecAddModule` which interfaces with the rest of the SoC and determines where our MMIO registers are placed.
 
