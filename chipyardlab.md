@@ -522,7 +522,16 @@ Inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragme
 1. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)
 2. Give the 7-bit opcode used for instructions to our accelerator.
 
-Next, navigate to `<root Chipyard dir>/generators/chipyard/src/main/scala/config/RocketConfigs.scala`. **Define `CustomAccRoCCConfig`** such that it adds our accelerator to `RocketConfig`. `customAccRoCC` should already be available as a package here.
+We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `<root Chipyard dir>/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
+
+Next, navigate to `<root Chipyard dir>/generators/chipyard/src/main/scala/config/RocketConfigs.scala`. **Define `CustomAccRoCCConfig`** such that it adds our accelerator to `RocketConfig`. The previous step made `customAccRoCC` available as a package here.
+
+Hint: `CustomAccRoCCConfig` should look like the following:
+```
+class CustomAccRoCCConfig extends Config(
+  /* YOUR CODE HERE */
+)
+```
 
 ### Baremetal Functional Testing
 
@@ -548,13 +557,14 @@ Now, let's disassemble the executable `functionalTest` by running:
 `riscv64-unknown-elf-objdump -d functionalTest | less`
 **Inspect the output and find the address of the `ROCC_INSTRUCTION_DSS`**. Looking through `<main>` and looking for `opcode0` should be helpful.
 
-It's time to run our functional test. In the **root Chipyard directory**, run:
+It's time to run our functional test. Navigate to `<root Chipyard dir>/sims/verilator`, run:
 `make CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug`
 
 It might take a few minutes to build and compile the test harness, and run the simulation.
 
-Navigate to `<root Chipyard dir>/sims/verilator`.
-`generated-src` contains the test harness and `output` contains output files (log/output/waveform) for each config.
+Inside, `<root Chipyard dir>/sims/verilator`, for each config,
+- `generated-src` contains the test harness
+- `output` contains output files (log/output/waveform) for each config.
 
 **Inspect the log and output for our config.** Do the results of the accelerator and model match?
 
