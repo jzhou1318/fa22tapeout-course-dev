@@ -303,18 +303,19 @@ class RocketConfig extends Config(
   </tr>
   <tr>
     <td>Is MMIO enabled? If so, which config fragments enabled it?</td>
-    <td>No</td>
-    <td>We grep (<code>grep -r -I</code>, -r sets recrusive and -I ignores binary files) for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> MMIO </code> and see the fragment <code> new freechips.rocketchip.subsystem.WithNoMMIOPort</code> </td>
+    <td>No.</td>
+    <td>We grep (<code>grep -r -I</code>, -r sets recrusive and -I ignores binary files) for <code>AbstractConfig</code> in <code>chipyard/generators/chipyard/src/main/scala/</code> and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>MMIO</code> and see the fragment <code>new freechips.rocketchip.subsystem.WithNoMMIOPort</code>. </td>
   </tr>
   <tr>
     <td>Is UART enabled? If so, which config fragments enabled it?</td>
-    <td>Yes<code> new chipyard.config.WithUART</code>,  <code>new chipyard.iobinders.WithUARTIOCells T</code>,  <code> new chipyard.harness.WithUARTAdapter</code></td>
-    <td>We grep for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> UART </code> </td>
+    <td>Yes.</td>
+    <td><code>new chipyard.config.WithUART</code>, <code>new chipyard.iobinders.WithUARTIOCells T</code>, <code>new chipyard.harness.WithUARTAdapter</code></td>
+    <td>We grep for <code>AbstractConfig</code> in <code>chipyard/generators/chipyard/src/main/scala/</code> and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>UART</code>. </td>
   </tr>
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
     <td>64 Block Bytes, 64 Sets, 4 Ways</td>
-    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
+    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>. We grep for <code>WithNBigCores</code> at <code>chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code>. We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
   </tr>
 </table>
 
@@ -383,7 +384,7 @@ All commands should be run in `chipyard/sims/verilator`. After the runs are done
   </tr>
 </table>
 
-Everything has been elaborated, we can run some tests now. First, go to the `chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `chipyard/sims/verilator` and try running:
+Everything has been elaborated, we can run some tests now. First, go to the `chipyard/tests` and run `make`. Afterwards, you should see the `.riscv` bare-metal binaries compiled here. Go back to `chipyard/sims/verilator` and try running:
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
@@ -608,7 +609,7 @@ generator/
 ```
 
 ## Setting up & designing our accelerator
-Navigate to `/chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
+Navigate to `/chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remember, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
 ##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
 
