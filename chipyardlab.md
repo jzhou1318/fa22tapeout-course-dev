@@ -84,7 +84,7 @@ to grab the lab branch.
 <your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env
 ```
 
-In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. 
+In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. <b>You will need to do this in every new terminal & at the start of every work session.</b>
 
 
 
@@ -114,9 +114,11 @@ An `env.sh` file should exist in the top-level repository (`$chipyard`). This fi
 
 ## Chipyard Repo Tour
 
-<b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations) and `vlsi/` (for physical design) directories.</b> 
+<b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations)* and `vlsi/` (for physical design) directories.</b> 
 However, we will still give a general repo tour to get you familiar with Chipyard as a whole.
 
+
+###### * VCS is a propietory simulation tool provided by Synopsys while Verilator is an open-source tool. There are some subtle differences form the user perspective, but VCS is usually faster so we'll be using that throuhgout the coruse. You can basically everthing in VCS just as easily in verilator (the subdirectory structure is the same as well).
 ```
  $chipyard/
   generators/ <------- library of Chisel generators
@@ -313,7 +315,7 @@ class RocketConfig extends Config(
 <table border-"0">
   <tr>
     <td>
-    AbstractcConfig has a bunch of stuff stuff stuff
+    RocketConfig is part of the "Digital System configuration" depicted below. It is built on top of the AbstractConfig which contains the config fragments (each line that like `freechips.rocketchip.subsystem.WithNBigCores(1)` that adds something to the overall system is called a config fragment) for IO Binders and Harness Binders.
     </td>
     <td><img src="assets/tutorial/io_high_level.jpg" width = 1700/></td>
   </tr>
@@ -335,33 +337,37 @@ class RocketConfig extends Config(
     <th>How we found the answer?</th>
   </tr>
   <tr>
-    <td>Is MMIO enabled? If so, which config fragments enabled it?</td>
-    <td>No</td>
-    <td>We grep (<code>grep -r -I</code>, -r sets recrusive and -I ignores binary files) for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> MMIO </code> and see the fragment <code> new freechips.rocketchip.subsystem.WithNoMMIOPort</code> </td>
-  </tr>
-  <tr>
     <td>Is UART enabled? If so, which config fragments enabled it?</td>
     <td>Yes<code> new chipyard.config.WithUART</code>,  <code>new chipyard.iobinders.WithUARTIOCells T</code>,  <code> new chipyard.harness.WithUARTAdapter</code></td>
-    <td>We grep for <code>AbstractConfig </code> in <code> chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> UART </code> </td>
+    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> UART </code> and find the corresponding config fragments</td>
   </tr>
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
     <td>64 Block Bytes, 64 Sets, 4 Ways</td>
-    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
+    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>$chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>$chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>$chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>$chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
+  </tr>
+  <tr>
+    <td>Is there an L2 used in this config? What size?</td>
+    <td>Yes. 1 bank, 8 ways, 512Kb.</td>
+    <td>We once again start looking at <code> RocketConfig</code> which leads us to <code>AbstractConfig</code>. Looking at the comments of the various config fragments we see the comment <code> // use Sifive L2 cache </code> next to <code> new freechips.rocketchip.subsystem.WithInclusiveCache ++ </code> (You can read more about SiFive <a href="https://www.sifive.com/">here</a>). We could have grepped in the generators directory for `WithInclusiveCache` or noticed that a <code>sifive-cache</code> submodule existed under <code>$chipyard/generators</code>. Navigating through it we eventually find the <code>WithInclusiveCache</code> class at <code>block-inclusivecache-sifive/design/craft/inclusivecache/src/Configs.scala</code>.</td>
+
   </tr>
 </table>
 
-Inspect `MMIOScratchpadOnlyRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
+Inspect `TinyRocketConfig` & answer the following questions. You should be able to find the answers or clues to the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
 
-**What config fragment adds a MMIO port?**
-**How large is the scratchpad?**
+**1. How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?**
 
+**2. How many bytes are in a block for the L1 ICache? How many sets are in the L1 ICache? Ways?**
 
-Inspect `L1ScratchpadRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
+**3. Is there a L2 cache? If so, what are the dimensions?**
 
-**How many sets & ways are the DCache scratchpads?**
-**What are the valid memory addresses for the DCache scratchpad??**
-**What are the valid memory addresses for the ICache scratchpad??**
+**4. Is UART enabled?**
+
+**5. Does this config include a FPU (floating point unit)?**
+
+**6. Does this config include a multiple-divide pipeline)?**
+
 
 
 <!---
@@ -371,15 +377,17 @@ You can look at examples of how your own Chisel modules or verilog black-box mod
 
 ## Running Some Commands
 
-Let's run some commands! Navigate to `$chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`
+Let's run some commands! 
 
-All commands should be run in `$chipyard/sims/verilator`. After the runs are done (some can take ~20 minutes), check the `chipyard/sims/verilator/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
-- `XXX.top.v`: Synthesizable Verilog source
-- `XXX.harness.v`: TestHarness
-- `XXX.dts`: device tree string
-- `XXX.memmap.json`: memory map
+> *From this point on, we will be running some more compute-intensive commands. Prepend all compute heavy commands (everything ran in the `vlsi/` direcetory & `sims/` directories) with `bsub -Is -q ee194` This submits the job to a special queue for the class so we don't crash the server and mess up ongoing research work (or cause each other to lose valuable work :))* 
 
-Run make `CONFIG=TutorialNoCConfig -j16`. This 
+We'll be running the `CONFIG=RocketConfig` config (the `-j16 does the run with more threads so it finishes up faster`). All commands should be run in `$chipyard/sims/vcs`. Run
+```
+bsub -Is -q ee194 make CONFIG=RocketConfig -j16
+```
+> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=/bwrcq/C/jennifersiyuanzhou/intech22/sp23-chipyard-lab-dev/.java_tmp` is not a real error. You can safely ignore*
+
+[FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think og FIRRTL as ajn HDL version of LLVM is you are familar with LLVM (depicted below).
 
 <table border-"0">
   <tr>
@@ -388,68 +396,50 @@ Run make `CONFIG=TutorialNoCConfig -j16`. This
   </tr>
 </table>
 
-##### TODO: ask questions about each run based on the generated files?
+After the run is done (can take ~20 minutes), check the `$chipyard/sims/vcs/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
+- `XXX.top.v`: Synthesizable Verilog source
+- `XXX.harness.v`: TestHarness
+- `XXX.dts`: device tree string
+- `XXX.memmap.json`: memory map
 
+Answer the following questions:
 
-<!--
-<table>
-  <tr>
-    <th>Config</th>
-    <th>Explanation</th>
-    <th>What to run & questions to answer</th>
-  </tr>
-  <tr>
-    <td>TutorialStarterConfig</td>
-    <td>Choose how many cores you want & customize the L2.</td>
-    <td>make CONFIG=TutorialStarterConfig -j16</code> </td>
-  </tr>
-   <tr>
-    <td>TutorialMMIOConfig</td>
-    <td>Attach either a TileLink or AXI4 version of GCD</td>
-    <td>make CONFIG=TutorialMMIOConfig -j16</code> </td>
-  </tr>
-   <tr>
-    <td>TutorialSha3Config</td>
-    <td>Add the Sha3 accelerator.</td>
-    <td>make CONFIG=TutorialSha3Config -j16</code> </td>
-  </tr>
-  </tr>
-   <tr>
-    <td>TutorialSha3BlackBoxConfig</td>
-    <td>Add the black box version of the Sha3 accelerator.</td>
-    <td>make CONFIG=TutorialSha3BlackBoxConfig -j16</code> </td>
-  </tr>
-  </tr>
-   <tr>
-    <td>TutorialNoCConfig</td>
-    <td>Add one of the Constellation topologies</td>
-    <td>make CONFIG=TutorialNoCConfig -j16</code> </td>
-  </tr>
-</table>
--->
+**1. Looking only at the emitted files, how many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache?**
 
-Everything has been elaborated, we can run some tests now. First, go to the `$chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `$chipyard/sims/verilator` and try running:
-- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv`
-- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv`
-- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
-- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv`
+**2. Looking only at the emitted files, how many bytes are in a block for the L1 ICache? How many sets are in the L1 ICache?**
 
-> *Note: if you are wondering, the `.riscv` binaries are actually [ELF files](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format). We are naming it with the .riscv extension to emphasize that it is a RISC-V program.*
+**3. Try to find the top-level verilog modules that correspond to the ICache/DCache? What are they called?**
+
 
 ## Chipyard Simulation
 
-### RTL Simulation
-##### TODO: explain the commands we just ran
-Many Chipyard Chisel-based design looks something like a Rocket core connected to some kind of "accelerator" (eg. a DSP block like an FFT module).
+Simple RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/`and can be run as:
+```
+bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+```
+
+**1. What are the last 10 lines of the `.out` file generated by the assembly test you ran? It should include the *** PASSED *** flag.**
+
+In summary, when we run something like: 
+```
+bsub -Is -q ee194 make CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+```
+The first command will elaborate the design and create Verilog.
+This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
+Next it will run VCS to build a simulator out of the generated Verilog that can run RISC-V binaries.
+The second command will run the test specified by `BINARY` and output results as an `.out` file.
+This file will be emitted to the `$chipyard/sims/vcs/output/` directory.
+
+Many Chipyard Chisel-based design looks something like a Rocket core connected to some kind of "accelerator" (e.g. a DSP block like an FFT module).
 When building something like that, you would typically build your "accelerator" generator in Chisel, and unit test it using ChiselTesters.
 You can then write integration tests (eg. a baremetal C program) which can then be simulated with your Rocket Chip and "accelerator" block together to test end-to-end system functionality. 
-Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source).
+Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source). The same infrastructure enables a few other applications as depicted below.
 
 <table border-"0">
   <tr>
     <td>
 
-- <b>SW RTL Simulation:</b> RTL-level simulation with VCS (or Verilator but you shoudl be using VCS in this class. If you design anything with Chipyard, you be running SW RTL simulation to test. 
+- <b>SW RTL Simulation:</b> RTL-level simulation with VCS or Verilator. If you design anything with Chipyard, you should be running SW RTL simulation to test. 
 - <b>Hammer VLSI flow:</b> Tapeout a custom config in some process technology
 - <b>FPGA prototyping:</b> Fast, non-deterministic prototypes (we won't be doing this in this class)
 - <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, checkout its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more)
@@ -458,18 +448,6 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
   </tr>
 </table>
 
-Recall one of the commands that was run: 
-```make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv```
-The first command will elaborate the design and create Verilog.
-This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
-Next it will run VCS to build a simulator out of the generated Verilog that can run RISC-V binaries.
-The second command will run the test specified by `BINARY` and output results as an `.out` file.
-This file will be emitted to the `output/` directory.
-
-Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/`and can be run as:
-```make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple ```
-
-
 ## In summary...
 
 <table border-"0">
@@ -477,9 +455,7 @@ Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-test
     <td>
 
 - <b>Configs</b>: Describe parameterization of a multi-generator SoC
-
 - <b>Generators</b>: Flexible, reusable library of open-source Chisel generators (and Verilog too)
-
 - <b>IOBinders/HarnessBinders</b>: Enable configuring IO strategy and Harness features
 - <b>FIRRTL Passes</b>: Structured mechanism for supporting multiple flows
 - <b>Target flows</b>: Different use-cases for different types of users</td>
@@ -487,6 +463,28 @@ Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-test
   </tr>
 </table>
 
+### [Optional] More Complicated Configs & Tests
+
+Complete this section if you want to see some more complicates systems. Navigate to `$chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`. We'll be running the `CONFIG=TutorialNoCConfig` config whichs adds one of the aforementioned Constellation topologies into our system. Run
+
+```
+bsub -Is -q ee194 make CONFIG=TutorialNoCConfig -j16
+```
+and inspect the generated files at `$chipyard/sims/vcs/generated-src`
+
+To run some more interesting tests, first, go to `$chipyard/tests` and run `make`. 
+```
+<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/tests $ make
+```
+
+> *Note: if you are wondering, the `.riscv` binaries are actually [ELF files](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format). We are naming it with the .riscv extension to emphasize that it is a RISC-V program.*
+
+
+Afterwards, you should see the `.riscv` bare-metal binaries compiled here. Go back to `$chipyard/sims/vcs` and try running (prepended with `bsub -Is -q ee194`):
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv` Rns tests on the FFT accelerator that's connected through a MMIO. 
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv` Runs tests on a GCD module that's connected through a MMIO. 
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv` Runs [FIR](https://en.wikipedia.org/wiki/Finite_impulse_response) tests.
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv` Runs test on the [NiC](https://en.wikipedia.org/wiki/Network_interface_controller) tests.
 
 # Designing Custom Accelerators
 In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
