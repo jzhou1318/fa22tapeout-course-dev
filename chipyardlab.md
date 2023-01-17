@@ -290,7 +290,7 @@ All of these modules are built as generators (a core driving point of using Chis
 
 <table border-"0">
   <tr>
-    <td><img src="assets/tutorial/config_gen_layer.png" width=700 /></td>
+    <td><img src="assets/tutorial/config_gen_layer.png" width=1000 /></td>
     <td><img alt="How Configs Work" src="assets/tutorial/02_chipyard_basics.gif" width=760></td>
   </tr>
 </table>
