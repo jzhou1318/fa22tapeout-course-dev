@@ -115,7 +115,7 @@ An `env.sh` file should exist in the top-level repository (`$chipyard`). This fi
 ## Chipyard Repo Tour
 
 <b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations) and `vlsi/` (for physical design) directories.</b> 
-However, we will still give a /general repo tour to get you familiar with Chipyard as a whole.
+However, we will still give a general repo tour to get you familiar with Chipyard as a whole.
 
 ```
  $chipyard/
@@ -132,13 +132,12 @@ However, we will still give a /general repo tour to get you familiar with Chipya
   toolchains/ <------- RISC-V Toolchain
 ```
 
-You may have noticed while initializing your Chipyard repo that there are many submodules.  
-Chipyard is built to allow the designer to generate complex configurations from different projects including the in-order Rocket Chip core, the out-of-order BOOM core, the systolic array Gemmini, and many other components needed to build a chip.
+You may have noticed while initializing your Chipyard repo that there are many submodules. Chipyard is built to allow the designer to generate complex configurations from different projects including the in-order Rocket Chip core, the out-of-order BOOM core, the systolic array Gemmini, and many other components needed to build a chip.
 Thankfully, Chipyard has some great documentation, which can be found 
 [here](https://chipyard.readthedocs.io/en/latest/). 
 
 You can find most of these in the `$chipyard/generators/` directory.
-All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
+All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the [TileLink and Diplomacy references](https://chipyard.readthedocs.io/en/stable/TileLink-Diplomacy-Reference/index.html) in the Chipyard documentation).
 
 ### SoC Architecture 
 
@@ -148,9 +147,9 @@ All of these modules are built as generators (a core driving point of using Chis
     <td><img src="assets/tutorial/chipyard.jpg" /></td>
   </tr>
 </table>
+ 
+          
 
-
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <table border="0">
  <tr>
     <td><img style="float: left;" src="assets/tutorial/tile.jpg" width="200"></td>
@@ -159,7 +158,7 @@ All of these modules are built as generators (a core driving point of using Chis
       <ul>
         <li> A tile is the basic unit of replication of a core and its associated hardware
         <li> Each tile contains a RISC-V core and can contain additional hardware such as private caches, page table walker, TileBus (specified using configs)
-        <li> Several varieties of cores (Rocket, BOOM, Sodor, CVA-6 (Ariane), Ibex) supported
+        <li> Several varieties of cores (<a href="https://chipyard.readthedocs.io/en/stable/Generators/Rocket.html">Rocket</a>, <a href="https://chipyard.readthedocs.io/en/stable/Generators/BOOM.html">BOOM</a>, <a href="https://chipyard.readthedocs.io/en/stable/Generators/Sodor.html">Sodor</a>, <a href="https://chipyard.readthedocs.io/en/stable/Generators/CVA6.html">CVA-6 (Ariane)</a>, <a href="https://chipyard.readthedocs.io/en/stable/Generators/Ibex.html">Ibex</a> supported)
         <li> Interface supports integrating your own RISC-V core implementation
       </ul>
     </td>
