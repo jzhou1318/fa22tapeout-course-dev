@@ -115,11 +115,11 @@ An `env.sh` file should exist in the top-level repository (`$chipyard`). This fi
 
 ## Chipyard Repo Tour
 
-<b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations)* and `vlsi/` (for physical design) directories.</b> 
+> <b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations)* and `vlsi/` (for physical design) directories.</b> 
 However, we will still give a general repo tour to get you familiar with Chipyard as a whole.
 
 
-###### * VCS is a propietory simulation tool provided by Synopsys while Verilator is an open-source tool. There are some subtle differences form the user perspective, but VCS is usually faster so we'll be using that throuhgout the coruse. You can basically everthing in VCS just as easily in verilator (the subdirectory structure is the same as well).
+###### *VCS is a propietory simulation tool provided by Synopsys while Verilator is an open-source tool. There are some subtle differences form the user perspective, but VCS is usually faster so we'll be using that throuhgout the coruse. Everthing done with VCS can easily also be done in Verilator (the subdirectory structure is the same as well).
 ```
  $chipyard/
   generators/ <------- library of Chisel generators
@@ -188,7 +188,6 @@ All of these modules are built as generators (a core driving point of using Chis
         <li> Controlled by memory-mapped IO registers
         <li> Support DMA to memory system
         <li> Examples: <a href="http://nvdla.org/">Nvidia NVDLA accelerator</a> & <a href="https://chipyard.readthedocs.io/en/stable/Generators/fft.html">FFT accelerator generator </a>
-        <li> More on this later
       </ul>
     </td>
   </tr>
