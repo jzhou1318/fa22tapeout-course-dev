@@ -302,7 +302,7 @@ All of these modules are built as generators (a core driving point of using Chis
 
 
 ## Config Exercise
-You can find the Chipyard specific code and its configs in `$chipyard/generators/chipyard/src/main/scala/config`.
+Configs desribe what goes into our final ystem and what paramters our designs are elaborated with. You can find the configs in `$chipyard/generators/chipyard/src/main/scala/config`.
 
 Look at the configs located in `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala`, specifically `RocketConfig`
 
@@ -315,7 +315,7 @@ class RocketConfig extends Config(
 <table border-"0">
   <tr>
     <td>
-    RocketConfig is part of the "Digital System configuration" depicted below. It is built on top of the AbstractConfig which contains the config fragments (each line that like `freechips.rocketchip.subsystem.WithNBigCores(1)` that adds something to the overall system is called a config fragment) for IO Binders and Harness Binders.
+    RocketConfig is part of the "Digital System configuration" depicted below. It is built on top of the AbstractConfig which contains the config fragments (each line like <code>freechips.rocketchip.subsystem.WithNBigCores(1)</code> that adds something to the overall system is called a config fragment) for IO Binders and Harness Binders (depicted below).
     </td>
     <td><img src="assets/tutorial/io_high_level.jpg" width = 1700/></td>
   </tr>
@@ -338,8 +338,8 @@ class RocketConfig extends Config(
   </tr>
   <tr>
     <td>Is UART enabled? If so, which config fragments enabled it?</td>
-    <td>Yes<code> new chipyard.config.WithUART</code>,  <code>new chipyard.iobinders.WithUARTIOCells T</code>,  <code> new chipyard.harness.WithUARTAdapter</code></td>
-    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find </code>AbstractConfigs</code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code> UART </code> and find the corresponding config fragments</td>
+    <td>Yes; <code>chipyard.config.WithUART</code>,  <code>chipyard.iobinders.WithUARTIOCells</code>,  <code>chipyard.harness.WithUARTAdapter</code>.</td>
+    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find <code>AbstractConfig </code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>UART</code> and find the corresponding config fragments.</td>
   </tr>
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
@@ -366,7 +366,7 @@ Inspect `TinyRocketConfig` & answer the following questions. You should be able 
 
 **5. Does this config include a FPU (floating point unit)?**
 
-**6. Does this config include a multiple-divide pipeline)?**
+**6. Does this config include a multiple-divide pipeline?**
 
 
 
