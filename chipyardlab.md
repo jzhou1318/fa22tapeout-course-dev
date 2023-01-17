@@ -54,22 +54,46 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 
 ## Getting Started
 
-First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. DO NOT work out of the home directory
+First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. <b>DO NOT</b> work out of the home directory
 
-1) Run `source /tools/C/ee290-dev-sp23/miniforge3/bin/activate`
-2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a>  `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git`
+1) Run 
 ```
-youremail@bwrcrdsl-2:/tools/C/yourusername $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
+ <your email>@bwrcrdsl-2:/tools/C/<your username> $ source /tools/C/ee290-dev-sp23/miniforge3/bin/activate
 ```
-3) `cd sp23-chipyard-lab-dev`
-4) `git checkout lab-dev`
-5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
+2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a> `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git`.
+```
+ <your email>@bwrcrdsl-2:/tools/C/<your username> $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
+```
+
+3) Run
+```
+ <your email>@bwrcrdsl-2:/tools/C/<your username> $cd sp23-chipyard-lab-dev
+```
+
+Optionally, set the repo path as an [environment variable](https://www.geeksforgeeks.org/environment-variables-in-linux-unix/) by running `export chipyard=/tools/C/<your username>/sp23-chipyard-lab-dev`. We will be refering the repo path as `$chipyard` from now on. If you do not wish to set up this environment variable, you will need to write out `/tools/C/<your username>/sp23-chipyard-lab-dev` every time we use `$chipyard`
+
+4) Run
+
+```
+ <your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ git checkout lab-dev
+```
+to grab the lab branch.
+
+5) Run 
+```
+<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env
+```
 
 In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. 
 
 
 
-6) Run `./scripts/init-submodules-no-riscv-tools.sh` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
+6) Run 
+
+```
+<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ ./scripts/init-submodules-no-riscv-tools.sh
+
+```
 
 The `init-subodules-no-riscv-tools.sh` script will initialize and checkout all of the necessary `git submodules`. This will also validate that you are on a tagged branch, otherwise it will prompt for confirmation. When updating Chipyard to a new version, you will also want to rerun this script to update the submodules. Using git directly will try to initialize all submodules; this is not recommended unless you expressly desire this behavior.
 
@@ -81,43 +105,12 @@ The `init-subodules-no-riscv-tools.sh` script will initialize and checkout all o
 ```
 which defines this behavior.
 
-7) Run `source env.sh` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
-2) Clone the lab chipyard repo at `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git` 
-3) Optionally, set the repo path as an [environment variable](https://www.geeksforgeeks.org/environment-variables-in-linux-unix/) by running `export chipyard=/tools/C/<your name>/sp23-chipyard-lab-dev`. We will be refering the repo path as `$chipyard` from now on.
-3) `cd $chipyard`
-4) `git checkout lab-dev`
-5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env`
-6) Run `./scripts/init-submodules-no-riscv-tools.sh`
-7) Run `source ./env.sh`
-<!-- 1) `source /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/scripts/fix-open-files.sh` -->
-
-<!--
-
-First, we will need to setup our Chipyard workspace.  
-All of our work will occur on the BWRC compute cluster. 
-For this lab, please work in the `/tools/C/` directory on the machine. 
-This lab will likely generate too much data for it to fit in your home directory. 
-All required materials are stored in the [BWRC-Repo GitLab instance](https://bwrcrepo.eecs.berkeley.edu).
-
-
-First source the following environment file. This will add pre-compiled binaries of all the RISC-V tools to your PATH.
-
+7) Run 
 ```
-source /tools/C/ee290/env-riscv-tools.sh
+<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ source ./env.sh
 ```
 
-
-Run the commands below. These commands clone the Chipyard repository, then initialize all the submodules.
-
-```
-mkdir -p /tools/C/userName/intech22
-cd /tools/C/userName/intech22
-git clone git@bwrcrepo.eecs.berkeley.edu:EE290C_EE194_intech22/chipyard-lab.git chipyard
-cd chipyard
-./scripts/init-submodules-no-riscv-tools.sh
-```
-
--->
+An `env.sh` file should exist in the top-level repository (`$chipyard`). This file activates the conda environment that was set up previously and sets up necessary environment variables needed for future Chipyard steps (needed for the `make` system to work properly). Once the script is run, the `PATH`, `RISCV`, and `LD_LIBRARY_PATH` environment variables will be set properly for the toolchain requested. You can source this file in your [`.bashrc`](https://www.digitalocean.com/community/tutorials/bashrc-file-in-linux) or equivalent environment setup file to get the proper variables, or directly include it in your current environment by running the above command every time you open a new terminal or start a new work session.
 
 ## Chipyard Repo Tour
 
