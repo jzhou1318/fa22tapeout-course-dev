@@ -98,20 +98,20 @@ In Chipyard, we use the Conda package manager to help manage system dependencies
 
 The `init-subodules-no-riscv-tools.sh` script will initialize and checkout all of the necessary `git submodules`. This will also validate that you are on a tagged branch, otherwise it will prompt for confirmation. When updating Chipyard to a new version, you will also want to rerun this script to update the submodules. Using git directly will try to initialize all submodules; this is not recommended unless you expressly desire this behavior.
 
-`git submodules` allow you to keep other Git repositories as subdirectories of another Git repository. For example, the above script initiates the `rocket-chip` submodule which is it's own Git repository that you can look at <a href="https://github.com/chipsalliance/rocket-chip/tree/44b0b8249279d25bd75ea693b725d9ff1b96e2ab">here</a>. If you look at the `.gitmodules` file at `tools/C/yourusername/sp23-chipyard-lab-dev`, you can see
+`git submodules` allow you to keep other Git repositories as subdirectories of another Git repository. For example, the above script initiates the `rocket-chip` submodule which is it's own Git repository that you can look at <a href="https://github.com/chipsalliance/rocket-chip/tree/44b0b8249279d25bd75ea693b725d9ff1b96e2ab">here</a>. If you look at the `.gitmodules` file at `$chipyard`, you can see
 ```
 [submodule "rocket-chip"]
 	path = generators/rocket-chip
 	url = https://github.com/chipsalliance/rocket-chip.git
 ```
-which defines this behavior. Read more about `git submodules` [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+which defines this behavior. Read more about `git submodules` [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 7) Run 
 ```
 <your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ source ./env.sh
 ```
 
-An `env.sh` file should exist in the top-level repository (`$chipyard`). This file activates the conda environment that was set up previously and sets up necessary environment variables needed for future Chipyard steps (needed for the `make` system to work properly). Once the script is run, the `PATH`, `RISCV`, and `LD_LIBRARY_PATH` environment variables will be set properly for the toolchain requested. You can source this file in your [`.bashrc`](https://www.digitalocean.com/community/tutorials/bashrc-file-in-linux) or equivalent environment setup file to get the proper variables, or directly include it in your current environment by running the above command every time you open a new terminal or start a new work session.
+An `env.sh` file should exist in the top-level repository (`$chipyard`). This file activates the conda environment that was set up previously and sets up necessary environment variables needed for future Chipyard steps (needed for the `make` system to work properly). Once the script is run, the `PATH`, `RISCV`, and `LD_LIBRARY_PATH` environment variables will be set properly for the toolchain requested. You can source this file in your [`.bashrc`](https://www.digitalocean.com/community/tutorials/bashrc-file-in-linux) or equivalent environment setup file to get the proper variables, or directly include it in your current environment by **running the above command every time you open a new terminal or start a new work session**.
 
 ## Chipyard Repo Tour
 
