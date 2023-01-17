@@ -54,15 +54,34 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 
 ## Getting Started
 
-First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username.
+First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. DO NOT work out of the home directory
 
 1) Run `source /tools/C/ee290-dev-sp23/miniforge3/bin/activate`
-2) clone the lab chipyard repo at `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git` 
+2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a>  `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git`
+```
+youremail@bwrcrdsl-2:/tools/C/yourusername $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
+```
 3) `cd sp23-chipyard-lab-dev`
 4) `git checkout lab-dev`
-5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env`
-6) Run `./scripts/init-submodules-no-riscv-tools.sh`
-7) Run `source env.sh`
+5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
+
+In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. 
+
+
+
+6) Run `./scripts/init-submodules-no-riscv-tools.sh` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
+
+The `init-subodules-no-riscv-tools.sh` script will initialize and checkout all of the necessary `git submodules`. This will also validate that you are on a tagged branch, otherwise it will prompt for confirmation. When updating Chipyard to a new version, you will also want to rerun this script to update the submodules. Using git directly will try to initialize all submodules; this is not recommended unless you expressly desire this behavior.
+
+`git submodules` allow you to keep other Git repositories as subdirectories of another Git repository. For example, the above script initiates the `rocket-chip` submodule which is it's own Git repository that you can look at <a href="https://github.com/chipsalliance/rocket-chip/tree/44b0b8249279d25bd75ea693b725d9ff1b96e2ab">here</a>. If you look at the `.gitmodules` file at `tools/C/yourusername/sp23-chipyard-lab-dev`, you can see
+```
+[submodule "rocket-chip"]
+	path = generators/rocket-chip
+	url = https://github.com/chipsalliance/rocket-chip.git
+```
+which defines this behavior.
+
+7) Run `source env.sh` at `/tools/C/yourusername/sp23-chipyard-lab-dev`
 <!-- 1) `source /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/scripts/fix-open-files.sh` -->
 
 <!--
@@ -95,12 +114,16 @@ cd chipyard
 
 ## Chipyard Repo Tour
 
+<b>You will mostly be working out of the `generators/` (for designs), `sims/vcs/` (for simulations) and `vlsi/` (for physical design) directories.</b> 
+However, we will still give a /general repo tour to get you familiar with Chipyard as a whole.
+
 ```
  chipyard/
   generators/ <------- library of Chisel generators
     chipyard/
     sha3/
-  sims/         <----- utilities for simulating SoCs
+  sims/ <------------- utilities for simulating SoCs
+    vcs/
     verilator/
     firesim/
   fpga/
@@ -110,8 +133,7 @@ cd chipyard
 ```
 
 You may have noticed while initializing your Chipyard repo that there are many submodules.  
-Chipyard is built to allow the designer to generate complex configurations from different projects 
-including the in-order Rocket Chip core, the out-of-order BOOM core, the systolic array Gemmini, and many other components needed to build a chip.
+Chipyard is built to allow the designer to generate complex configurations from different projects including the in-order Rocket Chip core, the out-of-order BOOM core, the systolic array Gemmini, and many other components needed to build a chip.
 Thankfully, Chipyard has some great documentation, which can be found 
 [here](https://chipyard.readthedocs.io/en/latest/). 
 
@@ -150,7 +172,7 @@ All of these modules are built as generators (a core driving point of using Chis
       <ul>
         <li> Tightly-coupled accelerator interface
         <li> Attach custom accelerators to Rocket or BOOM cores
-        <li> More on this later
+        <li> Example: <a href="https://github.com/ucb-bar/gemmini/tree/c47cb7f3eb5c18390f176f3a53c43c8546d487d2">GEMMINI accelerator</a> 
       </ul>
     </td>
   </tr>
@@ -163,8 +185,8 @@ All of these modules are built as generators (a core driving point of using Chis
       <ul>
         <li> Controlled by memory-mapped IO registers
         <li> Support DMA to memory system
-        <li> Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
-        <li> More on this later
+        <li> Examples: <a href="https://github.com/ucb-bar/nvdla-wrapper/tree/2b17011b266025704b958efeeca2363c0cdd446d">Nvidia NVDLA accelerator</a>
+ & <a href="https://github.com/ucb-bar/FFTGenerator/tree/40357f00a8f091e97be9dbf39256e511dac6c494">FFT accelerator generator</a>
       </ul>
     </td>
   </tr>
@@ -247,7 +269,7 @@ All of these modules are built as generators (a core driving point of using Chis
     <td>
       <h2>Peripherals and IO</h2>
       <ul>
-        <li> TODO: Expand on the following 
+        <li>  <a href="https://docs.google.com/document/d/13rCqMM0qARjcLTrkwqlTzNClU-cxjUnZE0jHnIoe4UU/edit?usp=sharing">Chipyard Peripheral User Manual </a>  put together by Yufeng Chi who took the Sp22 iteration of this class. This document is a living document, so feel to add comments on sections that you don't understand/woud like to see added. 
         <li> Open-source RocketChip + SiFive blocks:
         <ul>
           <li> Interrupt controllers
@@ -273,14 +295,7 @@ All of these modules are built as generators (a core driving point of using Chis
   </tr>
 </table>
 
-### TODO: Expand on everything below (and maybe create images?) slides 27-33 (maybe even 34?) from [MICRO tutorial](https://docs.google.com/presentation/d/1gDoLQzga65vSrr1FffLy-9yaR3zJeOVc/edit#slide=id.p29) would be useful
 
-#### In summary...
-- Configs: Describe parameterization of a multi-generator SoC
-- Generators: Flexible, reusable library of open-source Chisel generators (and Verilog too)
-- IOBinders/HarnessBinders: Enable configuring IO strategy and Harness features
-- FIRRTL Passes: Structured mechanism for supporting multiple flows
-- Target flows: Different use-cases for different types of users
 
 
 
@@ -294,6 +309,24 @@ class RocketConfig extends Config(
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++         // single rocket-core
   new chipyard.config.AbstractConfig)                            // builds one on top of another, so the single rocket-core is built on top of the AbstractConfig
 ```
+
+<table border-"0">
+  <tr>
+    <td>
+    AbstractcConfig has a bunch of stuff stuff stuff
+    </td>
+    <td><img src="assets/tutorial/io_high_level.jpg" width = 1700/></td>
+  </tr>
+</table>
+
+
+
+<table border-"0">
+  <tr>
+    <td><img src="assets/tutorial/io_harness.jpg" /></td>
+    <td><img src="assets/tutorial/io_harness_map.jpg"/></td>
+  </tr>
+</table>
 
 <table>
   <tr>
@@ -346,8 +379,19 @@ All commands should be run in `chipyard/sims/verilator`. After the runs are done
 - `XXX.dts`: device tree string
 - `XXX.memmap.json`: memory map
 
+Run make `CONFIG=TutorialNoCConfig -j16`. This 
+
+<table border-"0">
+  <tr>
+    <td><img src="assets/tutorial/firrtl_high.jpg" /></td>
+    <td><img src="assets/tutorial/firrtl.jpg"/></td>
+  </tr>
+</table>
+
 ##### TODO: ask questions about each run based on the generated files?
 
+
+<!--
 <table>
   <tr>
     <th>Config</th>
@@ -382,6 +426,7 @@ All commands should be run in `chipyard/sims/verilator`. After the runs are done
     <td>make CONFIG=TutorialNoCConfig -j16</code> </td>
   </tr>
 </table>
+-->
 
 Everything has been elaborated, we can run some tests now. First, go to the `chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `chipyard/sims/verilator` and try running:
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv`
@@ -398,6 +443,19 @@ When building something like that, you would typically build your "accelerator" 
 You can then write integration tests (eg. a baremetal C program) which can then be simulated with your Rocket Chip and "accelerator" block together to test end-to-end system functionality. 
 Chipyard provides the infrastructure to help you do this for both VCS (Synopsys) and Verilator (open-source).
 
+<table border-"0">
+  <tr>
+    <td>
+
+- <b>SW RTL Simulation:</b> RTL-level simulation with VCS (or Verilator but you shoudl be using VCS in this class. If you design anything with Chipyard, you be running SW RTL simulation to test. 
+- <b>Hammer VLSI flow:</b> Tapeout a custom config in some process technology
+- <b>FPGA prototyping:</b> Fast, non-deterministic prototypes (we won't be doing this in this class)
+- <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, checkout its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more)
+
+    <td><img src="assets/tutorial/high_sim.jpg" width = 1500/></td>
+  </tr>
+</table>
+
 Recall one of the commands that was run: 
 ```make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv```
 The first command will elaborate the design and create Verilog.
@@ -408,6 +466,24 @@ This file will be emitted to the `output/` directory.
 
 Other RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/`and can be run as:
 ```make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple ```
+
+
+## In summary...
+
+<table border-"0">
+  <tr>
+    <td>
+
+- <b>Configs</b>: Describe parameterization of a multi-generator SoC
+
+- <b>Generators</b>: Flexible, reusable library of open-source Chisel generators (and Verilog too)
+
+- <b>IOBinders/HarnessBinders</b>: Enable configuring IO strategy and Harness features
+- <b>FIRRTL Passes</b>: Structured mechanism for supporting multiple flows
+- <b>Target flows</b>: Different use-cases for different types of users</td>
+    <td><img src="assets/tutorial/chipyard_summary.jpg" /></td>
+  </tr>
+</table>
 
 
 # Designing Custom Accelerators
