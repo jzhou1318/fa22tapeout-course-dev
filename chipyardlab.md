@@ -339,7 +339,7 @@ class RocketConfig extends Config(
   <tr>
     <td>Is UART enabled? If so, which config fragments enabled it?</td>
     <td>Yes; <code>chipyard.config.WithUART</code>,  <code>chipyard.iobinders.WithUARTIOCells</code>,  <code>chipyard.harness.WithUARTAdapter</code>.</td>
-    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find <code>AbstractConfig </code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>UART</code> and find the corresponding config fragments.</td>
+    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find <code>AbstractConfig</code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>UART</code> and find the corresponding config fragments.</td>
   </tr>
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
@@ -349,7 +349,7 @@ class RocketConfig extends Config(
   <tr>
     <td>Is there an L2 used in this config? What size?</td>
     <td>Yes. 1 bank, 8 ways, 512Kb.</td>
-    <td>We once again start looking at <code> RocketConfig</code> which leads us to <code>AbstractConfig</code>. Looking at the comments of the various config fragments we see the comment <code> // use Sifive L2 cache </code> next to <code> new freechips.rocketchip.subsystem.WithInclusiveCache ++ </code> (You can read more about SiFive <a href="https://www.sifive.com/">here</a>). We could have grepped in the generators directory for <code>WithInclusiveCache</code> or noticed that a <code>sifive-cache</code> submodule existed under <code>$chipyard/generators</code>. Navigating through it we eventually find the <code>WithInclusiveCache</code> class at <code>block-inclusivecache-sifive/design/craft/inclusivecache/src/Configs.scala</code>.</td>
+    <td>We once again start looking at <code> RocketConfig</code> which leads us to <code>AbstractConfig</code>. Looking at the comments of the various config fragments we see the comment <code> // use Sifive L2 cache</code> next to <code> new freechips.rocketchip.subsystem.WithInclusiveCache ++</code> (You can read more about SiFive <a href="https://www.sifive.com/">here</a>). We could have grepped in the generators directory for <code>WithInclusiveCache</code> or noticed that a <code>sifive-cache</code> submodule existed under <code>$chipyard/generators</code>. Navigating through it we eventually find the <code>WithInclusiveCache</code> class at <code>block-inclusivecache-sifive/design/craft/inclusivecache/src/Configs.scala</code>.</td>
 
   </tr>
 </table>
@@ -381,13 +381,13 @@ Let's run some commands!
 
 > *From this point on, we will be running some more compute-intensive commands. Prepend all compute heavy commands (everything ran in the `vlsi/` direcetory & `sims/` directories) with `bsub -Is -q ee194` This submits the job to a special queue for the class so we don't crash the server and mess up ongoing research work (or cause each other to lose valuable work :))* 
 
-We'll be running the `CONFIG=RocketConfig` config (the `-j16 does the run with more threads so it finishes up faster`). All commands should be run in `$chipyard/sims/vcs`. Run
+We'll be running the `CONFIG=RocketConfig` config (the `-j16`000 does the run with more threads so it finishes up faster`). All commands should be run in `$chipyard/sims/vcs`. Run
 ```
 bsub -Is -q ee194 make CONFIG=RocketConfig -j16
 ```
-> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=` is not a real error. You can safely ignore*
+> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=` is not a real error. You can safely ignore.0*
 
-[FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think og FIRRTL as ajn HDL version of LLVM is you are familar with LLVM (depicted below).
+[FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think of FIRRTL as an HDL version of LLVM if you are familar with LLVM (depicted below).
 
 <table border-"0">
   <tr>
@@ -408,7 +408,7 @@ Answer the following questions:
 
 **2. Looking only at the emitted files, how many bytes are in a block for the L1 ICache? How many sets are in the L1 ICache?**
 
-**3. Try to find the top-level verilog modules that correspond to the ICache/DCache? What are they called?**
+**3. Try to find the top-level verilog modules that correspond to the ICache/DCache? What are they called? *Hint: what modules look like they represent memories?***
 
 
 ## Chipyard Simulation
@@ -422,7 +422,7 @@ bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unkn
 
 In summary, when we run something like: 
 ```
-bsub -Is -q ee194 make CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
 ```
 The first command will elaborate the design and create Verilog.
 This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
@@ -440,9 +440,9 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
     <td>
 
 - <b>SW RTL Simulation:</b> RTL-level simulation with VCS or Verilator. If you design anything with Chipyard, you should be running SW RTL simulation to test. 
-- <b>Hammer VLSI flow:</b> Tapeout a custom config in some process technology
-- <b>FPGA prototyping:</b> Fast, non-deterministic prototypes (we won't be doing this in this class)
-- <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, checkout its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more)
+- <b>Hammer VLSI flow:</b> Tapeout a custom config in some process technology.
+- <b>FPGA prototyping:</b> Fast, non-deterministic prototypes (we won't be doing this in this class).
+- <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, checkout its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more).
 
     <td><img src="assets/tutorial/high_sim.jpg" width = 1500/></td>
   </tr>
@@ -454,11 +454,11 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
   <tr>
     <td>
 
-- <b>Configs</b>: Describe parameterization of a multi-generator SoC
-- <b>Generators</b>: Flexible, reusable library of open-source Chisel generators (and Verilog too)
-- <b>IOBinders/HarnessBinders</b>: Enable configuring IO strategy and Harness features
-- <b>FIRRTL Passes</b>: Structured mechanism for supporting multiple flows
-- <b>Target flows</b>: Different use-cases for different types of users</td>
+- <b>Configs</b>: Describe parameterization of a multi-generator SoC.
+- <b>Generators</b>: Flexible, reusable library of open-source Chisel generators (and Verilog too).
+- <b>IOBinders/HarnessBinders</b>: Enable configuring IO strategy and Harness features.
+- <b>FIRRTL Passes</b>: Structured mechanism for supporting multiple flows.
+- <b>Target flows</b>: Different use-cases for different types of users.</td>
     <td><img src="assets/tutorial/chipyard_summary.jpg" /></td>
   </tr>
 </table>
