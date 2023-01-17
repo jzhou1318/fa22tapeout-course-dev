@@ -486,6 +486,8 @@ Afterwards, you should see the `.riscv` bare-metal binaries compiled here. Go ba
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv` Runs [FIR](https://en.wikipedia.org/wiki/Finite_impulse_response) tests.
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv` Runs test on the [NiC](https://en.wikipedia.org/wiki/Network_interface_controller) tests.
 
+# END OF PART 1 OF CHIPYARD LAB (due 2/24)
+
 # Designing Custom Accelerators
 In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
 
@@ -684,7 +686,7 @@ generator/
 ```
 
 ## Setting up & designing our accelerator
-Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
+Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remember, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
 <!--
 ##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
@@ -800,8 +802,9 @@ Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocket
 **Please submit:**
 1. The entirety of the code for `VecAddMMIOChiselModule`.
 2. Your entire C refenence solution.
-3. A screenshot of your test passing.
-# END OF CHIPYARD LAB
+3. A screenshot of your test passing.c
+
+# END OF CHIPYARD LAB (due 2/26)
 
  <!--
 ## VLSI Flow
