@@ -16,7 +16,7 @@ Chipyard is an integrated design, simulation, and implementation framework for o
 
 A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-based SoC. This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
 
-Chisel is the primary hardware description language used at Berkeley. It is a domain-specific language built on top of Scala. Thus, it provides designers with the power of a modern programming language to write complex, parameterizable circuit generators that can be compiled into synthesizable Verilog. You will be writing some basic Chisel code in this lab.
+Chisel is the primary hardware description language used at Berkeley. It is a domain-specific language built on top of Scala. Thus, it provides designers with the power of a modern programming language to write complex, parameterizable circuit generators that can be compiled into synthesizable Verilog. You will be writing some basic Chisel code in this lab., however, it is NOT the focus on this lab. This lab aims to familarize you with the Chipyard frameworkas a whole.
 
 Information about Chisel can be found in [https://www.chisel-lang.org/](https://www.chisel-lang.org/).
 
@@ -54,6 +54,8 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 ## Getting Started
 
 First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. <b>DO NOT</b> work out of the home directory
+
+0) SSH into a BWRC compute cluster: `bwrcrdsl-#.eecs.berkeley.edu` (Make sure you have the [campus VPN](https://security.berkeley.edu/services/bsecure/bsecure-remote-access-vpn) on)
 
 1) Run 
 ```
@@ -102,7 +104,7 @@ The `init-subodules-no-riscv-tools.sh` script will initialize and checkout all o
 	path = generators/rocket-chip
 	url = https://github.com/chipsalliance/rocket-chip.git
 ```
-which defines this behavior.
+which defines this behavior. Read more about `git submodules` [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 7) Run 
 ```
@@ -348,7 +350,7 @@ class RocketConfig extends Config(
   <tr>
     <td>Is there an L2 used in this config? What size?</td>
     <td>Yes. 1 bank, 8 ways, 512Kb.</td>
-    <td>We once again start looking at <code> RocketConfig</code> which leads us to <code>AbstractConfig</code>. Looking at the comments of the various config fragments we see the comment <code> // use Sifive L2 cache </code> next to <code> new freechips.rocketchip.subsystem.WithInclusiveCache ++ </code> (You can read more about SiFive <a href="https://www.sifive.com/">here</a>). We could have grepped in the generators directory for `WithInclusiveCache` or noticed that a <code>sifive-cache</code> submodule existed under <code>$chipyard/generators</code>. Navigating through it we eventually find the <code>WithInclusiveCache</code> class at <code>block-inclusivecache-sifive/design/craft/inclusivecache/src/Configs.scala</code>.</td>
+    <td>We once again start looking at <code> RocketConfig</code> which leads us to <code>AbstractConfig</code>. Looking at the comments of the various config fragments we see the comment <code> // use Sifive L2 cache </code> next to <code> new freechips.rocketchip.subsystem.WithInclusiveCache ++ </code> (You can read more about SiFive <a href="https://www.sifive.com/">here</a>). We could have grepped in the generators directory for <code>WithInclusiveCache</code> or noticed that a <code>sifive-cache</code> submodule existed under <code>$chipyard/generators</code>. Navigating through it we eventually find the <code>WithInclusiveCache</code> class at <code>block-inclusivecache-sifive/design/craft/inclusivecache/src/Configs.scala</code>.</td>
 
   </tr>
 </table>
@@ -384,7 +386,7 @@ We'll be running the `CONFIG=RocketConfig` config (the `-j16 does the run with m
 ```
 bsub -Is -q ee194 make CONFIG=RocketConfig -j16
 ```
-> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=/bwrcq/C/jennifersiyuanzhou/intech22/sp23-chipyard-lab-dev/.java_tmp` is not a real error. You can safely ignore*
+> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=` is not a real error. You can safely ignore*
 
 [FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think og FIRRTL as ajn HDL version of LLVM is you are familar with LLVM (depicted below).
 
