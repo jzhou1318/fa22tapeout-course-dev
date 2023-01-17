@@ -248,7 +248,6 @@ All of these modules are built as generators (a core driving point of using Chis
     <td>
       <h2>Peripherals and IO</h2>
       <ul>
-        <li> TODO: Expand on the following 
         <li> Open-source RocketChip + SiFive blocks:
         <ul>
           <li> Interrupt controllers
@@ -261,6 +260,7 @@ All of these modules are built as generators (a core driving point of using Chis
           <li> SerDes
           <li> Scratchpads
         </ul>
+       <li>Documentations of the peripheral devices can be found <a href="https://drive.google.com/file/d/1aDYtmHgG30Gy591TaNlya2rcc54nn9gZ/view?usp=sharing">here</a></li>
       </ul>
     </td>
   </tr>
@@ -389,6 +389,8 @@ Everything has been elaborated, we can run some tests now. First, go to the `$ch
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv`
+
+> *Note: if you are wondering, the `.riscv` binaries are actually [ELF files](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format). We are naming it with the .riscv extension to emphasize that it is a RISC-V program.*
 
 ## Chipyard Simulation
 
