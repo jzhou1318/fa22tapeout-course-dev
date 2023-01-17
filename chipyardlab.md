@@ -35,7 +35,6 @@ In particular, the lab provides a brief overview of Chipyard's diverse features,
 
 ![](assets/chipyard-components.PNG)
 
-##### TODO - edit this to separate lab from class specifics like process tech
 ## Access & Setup
 
 It should be clear by now this isn't going like most other courses. Most don't require signing non-disclosure agreements, or setting up a long string of IT infrastructure. Such is chip-design life. Running the Intel16 ChipYard lab will require access to a handful of BWRC research resources, including:
@@ -665,9 +664,9 @@ You should do the following:
 4. Write an integration test that uses random numbers in the entire range as inputs.
 
 
-# MMIO Design
+# [Optional] MMIO Design
 
-##### TODO: a nice picture where the MMIO accelerator sits? similar to the RoCC accelerator image
+<em><strong>This is a completely optional design exercise. It's digs more deeply into the Chipyard infrastructure and althought an MMIO accelerator is not difficult inconcept, is rather tricky to integrate. There will be limited support for this part in favor of helping the class understand and internalize the previous parts</strong></em>.
 
 Often, an accelerator or peripheral block is connected to the rest of the SoC with a memory-mapped interface over the system bus. 
 This allows the core and external IO to configure and communicate with the block.
@@ -686,7 +685,9 @@ generator/
 ## Setting up & designing our accelerator
 Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
+<!--
 ##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
+-->
 
 Most of the logic of the accelerator will go in `VecAddMMIOChiselModule`. This module will be wrapped by the `VecAddModule` which interfaces with the rest of the SoC and determines where our MMIO registers are placed.
 
@@ -708,10 +709,15 @@ Since the ready/valid signals of `y` are connected to the `input_ready` and `inp
 
 ## Connecting our design to the rest of the SoC
 Once you have these classes, you can construct the final peripheral by extending the `TLRegisterRouter` and passing the proper arguments. The first set of arguments determines where the register router will be placed in the global address map and what information will be put in its device tree entry (`VecAddParams`). The second set of arguments is the IO bundle constructor (`VecAddTopIO`), which we create by extending `TLRegBundle` with our bundle trait. The final set of arguments is the module constructor (`VecAddModule`), which we create by extends `TLRegModule` with our module trait. Notice how we can create an analogous AXI4 version of our peripheral.
+<!--
 ##### TODO: more details about what a TLRegisterRouter is?
+-->
 
 `VecAddParams` This is where we define where our MMIO accelerator will be placed. `address` determines the base of the module’s MMIO region (0x2000 in this case). Each TLRouter has default size 4096. Everything `address` to `address` + 4096 is accessibl and only the regions defined in the regmap (as preivously defined) will do anything (reads/writes to other regions will be no-ops).
+
+<!--
 ##### TODO: explain a bit about the other params. 
+-->
 
 **Copy paste the following into `ExampleMMIO.scala`**
 ```
@@ -786,9 +792,15 @@ To generate the binary file of the test, run two following two commands in the t
 
 Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocketConfig BINARY=../../tests/examplemmio.riscv run-binary-debug` to run the test. If successful, you should see the terminal print whether you passed the test or not. This may take a while.
 
+<!--
 ##### TODO: maybe something about debugging chisel? making sense of logs?
+-->
 
-# END OF LAB 1
+**Please submit:**
+1. The entirety of the code for `VecAddMMIOChiselModule`.
+2. Your entire C refenence solution.
+3. A screenshot of your test passing.
+# END OF CHIPYARD LAB
 
  <!--
 ## VLSI Flow
