@@ -57,12 +57,13 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username.
 
 1) Run `source /tools/C/ee290-dev-sp23/miniforge3/bin/activate`
-2) clone the lab chipyard repo at `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git` 
-3) `cd sp23-chipyard-lab-dev`
+2) Clone the lab chipyard repo at `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git` 
+3) Optionally, set the repo path as an [environment variable](https://www.geeksforgeeks.org/environment-variables-in-linux-unix/) by running `export chipyard=/tools/C/<your name>/sp23-chipyard-lab-dev`. We will be refering the repo path as `$chipyard` from now on.
+3) `cd $chipyard`
 4) `git checkout lab-dev`
 5) Run `conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env`
 6) Run `./scripts/init-submodules-no-riscv-tools.sh`
-7) Run `source env.sh`
+7) Run `source ./env.sh`
 <!-- 1) `source /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/scripts/fix-open-files.sh` -->
 
 <!--
@@ -96,7 +97,7 @@ cd chipyard
 ## Chipyard Repo Tour
 
 ```
- chipyard/
+ $chipyard/
   generators/ <------- library of Chisel generators
     chipyard/
     sha3/
@@ -115,7 +116,7 @@ including the in-order Rocket Chip core, the out-of-order BOOM core, the systoli
 Thankfully, Chipyard has some great documentation, which can be found 
 [here](https://chipyard.readthedocs.io/en/latest/). 
 
-You can find most of these in the `chipyard/generators/` directory.
+You can find most of these in the `$chipyard/generators/` directory.
 All of these modules are built as generators (a core driving point of using Chisel), which means that each piece is parameterized and can be fit together with some of the functionality in Rocket Chip (check out the TileLink and Diplomacy references in the Chipyard documentation).
 
 ### SoC Architecture 
@@ -163,7 +164,7 @@ All of these modules are built as generators (a core driving point of using Chis
       <ul>
         <li> Controlled by memory-mapped IO registers
         <li> Support DMA to memory system
-        <li> Examples: Nvidia NVDLA accelerator & FFT accelerator generator (we should link these)
+        <li> Examples: <a href="http://nvdla.org/">Nvidia NVDLA accelerator</a> & <a href="https://chipyard.readthedocs.io/en/stable/Generators/fft.html">FFT accelerator generator </a>
         <li> More on this later
       </ul>
     </td>
@@ -285,9 +286,9 @@ All of these modules are built as generators (a core driving point of using Chis
 
 
 ## Config Exercise
-You can find the Chipyard specific code and its configs in `chipyard/generators/chipyard/src/main/scala/config`.
+You can find the Chipyard specific code and its configs in `$chipyard/generators/chipyard/src/main/scala/config`.
 
-Look at the configs located in `chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala`, specifically `RocketConfig`
+Look at the configs located in `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala`, specifically `RocketConfig`
 
 ```
 class RocketConfig extends Config(
@@ -318,13 +319,13 @@ class RocketConfig extends Config(
   </tr>
 </table>
 
-Inspect `MMIOScratchpadOnlyRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `chipyard/generators/chipyard/src/main/scala/` or `chipyard/generators/rocket-chip/src/main/scala/`.
+Inspect `MMIOScratchpadOnlyRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
 
 **What config fragment adds a MMIO port?**
 **How large is the scratchpad?**
 
 
-Inspect `L1ScratchpadRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `chipyard/generators/chipyard/src/main/scala/` or `chipyard/generators/rocket-chip/src/main/scala/`.
+Inspect `L1ScratchpadRocketConfig` & answer the following questions. You should be able to find the answers by grepping in `$chipyard/generators/chipyard/src/main/scala/` or `$chipyard/generators/rocket-chip/src/main/scala/`.
 
 **How many sets & ways are the DCache scratchpads?**
 **What are the valid memory addresses for the DCache scratchpad??**
@@ -332,15 +333,15 @@ Inspect `L1ScratchpadRocketConfig` & answer the following questions. You should 
 
 
 <!---
-You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `chipyard/generators/chipyard/src/main/scala/example`.
+You can look at examples of how your own Chisel modules or verilog black-box modules can be integrated into a Rocket Chip-based SoC in `$chipyard/generators/chipyard/src/main/scala/example`.
 -->
 
 
 ## Running Some Commands
 
-Let's run some commands! Navigate to `chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`
+Let's run some commands! Navigate to `$chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`
 
-All commands should be run in `chipyard/sims/verilator`. After the runs are done (some can take ~20 minutes), check the `chipyard/sims/verilator/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
+All commands should be run in `$chipyard/sims/verilator`. After the runs are done (some can take ~20 minutes), check the `chipyard/sims/verilator/generated-src` folder. Find the directory of the config that you ran and you should see the following files:
 - `XXX.top.v`: Synthesizable Verilog source
 - `XXX.harness.v`: TestHarness
 - `XXX.dts`: device tree string
@@ -383,7 +384,7 @@ All commands should be run in `chipyard/sims/verilator`. After the runs are done
   </tr>
 </table>
 
-Everything has been elaborated, we can run some tests now. First, go to the `chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `chipyard/sims/verilator` and try running:
+Everything has been elaborated, we can run some tests now. First, go to the `$chipyard/tests` and run `make`. Afterwards, you shoudl see the `.riscv` bare-metal binaries compiled here. Go back to `$chipyard/sims/verilator` and try running:
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv`
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv`
@@ -438,7 +439,7 @@ For more on RoCC, we encourage you to refer to:
 1. Sections 6.5 and 6.6 of the Chipyard docs, and related examples
 2. Bespoke Silicon Group's [RoCC Doc V2](https://docs.google.com/document/d/1CH2ep4YcL_ojsa3BVHEW-uwcKh1FlFTjH_kg5v8bxVw/edit)
 
-Here's an overview of the `customAccRoCC` directory inside `chipyard/generators/`.
+Here's an overview of the `customAccRoCC` directory inside `$chipyard/generators/`.
 ```
  customAccRoCC/
   baremetal_test/       <------ (4) bare-metal functional tests            <------ Invoke gcc for RISC-V and generate test executable
@@ -522,9 +523,9 @@ Inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragme
 1. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)
 2. Give the 7-bit opcode used for instructions to our accelerator.
 
-We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `<root Chipyard dir>/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
+We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `$chipyard/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
 
-Next, navigate to `<root Chipyard dir>/generators/chipyard/src/main/scala/config/RocketConfigs.scala`. **Define `CustomAccRoCCConfig`** such that it adds our accelerator to `RocketConfig`. The previous step made `customAccRoCC` available as a package here.
+Next, navigate to `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala`. **Define `CustomAccRoCCConfig`** such that it adds our accelerator to `RocketConfig`. The previous step made `customAccRoCC` available as a package here.
 
 Hint: `CustomAccRoCCConfig` should look like the following:
 ```
@@ -557,12 +558,12 @@ Now, let's disassemble the executable `functionalTest` by running:
 `riscv64-unknown-elf-objdump -d functionalTest | less`
 **Inspect the output and find the address of the `ROCC_INSTRUCTION_DSS`**. Looking through `<main>` and looking for `opcode0` should be helpful.
 
-It's time to run our functional test. Navigate to `<root Chipyard dir>/sims/verilator`, run:
+It's time to run our functional test. Navigate to `$chipyard/sims/verilator`, run:
 `make CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug`
 
 It might take a few minutes to build and compile the test harness, and run the simulation.
 
-Inside, `<root Chipyard dir>/sims/verilator`, for each config,
+Inside, `$chipyard/sims/verilator`, for each config,
 - `generated-src` contains the test harness
 - `output` contains output files (log/output/waveform) for each config.
 
@@ -608,7 +609,7 @@ generator/
 ```
 
 ## Setting up & designing our accelerator
-Navigate to `/chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
+Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remmeber, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
 
 ##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
 
@@ -688,7 +689,7 @@ Now we want to mix our traits into the system as a whole. This code is from` gen
 
 Just as we need separate traits for `LazyModule` and module implementation, we need two classes to build the system. The `DigitalTop` class contains the set of traits which parameterize and define the `DigitalTop`. Typically these traits will optionally add IOs or peripherals to the DigitalTop. The `DigitalTop` class includes the pre-elaboration code and also a `lazy val` to produce the module implementation (hence `LazyModule`). The `DigitalTopModule` class is the actual RTL that gets synthesized.
 
-And finally, we create a configuration class in `generators/chipyard/src/main/scala/config/RocketConfigs.scala` that uses the WithGCD config fragment defined earlier.
+And finally, we create a configuration class in `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala` that uses the WithGCD config fragment defined earlier.
 
 **Copy paste the following**
 ```
@@ -700,7 +701,7 @@ class VecAddTLRocketConfig extends Config(
 
 ## Testing Your MMIO
 
-Now we're ready to test our accelerator! We write out test program in `chipyard/tests/examplemmio.c` Look through the file and make sure you understand the flow of the file. **Add in a C refenence solution for our accelerator**
+Now we're ready to test our accelerator! We write out test program in `$chipyard/tests/examplemmio.c` Look through the file and make sure you understand the flow of the file. **Add in a C refenence solution for our accelerator**
 
 To generate the binary file of the test, run two following two commands in the terminal
 
@@ -708,7 +709,7 @@ To generate the binary file of the test, run two following two commands in the t
 
 `riscv64-unknown-elf-gcc -static -specs=htif_nano.specs examplemmio.o -o examplemmio.riscv`
 
-Then, navigate to `chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocketConfig BINARY=../../tests/examplemmio.riscv run-binary-debug` to run the test. If successful, you should see the terminal print whether you passed the test or not. This may take a while.
+Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocketConfig BINARY=../../tests/examplemmio.riscv run-binary-debug` to run the test. If successful, you should see the terminal print whether you passed the test or not. This may take a while.
 
 ##### TODO: maybe something about debugging chisel? making sense of logs?
 
