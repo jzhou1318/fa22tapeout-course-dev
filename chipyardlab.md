@@ -53,7 +53,7 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 
 ## Getting Started
 
-First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. <b>DO NOT</b> work out of the home directory
+First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. If you do not see a directory under your username, contact [Brian Richards](bcr@berkeley.edu). <b>DO NOT</b> work out of the home directory
 
 0) SSH into a BWRC compute cluster: `bwrcrdsl-#.eecs.berkeley.edu` (Make sure you have the [campus VPN](https://security.berkeley.edu/services/bsecure/bsecure-remote-access-vpn) on)
 
