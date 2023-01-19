@@ -16,14 +16,15 @@ Chipyard is an integrated design, simulation, and implementation framework for o
 
 A designer can use Chipyard to build, test, and tapeout (manufacture) a RISC-V-based SoC. This includes RTL development integrated with Rocket Chip, cloud FPGA-accelerated simulation with FireSim, and physical design with the Hammer framework.
 
-Chisel is the primary hardware description language used at Berkeley. It is a domain-specific language built on top of Scala. Thus, it provides designers with the power of a modern programming language to write complex, parameterizable circuit generators that can be compiled into synthesizable Verilog. You will be writing some basic Chisel code in this lab., however, it is NOT the focus on this lab. This lab aims to familarize you with the Chipyard frameworkas a whole.
+Chisel is the primary hardware description language used at Berkeley. It is a domain-specific language built on top of Scala. Thus, it provides designers with the power of a modern programming language to write complex, parameterizable circuit generators that can be compiled into synthesizable Verilog. You will be writing a few lines of basic Chisel code in this lab, however, it is NOT the focus of this lab. This lab aims to familarize you with the Chipyard framework as a whole.
 
-Information about Chisel can be found in [https://www.chisel-lang.org/](https://www.chisel-lang.org/).
+Here are some resources to learn more about Chisel:
+- [Chisel Website](https://www.chisel-lang.org/)
+- [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp)
+- [Detailed Chisel API Documentation](https://www.chisel-lang.org/api/chisel3/latest/)
+- [Intensivate's Chisel Learning Journey](https://github.com/Intensivate/learning-journey/wiki)
 
-An initial introduction to Chisel can be found in the Chisel bootcamp:  [https://github.com/freechipsproject/chisel-bootcamp](https://github.com/freechipsproject/chisel-bootcamp).
-Detailed documentation of Chisel functions can be found in [https://www.chisel-lang.org/api/chisel3/latest/](https://www.chisel-lang.org/api/chisel3/latest/). 
-Intensivate's [Chisel Learning Journey](https://github.com/Intensivate/learning-journey/wiki) is another great resource.
-
+Students interested in designing accelerators and other IP (writing significant RTL) are especially encouraged to consult these resources. 
 
 Throughout the rest of the course, we will be developing our SoC using Chipyard as the base framework. 
 There is a lot in Chipyard so we will only be able to explore a part of it in this lab, but hopefully you will get a brief sense of its capabilities.
@@ -53,36 +54,46 @@ This lab also presumes much of its GitLab interaction will occur via SSH. While 
 
 ## Getting Started
 
-First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC computer cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. <b>DO NOT</b> work out of the home directory
+First, we will need to setup our Chipyard workspace. All of our work will occur on the BWRC compute cluster. Make sure you have access and can connect to the BWRC compute cluster before starting this lab. For this lab, and the course in general, please work in the `/tools/C/<your username>` directory, where you should use your EECS IRIS account username. Go head and create a directory for yourself. <b>DO NOT</b> work out of the home directory
 
-0) SSH into a BWRC compute cluster: `bwrcrdsl-#.eecs.berkeley.edu` (Make sure you have the [campus VPN](https://security.berkeley.edu/services/bsecure/bsecure-remote-access-vpn) on)
+0) SSH into a BWRC login server: `bwrcrdsl-#.eecs.berkeley.edu` (Make sure you have the [campus VPN](https://security.berkeley.edu/services/bsecure/bsecure-remote-access-vpn) on, if accessing the BWRC cluster off campus.)
 
 1) Run 
 ```
- <your email>@bwrcrdsl-2:/tools/C/<your username> $ source /tools/C/ee290-dev-sp23/miniforge3/bin/activate
+ <your username>@bwrcrdsl-#:/tools/C/<your username> $ source /tools/C/ee290-dev-sp23/ee290-tools-env.sh
 ```
+
+This script is responsible for setting up the tools and environment used in this lab (and more generally by the course). Specifically, it does the following right now:
+1. Conda is an open-source package and environment management system that allows you to quickly install, run, and update packages and their dependencies. We activate the base conda environment for the course's conda instance. 
+1. We use commercial tools such as VCS from a common installation location on the BWRC compute cluster. We add this location to the path and source relevant licenses.
+
+TAs will manage further changes to this script to simplify environment/workflow setup in the coming weeks.
+
+
+<b>You will need to source this script in every new terminal & at the start of every work session.</b> 
+
 2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a> `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git`.
 ```
- <your email>@bwrcrdsl-2:/tools/C/<your username> $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
+ <your username>@bwrcrdsl-#:/tools/C/<your username> $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
 ```
 
 3) Run
 ```
- <your email>@bwrcrdsl-2:/tools/C/<your username> $cd sp23-chipyard-lab-dev
+ <your username>@bwrcrdsl-#:/tools/C/<your username> $cd sp23-chipyard-lab-dev
 ```
 
-Optionally, set the repo path as an [environment variable](https://www.geeksforgeeks.org/environment-variables-in-linux-unix/) by running `export chipyard=/tools/C/<your username>/sp23-chipyard-lab-dev`. We will be refering the repo path as `$chipyard` from now on. If you do not wish to set up this environment variable, you will need to write out `/tools/C/<your username>/sp23-chipyard-lab-dev` every time we use `$chipyard`
+Optionally, set the repo path as an [environment variable](https://www.geeksforgeeks.org/environment-variables-in-linux-unix/) by running `export chipyard=/tools/C/<your username>/sp23-chipyard-lab-dev`. We will be referring to the repo path as `$chipyard` from now on. If you do not wish to set up this environment variable, you will need to write out `/tools/C/<your username>/sp23-chipyard-lab-dev` every time we use `$chipyard`.
 
 4) Run
 
 ```
- <your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ git checkout lab-dev
+ <your username>@bwrcrdsl-#:/tools/C/<your username>/sp23-chipyard-lab-dev $ git checkout lab-dev
 ```
-to grab the lab branch.
+to switch to the lab branch.
 
 5) Run 
 ```
-<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env
+<your username>@bwrcrdsl-#:/tools/C/<your username>/sp23-chipyard-lab-dev $ conda activate /tools/C/raghavgupta/intech22/sp23/chipyard-lab-sp23/.conda-env
 ```
 
 In Chipyard, we use the Conda package manager to help manage system dependencies. Conda allows users to create an “environment” that holds system dependencies like `make`, `gcc`, etc. We've also installed a pre-built RISC-V toolchain into it. We want to ensure that everyone in the class is using the same version of everything, so everyone will be using the same conda environment by activating the environment specified above. <b>You will need to do this in every new terminal & at the start of every work session.</b>
@@ -92,7 +103,7 @@ In Chipyard, we use the Conda package manager to help manage system dependencies
 6) Run 
 
 ```
-<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ ./scripts/init-submodules-no-riscv-tools.sh
+<your username>@bwrcrdsl-#:/tools/C/<your username>/sp23-chipyard-lab-dev $ ./scripts/init-submodules-no-riscv-tools.sh
 
 ```
 
@@ -108,10 +119,16 @@ which defines this behavior. Read more about `git submodules` [here](https://git
 
 7) Run 
 ```
-<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/sp23-chipyard-lab-dev $ source ./env.sh
+<your username>@bwrcrdsl-#:/tools/C/<your username>/sp23-chipyard-lab-dev/ $ source ./env.sh
 ```
 
-An `env.sh` file should exist in the top-level repository (`$chipyard`). This file activates the conda environment that was set up previously and sets up necessary environment variables needed for future Chipyard steps (needed for the `make` system to work properly). Once the script is run, the `PATH`, `RISCV`, and `LD_LIBRARY_PATH` environment variables will be set properly for the toolchain requested. You can source this file in your [`.bashrc`](https://www.digitalocean.com/community/tutorials/bashrc-file-in-linux) or equivalent environment setup file to get the proper variables, or directly include it in your current environment by **running the above command every time you open a new terminal or start a new work session**.
+An `env.sh` file should exist in the top-level repository (`$chipyard`). This file sets up necessary environment variables such as `PATH` for the current Chipyard repository. This is required by future Chipyard steps such as the `make` system to function correctly.
+
+Over the course of the semester, we will find ourselves working with different Chipyards, such as one for this lab, and one for the SoCs we build this semester.
+
+<!--- An `env.sh` file should exist in the top-level repository (`$chipyard`). This file sets up necessary environment variables such as needed for future Chipyard steps (needed for the `make` system to work properly). Once the script is run, the `PATH`, `RISCV`, and `LD_LIBRARY_PATH` environment variables will be set properly for the toolchain requested. -->
+
+You should source the `env.sh` file in the Chipyard repository you wish to work in <!--- in your [`.bashrc`](https://www.digitalocean.com/community/tutorials/bashrc-file-in-linux) or equivalent environment setup file to get the proper variables, or directly include it in your current environment --> by **running the above command every time you open a new terminal or start a new work session**.
 
 ## Chipyard Repo Tour
 
@@ -119,7 +136,7 @@ An `env.sh` file should exist in the top-level repository (`$chipyard`). This fi
 However, we will still give a general repo tour to get you familiar with Chipyard as a whole.
 
 
-###### *VCS is a propietory simulation tool provided by Synopsys while Verilator is an open-source tool. There are some subtle differences form the user perspective, but VCS is usually faster so we'll be using that throuhgout the coruse. Everthing done with VCS can easily also be done in Verilator (the subdirectory structure is the same as well).
+###### *VCS is a propietory simulation tool provided by Synopsys while Verilator is an open-source tool. There are some subtle differences form the user perspective, but VCS is usually faster so we'll be using that throuhgout the course. Everthing done with VCS can easily also be done in Verilator (the subdirectory structure is the same as well).
 ```
  $chipyard/
   generators/ <------- library of Chisel generators
@@ -344,7 +361,7 @@ class RocketConfig extends Config(
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
     <td>64 Block Bytes, 64 Sets, 4 Ways</td>
-    <td>We don't see anything about L1 Daches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>$chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>$chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>$chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>$chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
+    <td>We don't see anything about L1 DCaches in <code>AbstractConfig</code>We grep for <code>WithNBigCores</code> at <code>$chipyard/generators/rocket-chip/src/main/scala/</code>. We find it in <code>$chipyard/generators/rocket-chip/src/main/scala/subsystem/Configs.scala</code> We see that the fragment instantiates a dcache with <code>DCacheParams</code> We notice it passes in <code>CacheBlockBytes</code> to blockBytes. So, we grep for <code>CacheBlockBytes</code> in <code>$chipyard/generators/rocket-chip/src/main/scala/</code> and see <pre><code>src/main/scala/subsystem/BankedL2Params.scala:case object CacheBlockBytes extends Field[Int](64)</code></pre> Then, we grep for <code>DCacheParams</code> and find it in<code>$chipyard/generators/rocket-chip/src/main/scala/rocket/HellaCache.scala</code> where we find the <code>nSets</code> and <code>nWays</code> fields</td>
   </tr>
   <tr>
     <td>Is there an L2 used in this config? What size?</td>
@@ -379,13 +396,13 @@ You can look at examples of how your own Chisel modules or verilog black-box mod
 
 Let's run some commands! 
 
-> *From this point on, we will be running some more compute-intensive commands. Prepend all compute heavy commands (everything ran in the `vlsi/` direcetory & `sims/` directories) with `bsub -Is -q ee194` This submits the job to a special queue for the class so we don't crash the server and mess up ongoing research work (or cause each other to lose valuable work :))* 
+> *So far, we have been working on login servers. From this point on, we will be running some more compute-intensive commands on compute servers. Prepend all compute heavy commands (everything ran in the `vlsi/` directory & `sims/` directories) with `bsub -Is -q ee194` This submits the job to a special queue of compute servers for the class so we don't crash the login servers and mess up ongoing research work (or cause each other to lose valuable work :))* 
 
-We'll be running the `CONFIG=RocketConfig` config (the `-j16`000 does the run with more threads so it finishes up faster`). All commands should be run in `$chipyard/sims/vcs`. Run
+We'll be running the `CONFIG=RocketConfig` config (the `-j16` executes the run with more threads). All commands should be run in `$chipyard/sims/vcs`. Run
 ```
-bsub -Is -q ee194 make CONFIG=RocketConfig -j16
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make CONFIG=RocketConfig -j16
 ```
-> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=` is not a real error. You can safely ignore.0*
+> *Notes: [error] `Picked up JAVA_TOOL_OPTIONS: -Xmx8G -Xss8M -Djava.io.tmpdir=` is not a real error. You can safely ignore it.*
 
 [FIRRTL](https://github.com/chipsalliance/firrtl) is used to translate Chisel source files into another representation--in this case, Verilog. Without going into too much detail, FIRRTL is consumed by a FIRRTL compiler (another Scala program) which passes the circuit through a series of circuit-level transformations. An example of a FIRRTL pass (transformation) is one that optimizes out unused signals. Once the transformations are done, a Verilog file is emitted and the build process is done. You can think of FIRRTL as an HDL version of LLVM if you are familar with LLVM (depicted below).
 
@@ -415,14 +432,14 @@ Answer the following questions:
 
 Simple RISCV test can be found under `$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/`and can be run as:
 ```
-bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
 ```
 
 **1. What are the last 10 lines of the `.out` file generated by the assembly test you ran? It should include the *** PASSED *** flag.**
 
 In summary, when we run something like: 
 ```
-bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $  bsub -Is -q ee194 make run-binary CONFIG=RocketConfig BINARY=$RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
 ```
 The first command will elaborate the design and create Verilog.
 This is done by converting the Chisel code, embedded in Scala, into a FIRRTL intermediate representation which is then run through the FIRRTL compiler to generate Verilog.
@@ -442,7 +459,7 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
 - <b>SW RTL Simulation:</b> RTL-level simulation with VCS or Verilator. If you design anything with Chipyard, you should be running SW RTL simulation to test. 
 - <b>Hammer VLSI flow:</b> Tapeout a custom config in some process technology.
 - <b>FPGA prototyping:</b> Fast, non-deterministic prototypes (we won't be doing this in this class).
-- <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, checkout its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more).
+- <b>FireSim:</b> Fast, accurate FPGA-accelerated simulations (we won't be using this in this class, but if you're curious about FireSim, check out its documentation [here](https://fires.im/) and feel free to reach out to a TA to learn more).
 
     <td><img src="assets/tutorial/high_sim.jpg" width = 1500/></td>
   </tr>
@@ -468,34 +485,34 @@ Chipyard provides the infrastructure to help you do this for both VCS (Synopsys)
 Complete this section if you want to see some more complicates systems. Navigate to `$chipyard/generators/chipyard/src/main/scala/config/TutorialConfigs.scala`. We'll be running the `CONFIG=TutorialNoCConfig` config whichs adds one of the aforementioned Constellation topologies into our system. Run
 
 ```
-bsub -Is -q ee194 make CONFIG=TutorialNoCConfig -j16
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make CONFIG=TutorialNoCConfig -j16
 ```
 and inspect the generated files at `$chipyard/sims/vcs/generated-src`
 
 To run some more interesting tests, first, go to `$chipyard/tests` and run `make`. 
 ```
-<your email>@bwrcrdsl-2:/tools/C/<your username>/sp23-chipyard-lab-dev/tests $ make
+<your username>@bwrcrdsl-#:$chipyard/tests $ make
 ```
 
 > *Note: if you are wondering, the `.riscv` binaries are actually [ELF files](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format). We are naming it with the .riscv extension to emphasize that it is a RISC-V program.*
 
 
 Afterwards, you should see the `.riscv` bare-metal binaries compiled here. Go back to `$chipyard/sims/vcs` and try running (prepended with `bsub -Is -q ee194`):
-- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv` Rns tests on the FFT accelerator that's connected through a MMIO. 
+- `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/fft.riscv` Runs tests on the FFT accelerator that's connected through a MMIO. 
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/gcd.riscv` Runs tests on a GCD module that's connected through a MMIO. 
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/streaming-fir.riscv` Runs [FIR](https://en.wikipedia.org/wiki/Finite_impulse_response) tests.
 - `make CONFIG=TutorialNoCConfig run-binary-hex BINARY=../../tests/nic-loopback.riscv` Runs test on the [NiC](https://en.wikipedia.org/wiki/Network_interface_controller) tests.
 
-# END OF PART 1 OF CHIPYARD LAB (due 2/24)
-
-# Designing Custom Accelerators
-In this section, we will design two simple "accelerators" that treat their 64-bit values as vectors of eight 8-bit values. Each takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. One will use an MMIO interface, the other a RoCC interface. (As you might have realized, these aren't very practical accelerators.)
+# Designing a Custom Accelerator
+In this section, we will design a simple "accelerator" that treats its 64-bit values as vectors of eight 8-bit values. It takes two 64-bit vectors, adds them, and returns the resultant 64-bit sum vector. (As you might have realized, this isn't a very practical accelerator.) This accelerator will sit on a Rocket Tile and communicate through the RoCC interface. At the end of the lab, you will have the option to implement a 32-bit version that uses memory-mapped IO (MMIO) instead.
 
 ![](assets/acc-design.png)
 
 Note that the idea here is to learn how to incorporate a custom accelerator in an SoC by writing an accelerator generator and effectively utilizing the simplicity and extensibility of Chipyard. Our emphasis here is NOT on designing an accelerator from scratch, as that involves learning how to write RTL of significant size and complexity in Chisel, which might not be useful to the majority of the class. 
 
-We encourage you to look at sections 1 through 5 of the [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp) to write following modules.  
+If you are interested in designing an accelerator or other IP for the course, you should be prepared to write significant RTL. We encourage you to look at sections 1 through 5 of the [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp) and implement `TODOs` by yourself. 
+
+If not, feel free to utilize answers provided in the lab.
 
 # RoCC Design
 
@@ -519,7 +536,7 @@ For more on RoCC, we encourage you to refer to:
 Here's an overview of the `customAccRoCC` directory inside `$chipyard/generators/`.
 ```
  customAccRoCC/
-  baremetal_test/       <------ (4) bare-metal functional tests            <------ Invoke gcc for RISC-V and generate test executable
+  baremetal_test/       <------ (4) bare-metal functional tests
     functionalTest.c
   project/              <------ project properties/settings
   src/                  <------ source code
@@ -538,7 +555,9 @@ Let us begin by inspecting `src/main/scala/customAccRoCC.scala`.
 `LazyRoCC` and `LazyRoCCModuleImp` are *abstract* classes that allows us to separate the implementation of a RoCC accelerator from the definition and implementation of the RoCC interface. 
 `customAcceleratorModule` provides the implementation of our specific accelerator module. For ease of understanding, we define all functionality in a module called `vectorAdd`, and wire up RoCC I/O signals to `vectorAdd` I/O signals.
 
-Find the file `LazyRoCC.scala`. The RoCC interface is defined in `RoCCIO`. What keywords are used here to make this a ready-valid interface? What does `Flipped` do?
+Answer the following question:
+
+**1. Find the file `LazyRoCC.scala`. The RoCC interface is defined in `RoCCIO`. What fields does a `RoCCIO` bundle contain?**
 
 ## Accelerator RTL
 
@@ -546,6 +565,16 @@ Let us now **implement the accelerator** in `src/main/scala/vectorAdd.scala`, as
 Questions to consider:
   - What kinds of inputs/outputs does the `vectorAdd` module use? You should inspect the `io` field of the module for this.
   - Does this module use ready-valid interfaces for I/O? How many ready-valid interfaces, and in which directions?
+
+
+<details>
+<summary>In no particular order, here are the required lines of code:</summary>
+<br>
+<pre><code>sum_vec_wire(i) := in1_vec_wire(i) + in2_vec_wire(i)</code></pre>
+<pre><code>cmd_bits_reg.rs2.asTypeOf(in2_vec_wire)</code></pre>
+<pre><code>WireInit(VecInit(Seq.fill(8) {0.U(8.W)}))</code></pre>
+<pre><code>cmd_bits_reg.inst.rd</code></pre>
+</details>
 
 
 ## Testing
@@ -574,19 +603,48 @@ Here, we will be using Verilator as our simulator backend, and generate waveform
 
 Most simulation testing infrastructure is based on setting signals, advancing the clock, and checking signals, and asserting their values. ChiselTest does the same with `poke`, `step`, `peek`, and `expect` respectively.
 
-**Complete the unit test names "Basic Testcase"** in `testVectorAdd.scala` by filling in all lines marked `/* YOUR CODE HERE */`.
+**Complete the unit test named "Basic Testcase"** in `testVectorAdd.scala` by filling in all lines marked `/* YOUR CODE HERE */`.
+
+
+<details>
+<summary>In no particular order, here are the required lines of code:</summary>
+<br>
+<pre><code>"h_0F_0D_0B_09_07_05_03_01".U</code></pre>
+<pre><code>c.clock.step(1)</code></pre>
+<pre><code>true.B</code></pre>
+</details>
+
 
 Before we run any tests, we must keep in mind that our RTL is written in Chisel whereas most simulator backends and VLSI tools expect Verilog/SystemVerilog. Thus, we compile our code from Chisel down to an Intermediate Representation (FIRRTL), and finally the relevant Verilog/System Verilog. 
 
-To compile the design and run our tests, we use the Scala Build Tool (sbt). `build.sbt` in the root Chipyard directory contains project settings, dependencies, and sub-project settings. Feel free to search for `customAccRoCC` to find the sub-project entry.
+To compile the design and run our tests, we use the Scala Build Tool (sbt). `$chipyard/build.sbt` (in the root Chipyard directory) contains project settings, dependencies, and sub-project settings. Feel free to search for `customAccRoCC` to find the sub-project entry.
 
-In a new terminal window inside **the root Chipyard directory**, run `sbt`. Give it a minute or so to launch the sbt console and load all settings.
-In the sbt console, set the current project with `project customAccRoCC`.
+In a new terminal window inside **the root Chipyard directory**, run:
+```
+<your username>@bwrcrdsl-#:$chipyard $ bsub -Is -q ee194 sbt
+```
 
-To compile the design, run `compile` in the sbt console. This might take a while as it compiles all dependencies of the project.
-To run all tests, run `test` in the sbt console. (You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `<root Chipyard dir>/tests_run_dir/<test_name>`.
+Give it a minute or so to launch the sbt console and load all settings.
 
-Use `gtkwave` or `dve` to inspect the waveform at `<root Chipyard dir>/tests_run_dir/Basic_Testcase/vectorAdd.fst`.
+In the sbt console, set the current project by running:
+```
+sbt:chipyardRoot> project customAccRoCC
+```
+
+To compile the design, run `compile` in the sbt console, as follows:
+```
+sbt:customAccRoCC> compile
+```
+This might take a while as it compiles all dependencies of the project.
+
+To run all tests, run `test` in the sbt console, as follows:
+```
+sbt:customAccRoCC> test
+```
+
+(You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `$chipyard/tests_run_dir/<test_name>`.
+
+Use `gtkwave` or `dve` to inspect the waveform at `$chipyard/tests_run_dir/Basic_Testcase/vectorAdd.fst`.
 
 **Please ensure your accelerator passes the basic test case before proceeding.**
 
@@ -596,9 +654,11 @@ Now that our accelerator works, it is time to incorporate it into an SoC. We do 
 1. Defining a config fragment for our accelerator
 1. Defining a new config that uses this config fragment
 
-Inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragment here. Answer the following questions:
-1. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)
-2. Give the 7-bit opcode used for instructions to our accelerator.
+Inside `$chipyard/generators/customAccRoCC`, inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragment here. 
+
+Answer the following questions:
+**2. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)**
+**3. Give the 7-bit opcode used for instructions to our accelerator.**
 
 We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `$chipyard/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
 
@@ -613,7 +673,7 @@ class CustomAccRoCCConfig extends Config(
 
 ### Baremetal Functional Testing
 
-Let us begin by inspecting `baremetal_test/functionalTest.c`. `rocc.h` contains definitions for different kinds of RoCC instructions and the custom opcodes. We use the same test case as before, but we test integration of the whole system as values are loaded into registers on the Rocket core, sent to the RoCC accelerator, and results from the accelerator are loaded into a register. 
+Inside `$chipyard/generators/customAccRoCC`, let us inspect `baremetal_test/functionalTest.c`. `rocc.h` contains definitions for different kinds of RoCC instructions and the custom opcodes. We use the same test case as before, but we test integration of the whole system as values are loaded into registers on the Rocket core, sent to the RoCC accelerator, and results from the accelerator are loaded into a register. 
 
 Since our accelerator reads two source registers and writes to one destination register, we use `ROCC_INSTRUCTION_DSS`.
 
@@ -621,26 +681,35 @@ Inline assembly instructions in C are invoked with the `asm volatile` command. B
 
 While one can compute results for each test case a priori, and test for equality against the accelerator's results, such a strategy is not reliable nor scalable as tests become complex - such as when using random inputs or writing multiple tests. Thus, there lies significant value in writing a functional model that performs the same task as the accelerator, but in software. Of course, care must be taken in writing a correct functional model that adheres to the spec.
 
-**Inspect `<root Chipyward dir>/tests/rocc.h`**. What does the last argument of `ROCC_INSTRUCTION_DSS` stand for? In what situation would you need to use that argument?
+**Inspect `$chipyard/tests/rocc.h`**. 
+Answer the following question:
+**4. What does the last argument of `ROCC_INSTRUCTION_DSS` stand for? In what situation would you need to use that argument?**
 
 Next, we compile our test by running the following in the `baremetal_test` directory:
 ```
-riscv64-unknown-elf-gcc -fno-common -fno-builtin-printf -specs=htif_nano.specs -c functionalTest.c
-riscv64-unknown-elf-gcc -static -specs=htif_nano.specs functionalTest.o -o functionalTest
+<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-gcc -fno-common -fno-builtin-printf -specs=htif_nano.specs -c functionalTest.c
+<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-gcc -static -specs=htif_nano.specs functionalTest.o -o functionalTest
 ```
 
 Here, we're using a version of gcc with the target architecture set to riscv (without an OS underneath). This comes as part of the riscv toolchain. Since we want a self-contained binary, we compile it statically. 
 
 Now, let's disassemble the executable `functionalTest` by running:
-`riscv64-unknown-elf-objdump -d functionalTest | less`
-**Inspect the output and find the address of the `ROCC_INSTRUCTION_DSS`**. Looking through `<main>` and looking for `opcode0` should be helpful.
+```
+<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-objdump -d functionalTest | less
+```
 
-It's time to run our functional test. Navigate to `$chipyard/sims/verilator`, run:
-`make CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug`
+Inspect the output. Answer the following question:
+**5. What is the address of the `ROCC_INSTRUCTION_DSS`?** 
+Looking through `<main>` and looking for `opcode0` should be helpful.
+
+It's time to run our functional test. Let us use VCS this time around. Navigate to `$chipyard/sims/vcs`, run:
+```
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make -j16 CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug
+```
 
 It might take a few minutes to build and compile the test harness, and run the simulation.
 
-Inside, `$chipyard/sims/verilator`, for each config,
+Inside, `$chipyard/sims/vcs`, for each config,
 - `generated-src` contains the test harness
 - `output` contains output files (log/output/waveform) for each config.
 
@@ -657,6 +726,10 @@ TestDriver
             .rocket_tile
               .customAccRoCC
 ```
+
+# [Optional] Adding Modulo Arithmetic 
+
+We highly encourage those interested in designing accelerators and other custom IP to do the following exercise.
 
 Currently, our accelerator wraps around the range [0, 255], i.e., when the sum of two numbers exceeds 255, you get the result modulo 255. Let's say we desire values saturating at 255. Implement this feature. (Note: As the sum of two unsigned ints >= 0, we don't have to worry about the lower bound.)
 
@@ -804,7 +877,7 @@ Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocket
 2. Your entire C refenence solution.
 3. A screenshot of your test passing.c
 
-# END OF CHIPYARD LAB (due 2/26)
+# END OF CHIPYARD LAB (due 1/26)
 
  <!--
 ## VLSI Flow
