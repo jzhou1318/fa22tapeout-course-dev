@@ -889,7 +889,7 @@ Then, navigate to `$chipyard/sims/verilator` and run `make CONFIG=VecAddTLRocket
 2. Your entire C refenence solution.
 3. A screenshot of your test passing.c
 
-# END OF CHIPYARD LAB (due 1/26)
+# END OF CHIPYARD LAB (due EoD 1/27)
 
  <!--
 ## VLSI Flow
