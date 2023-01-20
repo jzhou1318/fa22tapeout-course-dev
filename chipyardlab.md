@@ -649,7 +649,7 @@ sbt:customAccRoCC> exit
 
 (You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `$chipyard/test_run_dir/<test_name>`.
 
-Use `gtkwave` or `dve` to inspect the waveform at `$chipyard/test_run_dir/Basic_Testcase/vectorAdd.fst`.
+Use `gtkwave` to inspect the waveform at `$chipyard/test_run_dir/Basic_Testcase/vectorAdd.fst`.
 
 **Please ensure your accelerator passes the basic test case before proceeding.**
 
@@ -725,7 +725,9 @@ Inside, `$chipyard/sims/vcs`, for each config,
 
 **Inspect the log and output for our config.** Do the results of the accelerator and model match?
 
-**Inspect the waveform (.vcd) for our config** using `dve` or `gtkwave`. Follow the module hierarchy to the correct module.
+**Inspect the waveform (.fsdb) for our config** using `verdi -ssf <fsdb file>`. Synopsys has transitioned to a new waveform viewer called Verdi that is much more capable than DVE. Verdi uses an open file format called *fsdb* (Fast Signal Database), and hence VCS has been set up to output simulation waveforms in fsdb.
+
+Follow the module hierarchy to the correct module.
 ```
 TestDriver
   .testHarness
