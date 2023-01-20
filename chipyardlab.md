@@ -595,7 +595,7 @@ We will be going through each in this section & guiding you through testing your
 
 ChiselTest is the batteries-included testing and formal verification library for Chisel-based RTL designs. It emphasizes tests that are lightweight (minimizes boilerplate code), easy to read and write (understandability), and compose (for better test code reuse). You can find the repo [here](https://github.com/ucb-bar/chiseltest), an overview [here](https://www.chisel-lang.org/chiseltest/) and API documentation [here](https://www.chisel-lang.org/api/chiseltest/latest).
 
-Let us now write a unit test using Chiseltest in `src/test/scaka/testVectorAdd.scala`. 
+Let us now write a unit test using Chiseltest in `src/test/scala/testVectorAdd.scala`. 
 
 `vectorAddTest` is our test class here, and `"Basic Testcase"` is the name of our only test case. A test case is defined inside a `test()` block, and takes the DUT as a parameter. There can be multiple test cases per test class, and we recommend one test class per Module being tested, and one test case per individual test. 
 
@@ -642,9 +642,14 @@ To run all tests, run `test` in the sbt console, as follows:
 sbt:customAccRoCC> test
 ```
 
-(You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `$chipyard/tests_run_dir/<test_name>`.
+Exit the sbt console with:
+```
+sbt:customAccRoCC> exit 
+```
 
-Use `gtkwave` or `dve` to inspect the waveform at `$chipyard/tests_run_dir/Basic_Testcase/vectorAdd.fst`.
+(You can use `testOnly <test names>` to run specific ones.) Test outputs will be visible in the console. You can find waveforms and test files in `$chipyard/test_run_dir/<test_name>`.
+
+Use `gtkwave` or `dve` to inspect the waveform at `$chipyard/test_run_dir/Basic_Testcase/vectorAdd.fst`.
 
 **Please ensure your accelerator passes the basic test case before proceeding.**
 
@@ -657,7 +662,9 @@ Now that our accelerator works, it is time to incorporate it into an SoC. We do 
 Inside `$chipyard/generators/customAccRoCC`, inspect `src/main/scala/configs.scala`. `WithCustomAccRoCC` is our config fragment here. 
 
 Answer the following questions:
+
 **2. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)**
+
 **3. Give the 7-bit opcode used for instructions to our accelerator.**
 
 We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `$chipyard/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
@@ -682,13 +689,15 @@ Inline assembly instructions in C are invoked with the `asm volatile` command. B
 While one can compute results for each test case a priori, and test for equality against the accelerator's results, such a strategy is not reliable nor scalable as tests become complex - such as when using random inputs or writing multiple tests. Thus, there lies significant value in writing a functional model that performs the same task as the accelerator, but in software. Of course, care must be taken in writing a correct functional model that adheres to the spec.
 
 **Inspect `$chipyard/tests/rocc.h`**. 
+
 Answer the following question:
+
 **4. What does the last argument of `ROCC_INSTRUCTION_DSS` stand for? In what situation would you need to use that argument?**
 
 Next, we compile our test by running the following in the `baremetal_test` directory:
 ```
 <your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-gcc -fno-common -fno-builtin-printf -specs=htif_nano.specs -c functionalTest.c
-<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-gcc -static -specs=htif_nano.specs functionalTest.o -o functionalTest
+<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-gcc -static -specs=htif_nano.specs functionalTest.o -o functionalTest.riscv
 ```
 
 Here, we're using a version of gcc with the target architecture set to riscv (without an OS underneath). This comes as part of the riscv toolchain. Since we want a self-contained binary, we compile it statically. 
@@ -699,12 +708,13 @@ Now, let's disassemble the executable `functionalTest` by running:
 ```
 
 Inspect the output. Answer the following question:
+
 **5. What is the address of the `ROCC_INSTRUCTION_DSS`?** 
 Looking through `<main>` and looking for `opcode0` should be helpful.
 
 It's time to run our functional test. Let us use VCS this time around. Navigate to `$chipyard/sims/vcs`, run:
 ```
-<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make -j16 CONFIG=CustomAccRoCCConfig BINARY=generators/customAccRoCC/baremetal_test/functionalTest run-binary-debug
+<your username>@bwrcrdsl-#:$chipyard/sims/vcs $ bsub -Is -q ee194 make -j16 CONFIG=CustomAccRoCCConfig BINARY=../../generators/customAccRoCC/baremetal_test/functionalTest.riscv run-binary-debug
 ```
 
 It might take a few minutes to build and compile the test harness, and run the simulation.
