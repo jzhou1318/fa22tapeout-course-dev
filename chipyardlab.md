@@ -72,9 +72,9 @@ TAs will manage further changes to this script to simplify environment/workflow 
 
 <b>You will need to source this script in every new terminal & at the start of every work session.</b> 
 
-2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a> `git@github.com:ucb-bar/sp23-chipyard-lab-dev.git`.
+2) Clone the lab chipyard repo <a href="https://github.com/ucb-bar/sp23-chipyard-lab-dev/tree/lab-dev">here</a>.
 ```
- <your username>@bwrcrdsl-#:/tools/C/<your username> $ git clone git@github.com:ucb-bar/sp23-chipyard-lab-dev.git
+ <your username>@bwrcrdsl-#:/tools/C/<your username> $ git clone https://github.com/ucb-bar/sp23-chipyard-lab-dev.git
 ```
 
 3) Run
