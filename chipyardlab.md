@@ -704,7 +704,7 @@ Here, we're using a version of gcc with the target architecture set to riscv (wi
 
 Now, let's disassemble the executable `functionalTest` by running:
 ```
-<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-objdump -d functionalTest | less
+<your username>@bwrcrdsl-#:$chipyard/generators/customAccRoCC/baremetal_test $ riscv64-unknown-elf-objdump -d functionalTest.riscv | less
 ```
 
 Inspect the output. Answer the following question:
