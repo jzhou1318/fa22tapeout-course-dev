@@ -356,7 +356,7 @@ class RocketConfig extends Config(
   <tr>
     <td>Is UART enabled? If so, which config fragments enabled it?</td>
     <td>Yes; <code>chipyard.config.WithUART</code>,  <code>chipyard.iobinders.WithUARTIOCells</code>,  <code>chipyard.harness.WithUARTAdapter</code>.</td>
-    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find <code>AbstractConfig</code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfigs.scala</code>. We search for <code>UART</code> and find the corresponding config fragments.</td>
+    <td>We grep for <code>AbstractConfig </code> in <code> $chipyard/generators/chipyard/src/main/scala/</code>and find <code>AbstractConfig</code> at <code>$chipyard/generators/chipyard/src/main/scala/config/AbstractConfig.scala</code>. We search for <code>UART</code> and find the corresponding config fragments.</td>
   </tr>
   <tr>
     <td>How many bytes are in a block for the L1 DCache? How many sets are in the L1 DCache? Ways?</td>
@@ -665,7 +665,7 @@ Answer the following questions:
 
 **2. What does `p` do here? (Think about how it could be used, consider the object-oriented, generator-based style of writing, and feel free to look through other generators in Chipyard for examples.)**
 
-**3. Give the 7-bit opcode used for instructions to our accelerator.**
+**3. Give the 7-bit opcode used for instructions to our accelerator. Searching for the definition of `OpcodeSet` will be useful.**
 
 We want to add our accelerator to a simple SoC that uses Rocket. To do this, we must make our config fragment accessible inside the chipyard generator. Open `$chipyard/build.sbt`. At line 152, add `customAccRoCC` to the list of dependencies of the chipyard project.
 
@@ -723,11 +723,11 @@ Inside, `$chipyard/sims/vcs`, for each config,
 - `generated-src` contains the test harness
 - `output` contains output files (log/output/waveform) for each config.
 
-**Inspect the log and output for our config.** Do the results of the accelerator and model match?
+**Inspect the log and output for our config.** Do the results of the accelerator and model match? (`** PASSED **` in the .out file and output values matching in the .log file should indicate this.)
 
 **Inspect the waveform (.fsdb) for our config** using `verdi -ssf <fsdb file>`. Synopsys has transitioned to a new waveform viewer called Verdi that is much more capable than DVE. Verdi uses an open file format called *fsdb* (Fast Signal Database), and hence VCS has been set up to output simulation waveforms in fsdb.
 
-Follow the module hierarchy to the correct module.
+In the bottom pane of your Verdi window, navigate to `Signal > Get Signals...`. Follow the module hierarchy to the correct module.
 ```
 TestDriver
   .testHarness
