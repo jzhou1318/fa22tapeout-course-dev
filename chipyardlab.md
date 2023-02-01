@@ -787,9 +787,9 @@ Most of the logic of the accelerator will go in `VecAddMMIOChiselModule`. This m
 -->
 
 * `RegField.r(2, status)` is used to create a 2-bit, read-only register that captures the current value of the status signal when read.
-* `RegField.r(params.width, gcd)` “connects” the decoupled handshaking interface gcd to a read-only memory-mapped register. When this register is read via MMIO, the ready signal is asserted. This is in turn connected to output_ready on the GCD module through the glue logic.
 * `RegField.w(params.width, x)` exposes a plain register via MMIO, but makes it write-only.
 * `RegField.w(params.width, y)` associates the decoupled interface signal y with a write-only memory-mapped register, causing y.valid to be asserted when the register is written.
+* `RegField.r(params.width, vec_add)` “connects” the decoupled handshaking interface vec\_add to a read-only memory-mapped register. When this register is read via MMIO, the ready signal is asserted. This is in turn connected to output_ready on the VecAdd module through the glue logic.
 
 RegField exposes polymorphic `r` and `w` methods that allow read- and write-only memory-mapped registers to be interfaced to hardware in multiple ways.
 
@@ -886,12 +886,12 @@ Now we want to mix our traits into the system as a whole. This code is from` gen
 
 Just as we need separate traits for `LazyModule` and module implementation, we need two classes to build the system. The `DigitalTop` class contains the set of traits which parameterize and define the `DigitalTop`. Typically these traits will optionally add IOs or peripherals to the DigitalTop. The `DigitalTop` class includes the pre-elaboration code and also a `lazy val` to produce the module implementation (hence `LazyModule`). The `DigitalTopModule` class is the actual RTL that gets synthesized.
 
-And finally, we create a configuration class in `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala` that uses the WithGCD config fragment defined earlier.
+And finally, we create a configuration class in `$chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala` that uses the WithVecAdd config fragment defined earlier.
 
 **Copy paste the following**
 ```
 class VecAddTLRocketConfig extends Config(
-  new chipyard.example.WithVecAdd(useAXI4=false, useBlackBox=false) ++          // Use GCD Chisel, connect Tilelink
+  new chipyard.example.WithVecAdd(useAXI4=false, useBlackBox=false) ++          // Use VecAdd Chisel, connect Tilelink
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
 ```
