@@ -771,7 +771,7 @@ generator/
 ```
 
 ## Setting up & designing our accelerator
-Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remember, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result. 
+Navigate to `$chipyard/generators/chipyard/src/main/scala/ExampleMMIO.scala` where we'll be designing our MMIO Acclerator. Remember, the goal is to desigin an "accelerator" that takes in two 32-bit* values as vectors of 4 8-bit values. The accelerator takes in 32-bit vectors, adds them, and returns the result.
 
 <!--
 ##### TODO: 32-bit for now; aiming for 64-bit. Turns out not as easy as just change 32 to 64
@@ -782,7 +782,9 @@ Most of the logic of the accelerator will go in `VecAddMMIOChiselModule`. This m
 **Add the necessary FSM logic into `VecAddMMIOChiselModule`** Notice how `VecAddMMIOChiselModule` has the trait `HasVecAddIO`. The bundle of input.output signals in `HasVecAddIO` are how the accelerator interaces wit the rest of the SoC.
 
 **Inspect `VecAddModule`** There are 3 main sections: setup, hooking up input/outputs, and a regmap. Setup defines the kinds of wire/signals we're working with. We hook up input/output signals as necessary: we feed x and y into the accelerator along with a rest signal and the clock; we expect the result of the addition; we also use a ready/valid interface to signify when the accelerator is busy or avaiable to process fruther instructions. `VecAddTopIO` is used only to see whether the accelerator is busy or not. Then we have the regmap: 
+<!--
 ##### TODO: add more detail, expecially about section 1 (regarding DecoupledIO, etc.), maybe some more explaining the IO signals.
+-->
 
 * `RegField.r(2, status)` is used to create a 2-bit, read-only register that captures the current value of the status signal when read.
 * `RegField.r(params.width, gcd)` “connects” the decoupled handshaking interface gcd to a read-only memory-mapped register. When this register is read via MMIO, the ready signal is asserted. This is in turn connected to output_ready on the GCD module through the glue logic.
@@ -807,7 +809,7 @@ Once you have these classes, you can construct the final peripheral by extending
 ##### TODO: explain a bit about the other params. 
 -->
 
-**Copy paste the following into `ExampleMMIO.scala`**
+**Copy paste the following two code blocks into `ExampleMMIO.scala`**
 ```
 
 class VecAddTL(params: VecAddParams, beatBytes: Int)(implicit p: Parameters)
@@ -832,9 +834,35 @@ Now, we have too hook up everything to the SoC. Rocket Chip accomplishes this us
 
 The `LazyModule` trait runs setup code that must execute before all the hardware gets elaborated. For a simple memory-mapped peripheral, this just involves connecting the peripheral’s TileLink node to the MMIO crossbar.
 
-**Copy paste the following into `ExampleMMIO.scala`**
+**Copy paste the following two code blocks into `ExampleMMIO.scala`**
 
+```
+trait CanHavePeripheryVecAdd { this: BaseSubsystem =>
+  private val portName = "vecadd"
 
+  // Only build if we are using the TL (nonAXI4) version
+  val vecadd = p(VecAddKey) match {
+    case Some(params) => {
+      if (params.useAXI4) {
+        val vecadd = LazyModule(new VecAddAXI4(params, pbus.beatBytes)(p))
+        pbus.toSlave(Some(portName)) {
+          vecadd.node :=
+          AXI4Buffer () :=
+          TLToAXI4 () :=
+          // toVariableWidthSlave doesn't use holdFirstDeny, which TLToAXI4() needsx
+          TLFragmenter(pbus.beatBytes, pbus.blockBytes, holdFirstDeny = true)
+        }
+        Some(vecadd)
+      } else {
+        val vecadd = LazyModule(new VecAddTL(params, pbus.beatBytes)(p))
+        pbus.toVariableWidthSlave(Some(portName)) { vecadd.node }
+        Some(vecadd)
+      }
+    }
+    case None => None
+  }
+}
+```
 ```
 trait CanHavePeripheryVecAddModuleImp extends LazyModuleImp {
   val outer: CanHavePeripheryVecAdd
@@ -870,7 +898,9 @@ class VecAddTLRocketConfig extends Config(
 
 ## Testing Your MMIO
 
-Now we're ready to test our accelerator! We write out test program in `$chipyard/tests/examplemmio.c` Look through the file and make sure you understand the flow of the file. **Add in a C refenence solution for our accelerator**
+Now we're ready to test our accelerator! We write out test program in `$chipyard/tests/examplemmio.c` Look through the file and make sure you understand the flow of the file. 
+
+**Add in a C reference solution for our accelerator**
 
 To generate the binary file of the test, run two following two commands in the terminal
 
